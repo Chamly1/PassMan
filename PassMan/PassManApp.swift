@@ -1,17 +1,13 @@
-//
-//  PassManApp.swift
-//  PassMan
-//
-//  Created by Vladislav Skotarenko on 18.07.2024.
-//
-
 import SwiftUI
 
 @main
 struct PassManApp: App {
+    @StateObject private var passwordsListViewModel = PasswordsListViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(passwordsListViewModel)
         }
     }
 }

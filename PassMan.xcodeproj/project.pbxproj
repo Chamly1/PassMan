@@ -11,6 +11,8 @@
 		CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */; };
 		CAB0C7C62C49A3B9006F0B3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */; };
 		CAB0C7C92C49A3B9006F0B3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */; };
+		CAB0C7D02C49B21D006F0B3B /* PasswordsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7CF2C49B21D006F0B3B /* PasswordsListView.swift */; };
+		CAB0C7D22C49B308006F0B3B /* PasswordsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* PasswordsListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CAB0C7CF2C49B21D006F0B3B /* PasswordsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsListView.swift; sourceTree = "<group>"; };
+		CAB0C7D12C49B308006F0B3B /* PasswordsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
+				CAB0C7CF2C49B21D006F0B3B /* PasswordsListView.swift */,
+				CAB0C7D12C49B308006F0B3B /* PasswordsListViewModel.swift */,
 				CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */,
 				CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */,
 				CAB0C7C72C49A3B9006F0B3B /* Preview Content */,
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */,
+				CAB0C7D22C49B308006F0B3B /* PasswordsListViewModel.swift in Sources */,
+				CAB0C7D02C49B21D006F0B3B /* PasswordsListView.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
