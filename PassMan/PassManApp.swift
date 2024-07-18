@@ -2,12 +2,12 @@ import SwiftUI
 
 @main
 struct PassManApp: App {
-    @StateObject private var passwordsListViewModel = PasswordsListViewModel()
+    @StateObject private var credentialsListViewModel = CredentialsListViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(passwordsListViewModel)
+                .environmentObject(credentialsListViewModel)
         }
     }
 }

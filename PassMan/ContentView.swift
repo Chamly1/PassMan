@@ -2,10 +2,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        PasswordsListView()
+        CredentialsListView()
     }
 }
 
 #Preview {
-    ContentView().environmentObject(PasswordsListViewModel())
+    ContentView().environmentObject(CredentialsListViewModel())
 }
