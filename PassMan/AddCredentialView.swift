@@ -24,8 +24,10 @@ struct AddCredentialView: View {
             }
             TextField("Resource name (site, application, etc.)", text: $inputResource)
                 .textFieldStyle(.roundedBorder)
+                .autocorrectionDisabled(true)
             TextField("Username/Login", text: $inputUsername)
                 .textFieldStyle(.roundedBorder)
+                .autocorrectionDisabled(true)
             SecureField("Password", text: $inputPassword)
                 .textFieldStyle(.roundedBorder)
             Button("Add") {
