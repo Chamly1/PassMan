@@ -20,6 +20,7 @@ struct AddCredentialView: View {
     @State private var inputUsername: String = ""
     @State private var inputPassword: String = ""
     @State private var isPasswordVisible: Bool = false
+    @State private var isPasswordEmptyAlert: Bool = false
     @FocusState private var focusedField: Field?
     
     var body: some View {
@@ -71,13 +72,28 @@ struct AddCredentialView: View {
                 })
             }
             Button("Add") {
-                credentialsListViewModel.addCredential(resource: inputResource, username: inputUsername, password: inputPassword)
-                dismiss()
+                if inputPassword.isEmpty {
+                    isPasswordEmptyAlert = true
+                } else {
+                    credentialsListViewModel.addCredential(resource: inputResource, username: inputUsername, password: inputPassword)
+                    dismiss()
+                }
             }
             .padding([.top, .bottom], 7)
             .buttonStyle(.borderedProminent)
             Spacer()
-        }.padding()
+        }
+        .padding()
+        .alert("Password Required", isPresented: $isPasswordEmptyAlert, actions: {
+            Button("Dismiss", role: .cancel, action: {
+                dismiss()
+            })
+            Button("Enter Password", role: .none, action: {
+                focusedField = .password
+            })
+        }, message: {
+            Text("Please enter your password to continue. Ensure it is typed correctly and try again.")
+        })
     }
 }
 
