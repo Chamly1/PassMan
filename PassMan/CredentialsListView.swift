@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CredentialsListView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
+    @State private var showAddCredentialSheet: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -14,8 +15,20 @@ struct CredentialsListView: View {
                     }
                 }
             }
-            .navigationTitle("Credentials")
             .listSectionSpacing(.compact)
+            .navigationTitle("Credentials")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showAddCredentialSheet = true
+                    }, label: {
+                        Image(systemName: "plus.circle")
+                    }).padding()
+                }
+            }
+            .sheet(isPresented: $showAddCredentialSheet) {
+                AddCredentialView()
+            }
         }
     }
 }

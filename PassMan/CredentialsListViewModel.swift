@@ -17,4 +17,9 @@ class CredentialsListViewModel: ObservableObject {
             credentialsList.append(Credential(resource: "resource\(i)", username: "username\(i)", password: "password\(i)"))
         }
     }
+    
+    func addCredential(resource: String, username: String, password: String) {
+        let credential = Credential(resource: resource, username: username, password: password)
+        credentialsList.append(credential)
+    }
 }
