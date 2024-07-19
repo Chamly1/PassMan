@@ -19,6 +19,7 @@ struct AddCredentialView: View {
     @State private var inputResource: String = ""
     @State private var inputUsername: String = ""
     @State private var inputPassword: String = ""
+    @State private var isPasswordVisible: Bool = false
     @FocusState private var focusedField: Field?
     
     var body: some View {
@@ -45,13 +46,30 @@ struct AddCredentialView: View {
                 .onSubmit {
                     focusedField = .password
                 }
-            SecureField("Password", text: $inputPassword)
-                .textFieldStyle(.roundedBorder)
-                .focused($focusedField, equals: .password)
-                .submitLabel(.done)
-                .onSubmit {
-                    focusedField = nil
+            HStack {
+                if isPasswordVisible {
+                    TextField("Password", text: $inputPassword)
+                        .textFieldStyle(.roundedBorder)
+                        .focused($focusedField, equals: .password)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            focusedField = nil
+                        }
+                } else {
+                    SecureField("Password", text: $inputPassword)
+                        .textFieldStyle(.roundedBorder)
+                        .focused($focusedField, equals: .password)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            focusedField = nil
+                        }
                 }
+                Button(action: {
+                    isPasswordVisible.toggle()
+                }, label: {
+                    Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
+                })
+            }
             Button("Add") {
                 credentialsListViewModel.addCredential(resource: inputResource, username: inputUsername, password: inputPassword)
                 dismiss()
