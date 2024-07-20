@@ -5,6 +5,7 @@ struct Credential: Identifiable {
     let resource: String
     let username: String
     let password: String
+    var isPasswordVisible: Bool = false
 }
 
 class CredentialsListViewModel: ObservableObject {

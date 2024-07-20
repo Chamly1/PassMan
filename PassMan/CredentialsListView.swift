@@ -7,11 +7,15 @@ struct CredentialsListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(credentialsListViewModel.credentialsList) { credential in
+                ForEach($credentialsListViewModel.credentialsList) { $credential in
                     Section {
                         Text(credential.resource)
                         Text(credential.username)
-                        Text(credential.password)
+                        Text(credential.isPasswordVisible ? credential.password : "stubpassword")
+                            .blur(radius: credential.isPasswordVisible ? 0 : 7)
+                            .onTapGesture {
+                                credential.isPasswordVisible.toggle()
+                            }
                     }
                 }
             }
