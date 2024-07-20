@@ -8,17 +8,21 @@ struct CredentialsListView: View {
         NavigationStack {
             List {
                 ForEach($credentialsListViewModel.credentialsList) { $credential in
-                    Section {
-                        Text(credential.resource)
-                        Text(credential.username)
-                        Text(credential.isPasswordVisible ? credential.password : "••••••••")
-                            .font(credential.isPasswordVisible ? .body : .title)
-                            .blur(radius: credential.isPasswordVisible ? 0 : 6)
-                            .onTapGesture {
-                                withAnimation(.easeInOut(duration: 0.5)) {
-                                    credential.isPasswordVisible.toggle()
+                    Section{
+                        VStack(alignment: .leading) {
+                            Text(credential.resource)
+                            Divider()
+                            Text(credential.username)
+                            Divider()
+                            Text(credential.isPasswordVisible ? credential.password : "••••••••")
+                                .font(credential.isPasswordVisible ? .body : .title)
+                                .blur(radius: credential.isPasswordVisible ? 0 : 6)
+                                .onTapGesture {
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        credential.isPasswordVisible.toggle()
+                                    }
                                 }
-                            }
+                        }
                     }
                 }
             }
