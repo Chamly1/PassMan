@@ -11,10 +11,13 @@ struct CredentialsListView: View {
                     Section {
                         Text(credential.resource)
                         Text(credential.username)
-                        Text(credential.isPasswordVisible ? credential.password : "stubpassword")
-                            .blur(radius: credential.isPasswordVisible ? 0 : 7)
+                        Text(credential.isPasswordVisible ? credential.password : "••••••••")
+                            .font(credential.isPasswordVisible ? .body : .title)
+                            .blur(radius: credential.isPasswordVisible ? 0 : 6)
                             .onTapGesture {
-                                credential.isPasswordVisible.toggle()
+                                withAnimation(.easeInOut(duration: 0.5)) {
+                                    credential.isPasswordVisible.toggle()
+                                }
                             }
                     }
                 }
