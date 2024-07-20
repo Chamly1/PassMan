@@ -14,8 +14,7 @@ struct CredentialsListView: View {
                             Divider()
                             Text(credential.username)
                             Divider()
-                            Text(credential.isPasswordVisible ? credential.password : "••••••••")
-                                .font(credential.isPasswordVisible ? .body : .title)
+                            Text(credential.isPasswordVisible ? credential.password : "************")
                                 .blur(radius: credential.isPasswordVisible ? 0 : 6)
                                 .onTapGesture {
                                     withAnimation(.easeInOut(duration: 0.5)) {
