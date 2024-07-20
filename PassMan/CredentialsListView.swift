@@ -3,6 +3,8 @@ import SwiftUI
 struct CredentialsListView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
     @State private var showAddCredentialSheet: Bool = false
+    @State private var showDeleteConfirmationDialog: Bool = false
+    @State private var indexSetToDelete: IndexSet?
     
     var body: some View {
         NavigationStack {
@@ -23,6 +25,9 @@ struct CredentialsListView: View {
                                 }
                         }
                     }
+                }.onDelete { indexes in
+                    indexSetToDelete = indexes
+                    showDeleteConfirmationDialog = true
                 }
             }
             .listSectionSpacing(.compact)
@@ -39,6 +44,17 @@ struct CredentialsListView: View {
             .sheet(isPresented: $showAddCredentialSheet) {
                 AddCredentialView()
             }
+            .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
+                Button("Delete Credential", role: .destructive) {
+                    if let indexes = indexSetToDelete {
+                        credentialsListViewModel.credentialsList.remove(atOffsets: indexes)
+                    }
+                    
+                }
+                Button("Cancel", role: .cancel, action: {})
+            }, message: {
+                Text("Deleting this credential will remove it from your device. You can't undo this action.")
+            })
         }
     }
 }
