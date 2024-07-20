@@ -75,7 +75,7 @@ struct AddCredentialView: View {
                 if inputPassword.isEmpty {
                     isPasswordEmptyAlert = true
                 } else {
-                    credentialsListViewModel.addCredential(resource: inputResource, username: inputUsername, password: inputPassword)
+                    credentialsListViewModel.addCredential(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
                     dismiss()
                 }
             }
