@@ -78,7 +78,7 @@ struct AddCredentialView: View {
                 .padding([.top, .bottom], 7)
                 .buttonStyle(.borderedProminent)
                 Spacer()
-                Button("Add") {
+                Button("Save") {
                     if inputPassword.isEmpty {
                         isPasswordEmptyAlert = true
                     } else {
