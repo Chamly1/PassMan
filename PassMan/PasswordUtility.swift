@@ -80,4 +80,36 @@ struct PasswordUtility {
         
         return resultPassword
     }
+    
+    static func calculatePasswordEntropy(_ password: String) throws -> Float {
+        var isContainCharacterFromPool: [Bool] = Array(repeating: false, count: characterPools.count)
+        
+        // calculate whether password contains characters from each pool
+        for character in password {
+            var isCharacterFromPools: Bool = false
+            
+            for i in 0..<characterPools.count {
+                if characterPools[i].contains(character) {
+                    isCharacterFromPools = true
+                    isContainCharacterFromPool[i] = true
+                    continue
+                }
+            }
+            
+            if !isCharacterFromPools {
+                throw PasswordEntropyError.unexpectedSymbolOccurred
+            }
+        }
+        
+        // calculate password's characters pool
+        var passwordCharactersPool: Int = 0
+        for i in 0..<characterPools.count {
+            if isContainCharacterFromPool[i] {
+                passwordCharactersPool += characterPools[i].count
+            }
+        }
+        
+        // calculate password entrophy
+        return Float(password.count) * log2(Float(passwordCharactersPool))
+    }
 }
