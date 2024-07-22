@@ -37,7 +37,7 @@ struct CredentialsListView: View {
                     Button(action: {
                         showAddCredentialSheet = true
                     }, label: {
-                        Image(systemName: "plus.circle")
+                        Image(systemName: "plus")
                     }).padding()
                 }
             }
