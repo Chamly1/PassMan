@@ -48,23 +48,20 @@ struct AddCredentialView: View {
                     focusedField = .password
                 }
             HStack {
-                if isPasswordVisible {
-                    TextField("Password", text: $inputPassword)
-                        .textFieldStyle(.roundedBorder)
-                        .focused($focusedField, equals: .password)
-                        .submitLabel(.done)
-                        .onSubmit {
-                            focusedField = nil
-                        }
-                } else {
-                    SecureField("Password", text: $inputPassword)
-                        .textFieldStyle(.roundedBorder)
-                        .focused($focusedField, equals: .password)
-                        .submitLabel(.done)
-                        .onSubmit {
-                            focusedField = nil
-                        }
+                Group {
+                    if isPasswordVisible {
+                        TextField("Password", text: $inputPassword)
+                    } else {
+                        SecureField("Password", text: $inputPassword)
+                    }
                 }
+                .textFieldStyle(.roundedBorder)
+                .focused($focusedField, equals: .password)
+                .submitLabel(.done)
+                .onSubmit {
+                    focusedField = nil
+                }
+                
                 Button(action: {
                     isPasswordVisible.toggle()
                 }, label: {
