@@ -52,15 +52,20 @@ struct PasswordUtility {
         var resultPassword: String
         var isContainCharacterFromPool: [Bool]
         var isPasswordAppropriate: Bool
+        
+        var characters: String = ""
+        for pool in characterPools {
+            characters.append(pool)
+        }
+        
         repeat {
             resultPassword = ""
             
             for _ in 0..<passwordLength {
-                let poolNum = Int.random(in: 0..<characterPools.count)
-                let symbolNum = Int.random(in: 0..<characterPools[poolNum].count)
-                let symbolIndex = characterPools[poolNum].index(characterPools[poolNum].startIndex, offsetBy: symbolNum)
+                let symbolNum = Int.random(in: 0..<characters.count)
+                let symbolIndex = characters.index(characters.startIndex, offsetBy: symbolNum)
                 
-                resultPassword.append(characterPools[poolNum][symbolIndex])
+                resultPassword.append(characters[symbolIndex])
             }
             
             isContainCharacterFromPool = try! containsCharactersFromPools(resultPassword)
