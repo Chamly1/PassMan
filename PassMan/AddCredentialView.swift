@@ -71,16 +71,24 @@ struct AddCredentialView: View {
                     Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
                 })
             }
-            Button("Add") {
-                if inputPassword.isEmpty {
-                    isPasswordEmptyAlert = true
-                } else {
-                    credentialsListViewModel.addCredential(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
-                    dismiss()
+            HStack{
+                Button("Generate password") {
+                    inputPassword = PasswordUtility.generatePassword()
                 }
+                .padding([.top, .bottom], 7)
+                .buttonStyle(.borderedProminent)
+                Spacer()
+                Button("Add") {
+                    if inputPassword.isEmpty {
+                        isPasswordEmptyAlert = true
+                    } else {
+                        credentialsListViewModel.addCredential(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+                        dismiss()
+                    }
+                }
+                .padding([.top, .bottom], 7)
+                .buttonStyle(.borderedProminent)
             }
-            .padding([.top, .bottom], 7)
-            .buttonStyle(.borderedProminent)
             Spacer()
         }
         .padding()

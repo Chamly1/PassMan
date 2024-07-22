@@ -14,6 +14,7 @@
 		CAB0C7D02C49B21D006F0B3B /* CredentialsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */; };
 		CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */; };
 		CAB0C7D42C4A9F57006F0B3B /* AddCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D32C4A9F57006F0B3B /* AddCredentialView.swift */; };
+		CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListView.swift; sourceTree = "<group>"; };
 		CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListViewModel.swift; sourceTree = "<group>"; };
 		CAB0C7D32C4A9F57006F0B3B /* AddCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCredentialView.swift; sourceTree = "<group>"; };
+		CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
 				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
 				CAB0C7D32C4A9F57006F0B3B /* AddCredentialView.swift */,
+				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
 				CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */,
 				CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */,
 				CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 				CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */,
 				CAB0C7D02C49B21D006F0B3B /* CredentialsListView.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,
+				CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
