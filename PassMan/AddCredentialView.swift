@@ -22,6 +22,8 @@ struct AddCredentialView: View {
     @State private var isPasswordVisible: Bool = false
     @State private var isPasswordEmptyAlert: Bool = false
     @FocusState private var focusedField: Field?
+    @State private var passworStrengthText: String = "Password strength: -"
+    @State private var passworStrengthColoringNum = -1
     
     var body: some View {
         VStack(alignment: .trailing, spacing: 10) {
@@ -61,12 +63,48 @@ struct AddCredentialView: View {
                 .onSubmit {
                     focusedField = nil
                 }
-                
+                // Password strength UI update
+                .onChange(of: inputPassword) {
+                    if inputPassword.isEmpty {
+                        passworStrengthText = "Password strength: -"
+                        passworStrengthColoringNum = -1
+                        return
+                    }
+                    
+                    var passwordEntropy: Float? = try? PasswordUtility.calculatePasswordEntropy(inputPassword)
+                    if let entropy = passwordEntropy {
+                        var entropyThreasholdNumber = -1
+                        for entropyThreashold in PasswordUtility.entropyThreasholds {
+                            if entropy >= entropyThreashold.0 {
+                                entropyThreasholdNumber += 1
+                            } else {
+                                break
+                            }
+                        }
+                        passworStrengthText = "Password strength: \(PasswordUtility.entropyThreasholds[entropyThreasholdNumber].1)"
+                        passworStrengthColoringNum = entropyThreasholdNumber
+                    } else {
+                        passworStrengthText = "Unexpected symbol occure. Can't calculate password strength."
+                        passworStrengthColoringNum = -1
+                    }
+                }
                 Button(action: {
                     isPasswordVisible.toggle()
                 }, label: {
                     Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
                 })
+            }
+            HStack{
+                Text(passworStrengthText)
+                    .font(.caption)
+                Spacer()
+            }
+            HStack {
+                ForEach(0..<PasswordUtility.entropyThreasholds.count, id: \.self) { index in
+                    Capsule()
+                        .fill(passworStrengthColoringNum >= index ? PasswordUtility.entropyThreasholds[index].2 : .gray)
+                        .frame(height: 10)
+                }
             }
             HStack{
                 Button("Generate password") {

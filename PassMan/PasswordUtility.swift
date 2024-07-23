@@ -6,12 +6,22 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum PasswordEntropyError: Error {
     case unexpectedSymbolOccurred
 }
 
 struct PasswordUtility {
+    // (min value, strength)
+    // max value defined by min value of the next entry
+    static let entropyThreasholds: [(Float, String, Color)] = [
+        (0, "Very Weak", .red),
+        (28, "Weak", .orange),
+        (36, "Reasonable", .yellow),
+        (60, "Strong", .green),
+        (128, "Very Strong", .blue)
+    ]
     private static let passwordLength: Int = 14
     private static let characterPools: [String] = [
         // Lowercase Letters
