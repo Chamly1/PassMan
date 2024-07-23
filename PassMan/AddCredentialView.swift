@@ -71,7 +71,7 @@ struct AddCredentialView: View {
                         return
                     }
                     
-                    var passwordEntropy: Float? = try? PasswordUtility.calculatePasswordEntropy(inputPassword)
+                    let passwordEntropy: Float? = try? PasswordUtility.calculatePasswordEntropy(inputPassword)
                     if let entropy = passwordEntropy {
                         var entropyThreasholdNumber = -1
                         for entropyThreashold in PasswordUtility.entropyThreasholds {
