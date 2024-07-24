@@ -33,12 +33,29 @@ struct CredentialsListView: View {
             .listSectionSpacing(.compact)
             .navigationTitle("Credentials")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "gear")
+                    })
+                }
+                ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(action: {
                         showAddCredentialSheet = true
                     }, label: {
                         Image(systemName: "plus")
-                    }).padding()
+                    })
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "line.3.horizontal.decrease")
+                    })
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "arrow.up.arrow.down")
+                    })
                 }
             }
             .sheet(isPresented: $showAddCredentialSheet) {
