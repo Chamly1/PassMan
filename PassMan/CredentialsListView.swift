@@ -25,16 +25,16 @@ struct CredentialsListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        
+                        showAddCredentialSheet = true
                     }, label: {
-                        Image(systemName: "gear")
+                        Image(systemName: "plus")
                     })
                 }
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(action: {
-                        showAddCredentialSheet = true
+                        
                     }, label: {
-                        Image(systemName: "plus")
+                        Image(systemName: "gear")
                     })
                     Button(action: {
                         
