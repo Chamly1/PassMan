@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailCredentionalView: View {
     @State var credentialGroup: CredentialGroup
+    @State private var showAddCredentialSheet: Bool = false
     
     var body: some View {
         List {
@@ -29,9 +30,20 @@ struct DetailCredentionalView: View {
                 .listSectionSpacing(.compact)
             }
         }
-//        .padding()
         .navigationTitle(credentialGroup.resource)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showAddCredentialSheet = true
+                }, label: {
+                    Image(systemName: "plus")
+                })
+            }
+        }
+        .sheet(isPresented: $showAddCredentialSheet) {
+            AddCredentialGroupView(resourceName: credentialGroup.resource)
+        }
     }
 }
 

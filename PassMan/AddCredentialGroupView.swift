@@ -25,6 +25,17 @@ struct AddCredentialGroupView: View {
     @State private var passworStrengthText: String = "Password strength: -"
     @State private var passworStrengthColoringNum = -1
     
+    private var showResourceTextField: Bool
+    
+    init() {
+        showResourceTextField = true
+    }
+    
+    init(resourceName: String) {
+        inputResource = resourceName
+        showResourceTextField = false
+    }
+    
     var body: some View {
         VStack(alignment: .trailing, spacing: 10) {
             HStack {
@@ -33,14 +44,16 @@ struct AddCredentialGroupView: View {
                     dismiss()
                 }.padding([.top, .bottom], 7)
             }
-            TextField("Resource name (site, application, etc.)", text: $inputResource)
-                .textFieldStyle(.roundedBorder)
-                .autocorrectionDisabled(true)
-                .focused($focusedField, equals: .resource)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = .username
-                }
+            if showResourceTextField {
+                TextField("Resource name (site, application, etc.)", text: $inputResource)
+                    .textFieldStyle(.roundedBorder)
+                    .autocorrectionDisabled(true)
+                    .focused($focusedField, equals: .resource)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        focusedField = .username
+                    }
+            }
             TextField("Username/Login", text: $inputUsername)
                 .textFieldStyle(.roundedBorder)
                 .autocorrectionDisabled(true)

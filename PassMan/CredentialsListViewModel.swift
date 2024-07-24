@@ -26,6 +26,13 @@ class CredentialsListViewModel: ObservableObject {
     
     func addCredentialGroup(resource: String, username: String, password: String) {
         let credential = Credential(username: username, password: password)
+        // if such resource already exist - add to it
+        for index in credentialsList.indices {
+            if credentialsList[index].resource == resource {
+                credentialsList[index].credentials.append(credential)
+                return
+            }
+        }
         let credentialGroup = CredentialGroup(resource: resource, credentials: [credential])
         credentialsList.append(credentialGroup)
     }
