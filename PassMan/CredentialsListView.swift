@@ -11,7 +11,7 @@ struct CredentialsListView: View {
             List {
                 ForEach($credentialsListViewModel.credentialsList) { $credentials in
                     NavigationLink(destination: {
-                        DetailCredentionalView(credentialGroup: $credentials)
+                        DetailCredentialView(credentialGroup: $credentials)
                     }, label: {
                         Text(credentials.resource)
                     })

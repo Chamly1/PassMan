@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailCredentionalView: View {
+struct DetailCredentialView: View {
     @Binding var credentialGroup: CredentialGroup
     @State private var showAddCredentialSheet: Bool = false
     @State private var showDeleteConfirmationDialog: Bool = false
@@ -65,5 +65,5 @@ struct DetailCredentionalView: View {
 }
 
 #Preview {
-    DetailCredentionalView(credentialGroup: .constant(CredentialGroup(resource: "resource", credentials: [Credential(username: "username1", password: "password1"), Credential(username: "username2", password: "password2")])))
+    DetailCredentialView(credentialGroup: .constant(CredentialGroup(resource: "resource", credentials: [Credential(username: "username1", password: "password1"), Credential(username: "username2", password: "password2")])))
 }
