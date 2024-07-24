@@ -2,25 +2,31 @@ import Foundation
 
 struct Credential: Identifiable {
     let id = UUID()
-    let resource: String
     let username: String
     let password: String
     var isPasswordVisible: Bool = false
 }
 
+struct CredentialGroup: Identifiable {
+    let id = UUID()
+    let resource: String
+    var credentials: [Credential]
+}
+
 class CredentialsListViewModel: ObservableObject {
-    @Published var credentialsList: [Credential]
+    @Published var credentialsList: [CredentialGroup]
     
     init() {
         // stub list
         credentialsList = []
         for i in 0...20 {
-            credentialsList.append(Credential(resource: "resource\(i)", username: "username\(i)", password: "password\(i)"))
+            credentialsList.append(CredentialGroup(resource: "resource\(i)", credentials: [Credential(username: "username\(i)", password: "password\(i)"), Credential(username: "username\(i + 1)", password: "password\(i + 1)")]))
         }
     }
     
-    func addCredential(resource: String, username: String, password: String) {
-        let credential = Credential(resource: resource, username: username, password: password)
-        credentialsList.append(credential)
+    func addCredentialGroup(resource: String, username: String, password: String) {
+        let credential = Credential(username: username, password: password)
+        let credentialGroup = CredentialGroup(resource: resource, credentials: [credential])
+        credentialsList.append(credentialGroup)
     }
 }

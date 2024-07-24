@@ -13,8 +13,9 @@
 		CAB0C7C92C49A3B9006F0B3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */; };
 		CAB0C7D02C49B21D006F0B3B /* CredentialsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */; };
 		CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */; };
-		CAB0C7D42C4A9F57006F0B3B /* AddCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D32C4A9F57006F0B3B /* AddCredentialView.swift */; };
 		CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */; };
+		CAB86CF92C51987200AECF44 /* DetailCredentionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CF82C51987200AECF44 /* DetailCredentionalView.swift */; };
+		CAB86CFB2C51A4C800AECF44 /* AddCredentialGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFA2C51A4C800AECF44 /* AddCredentialGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListViewModel.swift; sourceTree = "<group>"; };
 		CAB0C7D32C4A9F57006F0B3B /* AddCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCredentialView.swift; sourceTree = "<group>"; };
 		CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUtility.swift; sourceTree = "<group>"; };
+		CAB86CF82C51987200AECF44 /* DetailCredentionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCredentionalView.swift; sourceTree = "<group>"; };
+		CAB86CFA2C51A4C800AECF44 /* AddCredentialGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCredentialGroupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +62,10 @@
 		CAB0C7C02C49A3B4006F0B3B /* PassMan */ = {
 			isa = PBXGroup;
 			children = (
+				CAB86CFA2C51A4C800AECF44 /* AddCredentialGroupView.swift */,
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
 				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
+				CAB86CF82C51987200AECF44 /* DetailCredentionalView.swift */,
 				CAB0C7D32C4A9F57006F0B3B /* AddCredentialView.swift */,
 				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
 				CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */,
@@ -149,8 +154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAB0C7D42C4A9F57006F0B3B /* AddCredentialView.swift in Sources */,
 				CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */,
+				CAB86CF92C51987200AECF44 /* DetailCredentionalView.swift in Sources */,
+				CAB86CFB2C51A4C800AECF44 /* AddCredentialGroupView.swift in Sources */,
 				CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */,
 				CAB0C7D02C49B21D006F0B3B /* CredentialsListView.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,

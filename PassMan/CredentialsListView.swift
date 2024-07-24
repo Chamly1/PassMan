@@ -9,22 +9,12 @@ struct CredentialsListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach($credentialsListViewModel.credentialsList) { $credential in
-                    Section{
-                        VStack(alignment: .leading) {
-                            Text(credential.resource)
-                            Divider()
-                            Text(credential.username)
-                            Divider()
-                            Text(credential.isPasswordVisible ? credential.password : "************")
-                                .blur(radius: credential.isPasswordVisible ? 0 : 6)
-                                .onTapGesture {
-                                    withAnimation(.easeInOut(duration: 0.5)) {
-                                        credential.isPasswordVisible.toggle()
-                                    }
-                                }
-                        }
-                    }
+                ForEach(credentialsListViewModel.credentialsList) { credentials in
+                    NavigationLink(destination: {
+                        DetailCredentionalView(credentialGroup: credentials)
+                    }, label: {
+                        Text(credentials.resource)
+                    })
                 }.onDelete { indexes in
                     indexSetToDelete = indexes
                     showDeleteConfirmationDialog = true
@@ -59,7 +49,7 @@ struct CredentialsListView: View {
                 }
             }
             .sheet(isPresented: $showAddCredentialSheet) {
-                AddCredentialView()
+                AddCredentialGroupView()
             }
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Credential", role: .destructive) {

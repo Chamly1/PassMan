@@ -13,7 +13,7 @@ enum Field: Hashable {
     case password
 }
 
-struct AddCredentialView: View {
+struct AddCredentialGroupView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
     @Environment(\.dismiss) var dismiss
     @State private var inputResource: String = ""
@@ -117,7 +117,7 @@ struct AddCredentialView: View {
                     if inputPassword.isEmpty {
                         isPasswordEmptyAlert = true
                     } else {
-                        credentialsListViewModel.addCredential(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+                        credentialsListViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
                         dismiss()
                     }
                 }
@@ -141,5 +141,5 @@ struct AddCredentialView: View {
 }
 
 #Preview {
-    AddCredentialView()
+    AddCredentialGroupView()
 }
