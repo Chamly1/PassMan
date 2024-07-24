@@ -52,7 +52,7 @@ struct CredentialsListView: View {
                 AddCredentialGroupView()
             }
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
-                Button("Delete Credential", role: .destructive) {
+                Button("Delete Section", role: .destructive) {
                     if let indexes = indexSetToDelete {
                         credentialsListViewModel.credentialsList.remove(atOffsets: indexes)
                     }
@@ -60,7 +60,7 @@ struct CredentialsListView: View {
                 }
                 Button("Cancel", role: .cancel, action: {})
             }, message: {
-                Text("Deleting this credential will remove it from your device. You can't undo this action.")
+                Text("Deleting this section will remove it and all its content from your device. You can't undo this action.")
             })
         }
     }
