@@ -99,7 +99,7 @@ struct AddCredentialView: View {
                     .font(.caption)
                 Spacer()
             }
-            HStack {
+            HStack(spacing: 4) {
                 ForEach(0..<PasswordUtility.entropyThreasholds.count, id: \.self) { index in
                     Capsule()
                         .fill(passworStrengthColoringNum >= index ? PasswordUtility.entropyThreasholds[index].2 : .gray)
