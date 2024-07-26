@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct DetailCredentialView: View {
-    @Binding var credentialGroup: CredentialGroup
+    @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
+    @Environment(\.dismiss) var dismiss
     @State private var showAddCredentialSheet: Bool = false
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
     
+    var credentialGroupIndex: Int
+    
     var body: some View {
         List {
-            ForEach($credentialGroup.credentials) { $credential in
+            ForEach($credentialsListViewModel.credentialsList[credentialGroupIndex].credentials) { $credential in
                 Section {
                     VStack(alignment: .leading) {
                         Text(credential.username)
@@ -36,7 +39,7 @@ struct DetailCredentialView: View {
                 showDeleteConfirmationDialog = true
             }
         }
-        .navigationTitle(credentialGroup.resource)
+        .navigationTitle(credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -48,12 +51,16 @@ struct DetailCredentialView: View {
             }
         }
         .sheet(isPresented: $showAddCredentialSheet) {
-            AddCredentialGroupView(resourceName: credentialGroup.resource)
+            AddCredentialGroupView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
         }
         .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
             Button("Delete Credential", role: .destructive) {
                 if let indexes = indexSetToDelete {
-                    credentialGroup.credentials.remove(atOffsets: indexes)
+                    credentialsListViewModel.credentialsList[credentialGroupIndex].credentials.remove(atOffsets: indexes)
+                    if credentialsListViewModel.credentialsList[credentialGroupIndex].credentials.count == 0 {
+                        credentialsListViewModel.credentialsList.remove(at: credentialGroupIndex)
+                        dismiss()
+                    }
                 }
                 
             }
@@ -65,5 +72,6 @@ struct DetailCredentialView: View {
 }
 
 #Preview {
-    DetailCredentialView(credentialGroup: .constant(CredentialGroup(resource: "resource", credentials: [Credential(username: "username1", password: "password1"), Credential(username: "username2", password: "password2")])))
+    DetailCredentialView(credentialGroupIndex: 0)
+        .environmentObject(CredentialsListViewModel())
 }

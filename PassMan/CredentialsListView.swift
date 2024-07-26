@@ -9,11 +9,11 @@ struct CredentialsListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach($credentialsListViewModel.credentialsList) { $credentials in
+                ForEach(credentialsListViewModel.credentialsList.indices, id: \.self) { index in
                     NavigationLink(destination: {
-                        DetailCredentialView(credentialGroup: $credentials)
+                        DetailCredentialView(credentialGroupIndex: index)
                     }, label: {
-                        Text(credentials.resource)
+                        Text(credentialsListViewModel.credentialsList[index].resource)
                     })
                 }.onDelete { indexes in
                     indexSetToDelete = indexes
