@@ -31,6 +31,18 @@ struct DetailCredentialView: View {
                                 }
                             }
                     }
+                    .contextMenu {
+                        Button(action: {
+                            UIPasteboard.general.string = credential.username
+                        }, label: {
+                            Label("Copy login", systemImage: "doc.on.doc")
+                        })
+                        Button(action: {
+                            UIPasteboard.general.string = credential.password
+                        }, label: {
+                            Label("Copy password", systemImage: "doc.on.doc")
+                        })
+                    }
                 }
                 .listSectionSpacing(.compact)
             }
