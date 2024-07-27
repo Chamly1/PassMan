@@ -24,6 +24,7 @@ class CredentialsListViewModel: ObservableObject {
         }
     }
     
+    //TODO rename to addCredential()
     func addCredentialGroup(resource: String, username: String, password: String) {
         let credential = Credential(username: username, password: password)
         // if such resource already exist - add to it
