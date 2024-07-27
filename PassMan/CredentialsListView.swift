@@ -15,9 +15,13 @@ struct CredentialsListView: View {
                     }, label: {
                         Text(credentialsListViewModel.credentialsList[index].resource)
                     })
-                }.onDelete { indexes in
+                }
+                .onDelete { indexes in
                     indexSetToDelete = indexes
                     showDeleteConfirmationDialog = true
+                }
+                .onMove { source, destination in
+                    credentialsListViewModel.credentialsList.move(fromOffsets: source, toOffset: destination)
                 }
             }
             .listSectionSpacing(.compact)
