@@ -46,6 +46,10 @@ struct AddCredentialGroupView: View {
         credentialToEdit = credential
         self._inputUsername = State(initialValue: credential.username)
         self._inputPassword = State(initialValue: credential.password)
+        
+        let passwordStrengthUIValues = getPasswordStrengthUIValues()
+        self._passworStrengthText = State(initialValue: passwordStrengthUIValues.0)
+        self._passworStrengthColoringNum = State(initialValue: passwordStrengthUIValues.1)
     }
     
     var body: some View {
@@ -90,28 +94,9 @@ struct AddCredentialGroupView: View {
                 }
                 // Password strength UI update
                 .onChange(of: inputPassword) {
-                    if inputPassword.isEmpty {
-                        passworStrengthText = "Password strength: -"
-                        passworStrengthColoringNum = -1
-                        return
-                    }
-                    
-                    let passwordEntropy: Float? = try? PasswordUtility.calculatePasswordEntropy(inputPassword)
-                    if let entropy = passwordEntropy {
-                        var entropyThreasholdNumber = -1
-                        for entropyThreashold in PasswordUtility.entropyThreasholds {
-                            if entropy >= entropyThreashold.0 {
-                                entropyThreasholdNumber += 1
-                            } else {
-                                break
-                            }
-                        }
-                        passworStrengthText = "Password strength: \(PasswordUtility.entropyThreasholds[entropyThreasholdNumber].1)"
-                        passworStrengthColoringNum = entropyThreasholdNumber
-                    } else {
-                        passworStrengthText = "Unexpected symbol occure. Can't calculate password strength."
-                        passworStrengthColoringNum = -1
-                    }
+                    let passwordStrengthUIValues = getPasswordStrengthUIValues()
+                    passworStrengthText = passwordStrengthUIValues.0
+                    passworStrengthColoringNum = passwordStrengthUIValues.1
                 }
                 Button(action: {
                     isPasswordVisible.toggle()
@@ -168,6 +153,32 @@ struct AddCredentialGroupView: View {
         }, message: {
             Text("Please enter your password to continue. Ensure it is typed correctly and try again.")
         })
+    }
+    
+    private func getPasswordStrengthUIValues() -> (String, Int) {
+        if inputPassword.isEmpty {
+            return ("Password strength: -", -1)
+        }
+        
+        var text: String
+        var coloringNum: Int
+        let passwordEntropy: Float? = try? PasswordUtility.calculatePasswordEntropy(inputPassword)
+        if let entropy = passwordEntropy {
+            var entropyThreasholdNumber = -1
+            for entropyThreashold in PasswordUtility.entropyThreasholds {
+                if entropy >= entropyThreashold.0 {
+                    entropyThreasholdNumber += 1
+                } else {
+                    break
+                }
+            }
+            text = "Password strength: \(PasswordUtility.entropyThreasholds[entropyThreasholdNumber].1)"
+            coloringNum = entropyThreasholdNumber
+        } else {
+            text = "Unexpected symbol occure. Can't calculate password strength."
+            coloringNum = -1
+        }
+        return (text, coloringNum)
     }
 }
 
