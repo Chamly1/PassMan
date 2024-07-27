@@ -42,6 +42,13 @@ struct DetailCredentialView: View {
                         }, label: {
                             Label("Copy password", systemImage: "doc.on.doc")
                         })
+                        Divider()
+                        Button(role: .destructive, action: {
+                            indexSetToDelete = IndexSet(integer: credentialsListViewModel.credentialsList[credentialGroupIndex].credentials.firstIndex(where: { $0.id == credential.id })!)
+                            showDeleteConfirmationDialog = true
+                        }, label: {
+                            Label("Delete", systemImage: "trash")
+                        })
                     }
                 }
                 .listSectionSpacing(.compact)
