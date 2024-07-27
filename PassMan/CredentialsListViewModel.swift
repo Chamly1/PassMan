@@ -2,8 +2,8 @@ import Foundation
 
 struct Credential: Identifiable {
     let id = UUID()
-    let username: String
-    let password: String
+    var username: String
+    var password: String
     var isPasswordVisible: Bool = false
 }
 
@@ -36,5 +36,13 @@ class CredentialsListViewModel: ObservableObject {
         }
         let credentialGroup = CredentialGroup(resource: resource, credentials: [credential])
         credentialsList.append(credentialGroup)
+    }
+    
+    func editCredential(resource: String, credential: Credential) {
+        if let credentialGroupIndex = credentialsList.firstIndex(where: { $0.resource == resource }) {
+            if let credentialIndex = credentialsList[credentialGroupIndex].credentials.firstIndex(where: { $0.id == credential.id }) {
+                credentialsList[credentialGroupIndex].credentials[credentialIndex] = credential
+            }
+        }
     }
 }

@@ -11,8 +11,11 @@ struct DetailCredentialView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
     @Environment(\.dismiss) var dismiss
     @State private var showAddCredentialSheet: Bool = false
+    
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
+
+    @State private var credentialToEdit: Credential?
     
     var credentialGroupIndex: Int
     
@@ -41,6 +44,11 @@ struct DetailCredentialView: View {
                             UIPasteboard.general.string = credential.password
                         }, label: {
                             Label("Copy password", systemImage: "doc.on.doc")
+                        })
+                        Button(action: {
+                            credentialToEdit = credential
+                        }, label: {
+                            Label("Edit", systemImage: "pencil")
                         })
                         Divider()
                         Button(role: .destructive, action: {
@@ -71,6 +79,9 @@ struct DetailCredentialView: View {
         }
         .sheet(isPresented: $showAddCredentialSheet) {
             AddCredentialGroupView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
+        }
+        .sheet(item: $credentialToEdit) { credential in
+            AddCredentialGroupView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource, credential: credential)
         }
         .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
             Button("Delete Credential", role: .destructive) {
