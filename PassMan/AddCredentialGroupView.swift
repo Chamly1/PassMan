@@ -27,6 +27,7 @@ struct AddCredentialGroupView: View {
     
     private var showResourceTextField: Bool
     private var credentialToEdit: Credential?
+    private var titleText: String = "Add Credential"
     
     init() {
         showResourceTextField = true
@@ -42,6 +43,7 @@ struct AddCredentialGroupView: View {
     init(resourceName: String, credential: Credential) {
         inputResource = resourceName
         showResourceTextField = false
+        titleText = "Edit Credential"
         
         credentialToEdit = credential
         self._inputUsername = State(initialValue: credential.username)
@@ -57,7 +59,9 @@ struct AddCredentialGroupView: View {
             HStack {
                 Button("Cancel") {
                     dismiss()
-                }.padding([.top, .bottom], 7)
+                }
+                Spacer()
+                Text(titleText)
                 Spacer()
                 Button("Save") {
                     if inputPassword.isEmpty {
@@ -66,8 +70,8 @@ struct AddCredentialGroupView: View {
                         saveCredential()
                         dismiss()
                     }
-                }.padding([.top, .bottom], 7)
-            }
+                }
+            }.padding([.top, .bottom], 7)
             if showResourceTextField {
                 TextField("Resource name (site, application, etc.)", text: $inputResource)
                     .textFieldStyle(.roundedBorder)
