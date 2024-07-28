@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4777432C567C1900386821 /* CredentialEditorView.swift */; };
 		CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */; };
 		CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */; };
 		CAB0C7C62C49A3B9006F0B3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */; };
@@ -14,11 +15,11 @@
 		CAB0C7D02C49B21D006F0B3B /* CredentialsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */; };
 		CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */; };
 		CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */; };
-		CAB86CFB2C51A4C800AECF44 /* AddCredentialGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFA2C51A4C800AECF44 /* AddCredentialGroupView.swift */; };
 		CAB86CFD2C51C9C300AECF44 /* DetailCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CredentialEditorView.swift; path = PassMan/CredentialEditorView.swift; sourceTree = "<group>"; };
 		CAB0C7BE2C49A3B4006F0B3B /* PassMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManApp.swift; sourceTree = "<group>"; };
 		CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,7 +28,6 @@
 		CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListView.swift; sourceTree = "<group>"; };
 		CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListViewModel.swift; sourceTree = "<group>"; };
 		CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUtility.swift; sourceTree = "<group>"; };
-		CAB86CFA2C51A4C800AECF44 /* AddCredentialGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCredentialGroupView.swift; sourceTree = "<group>"; };
 		CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCredentialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,6 +45,7 @@
 		CAB0C7B52C49A3B4006F0B3B = {
 			isa = PBXGroup;
 			children = (
+				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
 				CAB0C7C02C49A3B4006F0B3B /* PassMan */,
 				CAB0C7BF2C49A3B4006F0B3B /* Products */,
 			);
@@ -62,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */,
-				CAB86CFA2C51A4C800AECF44 /* AddCredentialGroupView.swift */,
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
 				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
 				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
@@ -152,9 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */,
 				CAB86CFD2C51C9C300AECF44 /* DetailCredentialView.swift in Sources */,
 				CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */,
-				CAB86CFB2C51A4C800AECF44 /* AddCredentialGroupView.swift in Sources */,
 				CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */,
 				CAB0C7D02C49B21D006F0B3B /* CredentialsListView.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,

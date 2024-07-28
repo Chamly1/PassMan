@@ -13,7 +13,7 @@ enum Field: Hashable {
     case password
 }
 
-struct AddCredentialGroupView: View {
+struct CredentialEditorView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
     @Environment(\.dismiss) var dismiss
     @State private var inputResource: String = ""
@@ -189,5 +189,5 @@ struct AddCredentialGroupView: View {
 }
 
 #Preview {
-    AddCredentialGroupView()
+    CredentialEditorView()
 }

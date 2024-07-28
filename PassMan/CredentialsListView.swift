@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CredentialsListView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
-    @State private var showAddCredentialSheet: Bool = false
+    @State private var showCredentialEditorSheet: Bool = false
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
     
@@ -29,7 +29,7 @@ struct CredentialsListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        showAddCredentialSheet = true
+                        showCredentialEditorSheet = true
                     }, label: {
                         Image(systemName: "plus")
                     })
@@ -52,8 +52,8 @@ struct CredentialsListView: View {
                     })
                 }
             }
-            .sheet(isPresented: $showAddCredentialSheet) {
-                AddCredentialGroupView()
+            .sheet(isPresented: $showCredentialEditorSheet) {
+                CredentialEditorView()
             }
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Section", role: .destructive) {

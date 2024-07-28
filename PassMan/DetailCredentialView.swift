@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailCredentialView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var showAddCredentialSheet: Bool = false
+    @State private var showCredentialEditorSheet: Bool = false
     
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
@@ -71,17 +71,17 @@ struct DetailCredentialView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    showAddCredentialSheet = true
+                    showCredentialEditorSheet = true
                 }, label: {
                     Image(systemName: "plus")
                 })
             }
         }
-        .sheet(isPresented: $showAddCredentialSheet) {
-            AddCredentialGroupView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
+        .sheet(isPresented: $showCredentialEditorSheet) {
+            CredentialEditorView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
         }
         .sheet(item: $credentialToEdit) { credential in
-            AddCredentialGroupView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource, credential: credential)
+            CredentialEditorView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource, credential: credential)
         }
         .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
             Button("Delete Credential", role: .destructive) {
