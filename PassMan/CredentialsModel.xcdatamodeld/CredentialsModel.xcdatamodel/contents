@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Credential" representedClassName="Credential" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="password" attributeType="String"/>
+        <attribute name="username" attributeType="String"/>
+        <relationship name="credentialGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CredentialGroup" inverseName="credentials" inverseEntity="CredentialGroup"/>
+    </entity>
+    <entity name="CredentialGroup" representedClassName="CredentialGroup" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="resource" attributeType="String"/>
+        <relationship name="credentials" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Credential" inverseName="credentialGroup" inverseEntity="Credential"/>
+    </entity>
+</model>

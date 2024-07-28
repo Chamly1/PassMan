@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4777432C567C1900386821 /* CredentialEditorView.swift */; };
+		CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */; };
 		CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */; };
 		CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */; };
 		CAB0C7C62C49A3B9006F0B3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
+		CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CredentialsModel.xcdatamodel; sourceTree = "<group>"; };
 		CAB0C7BE2C49A3B4006F0B3B /* PassMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManApp.swift; sourceTree = "<group>"; };
 		CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
 				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
 				CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */,
+				CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */,
 				CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */,
 				CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */,
 				CAB0C7C72C49A3B9006F0B3B /* Preview Content */,
@@ -156,6 +159,7 @@
 				CAB86CFD2C51C9C300AECF44 /* DetailCredentialView.swift in Sources */,
 				CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */,
 				CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */,
+				CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */,
 				CAB0C7D02C49B21D006F0B3B /* CredentialsListView.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,
 				CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */,
@@ -364,6 +368,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */,
+			);
+			currentVersion = CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */;
+			name = CredentialsModel.xcdatamodeld;
+			path = /Users/vladislavskotarenko/Downloads/projects/PassMan/PassMan/CredentialsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CAB0C7B62C49A3B4006F0B3B /* Project object */;
 }
