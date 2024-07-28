@@ -55,9 +55,23 @@ struct AddCredentialGroupView: View {
     var body: some View {
         VStack(alignment: .trailing, spacing: 10) {
             HStack {
-                Spacer()
-                Button("Close") {
+                Button("Cancel") {
                     dismiss()
+                }.padding([.top, .bottom], 7)
+                Spacer()
+                Button("Save") {
+                    if inputPassword.isEmpty {
+                        isPasswordEmptyAlert = true
+                    } else {
+                        if var credential = credentialToEdit {
+                            credential.username = inputUsername.isEmpty ? "-" : inputUsername
+                            credential.password = inputPassword
+                            credentialsListViewModel.editCredential(resource: inputResource, credential: credential)
+                        } else {
+                            credentialsListViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+                        }
+                        dismiss()
+                    }
                 }.padding([.top, .bottom], 7)
             }
             if showResourceTextField {
@@ -123,22 +137,6 @@ struct AddCredentialGroupView: View {
                 .padding([.top, .bottom], 7)
                 .buttonStyle(.borderedProminent)
                 Spacer()
-                Button("Save") {
-                    if inputPassword.isEmpty {
-                        isPasswordEmptyAlert = true
-                    } else {
-                        if var credential = credentialToEdit {
-                            credential.username = inputUsername.isEmpty ? "-" : inputUsername
-                            credential.password = inputPassword
-                            credentialsListViewModel.editCredential(resource: inputResource, credential: credential)
-                        } else {
-                            credentialsListViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
-                        }
-                        dismiss()
-                    }
-                }
-                .padding([.top, .bottom], 7)
-                .buttonStyle(.borderedProminent)
             }
             Spacer()
         }
