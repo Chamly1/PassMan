@@ -63,13 +63,7 @@ struct AddCredentialGroupView: View {
                     if inputPassword.isEmpty {
                         isPasswordEmptyAlert = true
                     } else {
-                        if var credential = credentialToEdit {
-                            credential.username = inputUsername.isEmpty ? "-" : inputUsername
-                            credential.password = inputPassword
-                            credentialsListViewModel.editCredential(resource: inputResource, credential: credential)
-                        } else {
-                            credentialsListViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
-                        }
+                        saveCredential()
                         dismiss()
                     }
                 }.padding([.top, .bottom], 7)
@@ -151,6 +145,16 @@ struct AddCredentialGroupView: View {
         }, message: {
             Text("Please enter your password to continue. Ensure it is typed correctly and try again.")
         })
+    }
+    
+    private func saveCredential() {
+        if var credential = credentialToEdit {
+            credential.username = inputUsername.isEmpty ? "-" : inputUsername
+            credential.password = inputPassword
+            credentialsListViewModel.editCredential(resource: inputResource, credential: credential)
+        } else {
+            credentialsListViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+        }
     }
     
     private func getPasswordStrengthUIValues() -> (String, Int) {
