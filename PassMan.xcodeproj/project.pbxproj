@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CredentialEditorView.swift; path = PassMan/CredentialEditorView.swift; sourceTree = "<group>"; };
+		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
 		CAB0C7BE2C49A3B4006F0B3B /* PassMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManApp.swift; sourceTree = "<group>"; };
 		CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,7 +45,6 @@
 		CAB0C7B52C49A3B4006F0B3B = {
 			isa = PBXGroup;
 			children = (
-				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
 				CAB0C7C02C49A3B4006F0B3B /* PassMan */,
 				CAB0C7BF2C49A3B4006F0B3B /* Products */,
 			);
@@ -62,6 +61,7 @@
 		CAB0C7C02C49A3B4006F0B3B /* PassMan */ = {
 			isa = PBXGroup;
 			children = (
+				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
 				CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */,
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
 				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
