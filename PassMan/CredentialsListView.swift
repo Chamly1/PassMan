@@ -20,9 +20,6 @@ struct CredentialsListView: View {
                     indexSetToDelete = indexes
                     showDeleteConfirmationDialog = true
                 }
-                .onMove { source, destination in
-                    credentialsListViewModel.credentialsList.move(fromOffsets: source, toOffset: destination)
-                }
             }
             .listSectionSpacing(.compact)
             .navigationTitle("Credentials")
