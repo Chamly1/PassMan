@@ -15,7 +15,7 @@ struct DetailCredentialView: View {
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
 
-    @State private var credentialToEdit: Credential?
+    @State private var credentialToEdit: CredentialWrapper?
     
     var credentialGroupIndex: Int
     

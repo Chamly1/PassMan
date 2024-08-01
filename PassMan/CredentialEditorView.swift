@@ -26,7 +26,7 @@ struct CredentialEditorView: View {
     @State private var passworStrengthColoringNum = -1
     
     private var showResourceTextField: Bool
-    private var credentialToEdit: Credential?
+    private var credentialToEdit: CredentialWrapper?
     private var titleText: String = "Add Credential"
     
     init() {
@@ -40,7 +40,7 @@ struct CredentialEditorView: View {
     }
     
     /// To edit a existing credential
-    init(resourceName: String, credential: Credential) {
+    init(resourceName: String, credential: CredentialWrapper) {
         inputResource = resourceName
         showResourceTextField = false
         titleText = "Edit Credential"
@@ -152,10 +152,8 @@ struct CredentialEditorView: View {
     }
     
     private func saveCredential() {
-        if var credential = credentialToEdit {
-            credential.username = inputUsername.isEmpty ? "-" : inputUsername
-            credential.password = inputPassword
-            credentialsListViewModel.editCredential(resource: inputResource, credential: credential)
+        if let credential = credentialToEdit {
+            credentialsListViewModel.editCredential(credential: credential, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         } else {
             credentialsListViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         }
