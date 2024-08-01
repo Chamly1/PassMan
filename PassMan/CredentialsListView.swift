@@ -58,7 +58,7 @@ struct CredentialsListView: View {
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Section", role: .destructive) {
                     if let indexes = indexSetToDelete {
-                        credentialsListViewModel.credentialsList.remove(atOffsets: indexes)
+                        credentialsListViewModel.removeCredentialGroups(atOffsets: indexes)
                     }
                     
                 }

@@ -93,6 +93,16 @@ class CredentialsListViewModel: ObservableObject {
         fetchCredentialGroups()
     }
     
+    func removeCredentialGroups(atOffsets offsets: IndexSet) {
+        for index in offsets {
+            if index >= 0 && index < credentialsList.count {
+                context.delete(credentialsList[index].credentialGroup)
+            }
+        }
+        saveContext()
+        fetchCredentialGroups()
+    }
+    
     private func fetchCredentialGroups() {
         let fetchRequest: NSFetchRequest<CredentialGroup> = CredentialGroup.fetchRequest()
         do {
