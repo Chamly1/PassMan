@@ -1,25 +1,50 @@
 import Foundation
 import CoreData
 
-//struct Credential: Identifiable {
-//    let id = UUID()
-//    var username: String
-//    var password: String
-//    var isPasswordVisible: Bool = false
-//}
-//
-//struct CredentialGroup: Identifiable {
-//    let id = UUID()
-//    let resource: String
-//    var credentials: [Credential]
-//}
+class CredentialWrapper: Identifiable {
+    fileprivate var credential: Credential
+    
+    var id: UUID {
+        get { credential.id!}
+    }
+    var username: String {
+        get { credential.username!}
+    }
+    var password: String {
+        get { credential.password!}
+    }
+    var isPasswordVisible: Bool = false
+    
+    init(credential: Credential) {
+        self.credential = credential
+    }
+}
+
+class CredentialGroupWrapper: Identifiable {
+    fileprivate let credentialGroup: CredentialGroup
+    
+    var id: UUID {
+        get { credentialGroup.id!}
+    }
+    var resource: String {
+        get { credentialGroup.resource!}
+    }
+    var credentials: [CredentialWrapper] {
+        (credentialGroup.credentials?.allObjects as? [Credential] ?? []).map { CredentialWrapper(credential: $0)}
+    }
+    
+    init(credentialGroup: CredentialGroup) {
+        self.credentialGroup = credentialGroup
+    }
+}
 
 class CredentialsListViewModel: ObservableObject {
+    @Published var credentialsList: [CredentialGroupWrapper] = []
+    private var credentialGroups: [CredentialGroup] = []
     private let container: NSPersistentContainer
     private var context: NSManagedObjectContext {
         return container.viewContext
     }
-    @Published var credentialsList: [CredentialGroup] = []
     
     init() {
         container = NSPersistentContainer(name: "CredentialsModel")
@@ -36,9 +61,9 @@ class CredentialsListViewModel: ObservableObject {
     func addCredentialGroup(resource: String, username: String, password: String) {
         var credentialGroup: CredentialGroup?
         // if such resource already exist - add to it
-        for index in credentialsList.indices {
-            if credentialsList[index].resource == resource {
-                credentialGroup = credentialsList[index]
+        for index in credentialGroups.indices {
+            if credentialGroups[index].resource == resource {
+                credentialGroup = credentialGroups[index]
                 break
             }
         }
@@ -61,9 +86,9 @@ class CredentialsListViewModel: ObservableObject {
         fetchCredentialGroups()
     }
     
-    func editCredential(credential: Credential, username: String, password: String) {
-        credential.username = username
-        credential.password = password
+    func editCredential(credential: CredentialWrapper, username: String, password: String) {
+        credential.credential.username = username
+        credential.credential.password = password
         saveContext()
         fetchCredentialGroups()
     }
@@ -71,7 +96,8 @@ class CredentialsListViewModel: ObservableObject {
     private func fetchCredentialGroups() {
         let fetchRequest: NSFetchRequest<CredentialGroup> = CredentialGroup.fetchRequest()
         do {
-            credentialsList = try context.fetch(fetchRequest)
+            credentialGroups = try context.fetch(fetchRequest)
+            credentialsList = credentialGroups.map { CredentialGroupWrapper(credentialGroup: $0)}
         } catch {
             // TODO: add proper error handling, show some message to the user or so
             print("Failed to fetch credentialGroups: \(error)")
