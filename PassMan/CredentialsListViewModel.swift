@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-class CredentialWrapper: Identifiable {
+struct CredentialWrapper: Identifiable {
     fileprivate var credential: Credential
     
     var id: UUID {
@@ -20,7 +20,7 @@ class CredentialWrapper: Identifiable {
     }
 }
 
-class CredentialGroupWrapper: Identifiable {
+struct CredentialGroupWrapper: Identifiable {
     fileprivate let credentialGroup: CredentialGroup
     
     var id: UUID {
@@ -29,12 +29,11 @@ class CredentialGroupWrapper: Identifiable {
     var resource: String {
         get { credentialGroup.resource!}
     }
-    var credentials: [CredentialWrapper] {
-        (credentialGroup.credentials?.allObjects as? [Credential] ?? []).map { CredentialWrapper(credential: $0)}
-    }
+    var credentials: [CredentialWrapper]
     
     init(credentialGroup: CredentialGroup) {
         self.credentialGroup = credentialGroup
+        credentials = (credentialGroup.credentials?.allObjects as? [Credential] ?? []).map { CredentialWrapper(credential: $0)}
     }
 }
 

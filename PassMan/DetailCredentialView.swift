@@ -26,6 +26,7 @@ struct DetailCredentialView: View {
                     VStack(alignment: .leading) {
                         Text(credential.username)
                         Divider()
+                        // TODO: move isPasswordVisible to the State field and convert CredentialGroupWrapper and CredentialWrapper to classes
                         Text(credential.isPasswordVisible ? credential.password : "************")
                             .blur(radius: credential.isPasswordVisible ? 0 : 6)
                             .onTapGesture {
