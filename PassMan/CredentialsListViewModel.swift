@@ -71,12 +71,14 @@ class CredentialsListViewModel: ObservableObject {
             credentialGroup = CredentialGroup(context: context)
             credentialGroup!.id = UUID()
             credentialGroup!.resource = resource
+            credentialGroup!.timestamp = Date.now
         }
         
         let credential: Credential = Credential(context: context)
         credential.id = UUID()
         credential.username = username
         credential.password = password
+        credential.timestamp = Date.now
         credential.credentialGroup = credentialGroup!
         
         credentialGroup!.addToCredentials(credential)
@@ -114,6 +116,14 @@ class CredentialsListViewModel: ObservableObject {
         fetchCredentialGroups()
     }
     
+    // TODO: add more criteria for sorting and make a public API for it
+    private func sort() {
+        credentialsList.sort(by: { $0.credentialGroup.timestamp! < $1.credentialGroup.timestamp!})
+        for index in 0..<credentialsList.count {
+            credentialsList[index].credentials.sort(by: { $0.credential.timestamp! < $1.credential.timestamp!})
+        }
+    }
+    
     private func fetchCredentialGroups() {
         let fetchRequest: NSFetchRequest<CredentialGroup> = CredentialGroup.fetchRequest()
         do {
@@ -123,6 +133,7 @@ class CredentialsListViewModel: ObservableObject {
             // TODO: add proper error handling, show some message to the user or so
             print("Failed to fetch credentialGroups: \(error)")
         }
+        sort()
     }
     
     private func saveContext() {
