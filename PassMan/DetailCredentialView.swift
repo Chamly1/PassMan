@@ -87,9 +87,9 @@ struct DetailCredentialView: View {
         .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
             Button("Delete Credential", role: .destructive) {
                 if let indexes = indexSetToDelete {
-                    credentialsListViewModel.credentialsList[credentialGroupIndex].credentials.remove(atOffsets: indexes)
+                    credentialsListViewModel.removeCredentials(credentialGroupIndex: credentialGroupIndex, atOffsets: indexes)
                     if credentialsListViewModel.credentialsList[credentialGroupIndex].credentials.count == 0 {
-                        credentialsListViewModel.credentialsList.remove(at: credentialGroupIndex)
+                        credentialsListViewModel.removeCredentialGroups(atOffsets: IndexSet(integer: credentialGroupIndex))
                         dismiss()
                     }
                 }

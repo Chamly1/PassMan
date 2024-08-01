@@ -92,10 +92,22 @@ class CredentialsListViewModel: ObservableObject {
         fetchCredentialGroups()
     }
     
-    func removeCredentialGroups(atOffsets offsets: IndexSet) {
-        for index in offsets {
+    func removeCredentialGroups(atOffsets: IndexSet) {
+        for index in atOffsets {
             if index >= 0 && index < credentialsList.count {
                 context.delete(credentialsList[index].credentialGroup)
+            }
+        }
+        saveContext()
+        fetchCredentialGroups()
+    }
+    
+    func removeCredentials(credentialGroupIndex: Int, atOffsets: IndexSet) {
+        if credentialGroupIndex >= 0 && credentialGroupIndex < credentialsList.count {
+            for index in atOffsets {
+                if index >= 0 && index < credentialsList[credentialGroupIndex].credentials.count {
+                    context.delete(credentialsList[credentialGroupIndex].credentials[index].credential)
+                }
             }
         }
         saveContext()
