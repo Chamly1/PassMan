@@ -39,7 +39,6 @@ struct CredentialGroupWrapper: Identifiable {
 
 class CredentialsListViewModel: ObservableObject {
     @Published var credentialsList: [CredentialGroupWrapper] = []
-    private var credentialGroups: [CredentialGroup] = []
     private let container: NSPersistentContainer
     private var context: NSManagedObjectContext {
         return container.viewContext
@@ -54,26 +53,35 @@ class CredentialsListViewModel: ObservableObject {
             }
         }
         fetchCredentialGroups()
+        sort()
     }
     
     //TODO rename to addCredential()
     func addCredentialGroup(resource: String, username: String, password: String) {
         var credentialGroup: CredentialGroup?
+        var credentialGroupIndex: Int?
         // if such resource already exist - add to it
-        for index in credentialGroups.indices {
-            if credentialGroups[index].resource == resource {
-                credentialGroup = credentialGroups[index]
+        for index in credentialsList.indices {
+            if credentialsList[index].resource == resource {
+                credentialGroup = credentialsList[index].credentialGroup
+                credentialGroupIndex = index
                 break
             }
         }
         // if there is no such resource - create
         if credentialGroup == nil {
+            // add group to Core Data
             credentialGroup = CredentialGroup(context: context)
             credentialGroup!.id = UUID()
             credentialGroup!.resource = resource
             credentialGroup!.timestamp = Date.now
+            
+            // add group to ViewModel
+            credentialsList.append(CredentialGroupWrapper(credentialGroup: credentialGroup!))
+            credentialGroupIndex = credentialsList.endIndex - 1
         }
         
+        // add credential to Core Data
         let credential: Credential = Credential(context: context)
         credential.id = UUID()
         credential.username = username
@@ -82,38 +90,49 @@ class CredentialsListViewModel: ObservableObject {
         credential.credentialGroup = credentialGroup!
         
         credentialGroup!.addToCredentials(credential)
-        
         saveContext()
-        fetchCredentialGroups()
+        
+        // add credential to ViewModel
+        credentialsList[credentialGroupIndex!].credentials.append(CredentialWrapper(credential: credential))
+        sort()
     }
     
     func editCredential(credential: CredentialWrapper, username: String, password: String) {
+        // need to update the UI because no Publeshed properties will be changed change
+        self.objectWillChange.send()
+        
+        // edit in Core Data
         credential.credential.username = username
         credential.credential.password = password
         saveContext()
-        fetchCredentialGroups()
+        
+        sort()
     }
     
     func removeCredentialGroups(atOffsets: IndexSet) {
+        // remove from Core Data
         for index in atOffsets {
             if index >= 0 && index < credentialsList.count {
                 context.delete(credentialsList[index].credentialGroup)
             }
         }
         saveContext()
-        fetchCredentialGroups()
+        // remove from ViewModel
+        credentialsList.remove(atOffsets: atOffsets)
     }
     
     func removeCredentials(credentialGroupIndex: Int, atOffsets: IndexSet) {
         if credentialGroupIndex >= 0 && credentialGroupIndex < credentialsList.count {
+            // remove from Core Data
             for index in atOffsets {
                 if index >= 0 && index < credentialsList[credentialGroupIndex].credentials.count {
                     context.delete(credentialsList[credentialGroupIndex].credentials[index].credential)
                 }
             }
+            saveContext()
+            // remove from ViewModel
+            credentialsList[credentialGroupIndex].credentials.remove(atOffsets: atOffsets)
         }
-        saveContext()
-        fetchCredentialGroups()
     }
     
     // TODO: add more criteria for sorting and make a public API for it
@@ -127,13 +146,12 @@ class CredentialsListViewModel: ObservableObject {
     private func fetchCredentialGroups() {
         let fetchRequest: NSFetchRequest<CredentialGroup> = CredentialGroup.fetchRequest()
         do {
-            credentialGroups = try context.fetch(fetchRequest)
+            let credentialGroups: [CredentialGroup] = try context.fetch(fetchRequest)
             credentialsList = credentialGroups.map { CredentialGroupWrapper(credentialGroup: $0)}
         } catch {
             // TODO: add proper error handling, show some message to the user or so
             print("Failed to fetch credentialGroups: \(error)")
         }
-        sort()
     }
     
     private func saveContext() {
