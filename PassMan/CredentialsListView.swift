@@ -6,6 +6,9 @@ struct CredentialsListView: View {
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
     
+    @State private var selectedSortOption: SortOptions = .dateCreated
+    @State private var selectedSortOrder: SortOrders = .ascending
+    
     var body: some View {
         NavigationStack {
             List {
@@ -31,22 +34,40 @@ struct CredentialsListView: View {
                         Image(systemName: "plus")
                     })
                 }
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button(action: {
-                        
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu(content: {
+                        Menu(content: {
+                            Picker("Sort By", selection: $selectedSortOption) {
+                                ForEach(SortOptions.allCases) { option in
+                                    Text(option.rawValue).tag(option)
+                                }
+                            }
+                            Divider()
+                            Picker("Order", selection: $selectedSortOrder) {
+                                ForEach(SortOrders.allCases) { order in
+                                    Text(order.rawValue).tag(order)
+                                }
+                            }
+                        }, label: {
+                            Label {
+                                // No other working ways to fit two lines in one Menu's label
+                                Button(action: {}) {
+                                    Text("Sort By")
+                                    Text(selectedSortOption.rawValue)
+                                }
+                            } icon: {
+                                Image(systemName: "arrow.up.arrow.down")
+                            }
+                        })
+                        Button(action: {
+                            
+                        }, label: {
+                            Label("Settings", systemImage: "gear")
+                        })
                     }, label: {
-                        Image(systemName: "gear")
+                        Image(systemName: "ellipsis")
                     })
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "line.3.horizontal.decrease")
-                    })
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "arrow.up.arrow.down")
-                    })
+                    
                 }
             }
             .sheet(isPresented: $showCredentialEditorSheet) {

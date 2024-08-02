@@ -17,6 +17,7 @@
 		CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */; };
 		CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */; };
 		CAB86CFD2C51C9C300AECF44 /* DetailCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */; };
+		CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListViewModel.swift; sourceTree = "<group>"; };
 		CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUtility.swift; sourceTree = "<group>"; };
 		CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCredentialView.swift; sourceTree = "<group>"; };
+		CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingEnums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */,
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
 				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
+				CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */,
 				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
 				CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */,
 				CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */,
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */,
 				CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */,
 				CAB86CFD2C51C9C300AECF44 /* DetailCredentialView.swift in Sources */,
 				CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */,
