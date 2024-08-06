@@ -87,9 +87,11 @@ class CredentialsListViewModel: ObservableObject {
         credential.username = username
         credential.password = password
         credential.dateCreated = Date.now
+        credential.dateEdited = Date.now
         credential.credentialGroup = credentialGroup!
         
         credentialGroup!.addToCredentials(credential)
+        credentialGroup!.dateEdited = Date.now
         saveContext()
         
         // add credential to ViewModel
@@ -104,6 +106,8 @@ class CredentialsListViewModel: ObservableObject {
         // edit in Core Data
         credential.credential.username = username
         credential.credential.password = password
+        credential.credential.dateEdited = Date.now
+        credential.credential.credentialGroup!.dateEdited = Date.now
         saveContext()
         
         sort()
@@ -127,6 +131,7 @@ class CredentialsListViewModel: ObservableObject {
             for index in atOffsets {
                 if index >= 0 && index < credentialsList[credentialGroupIndex].credentials.count {
                     context.delete(credentialsList[credentialGroupIndex].credentials[index].credential)
+                    credentialsList[credentialGroupIndex].credentialGroup.dateEdited = Date.now
                 }
             }
             saveContext()
