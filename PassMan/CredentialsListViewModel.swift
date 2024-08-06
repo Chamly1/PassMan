@@ -74,7 +74,7 @@ class CredentialsListViewModel: ObservableObject {
             credentialGroup = CredentialGroup(context: context)
             credentialGroup!.id = UUID()
             credentialGroup!.resource = resource
-            credentialGroup!.timestamp = Date.now
+            credentialGroup!.dateCreated = Date.now
             
             // add group to ViewModel
             credentialsList.append(CredentialGroupWrapper(credentialGroup: credentialGroup!))
@@ -86,7 +86,7 @@ class CredentialsListViewModel: ObservableObject {
         credential.id = UUID()
         credential.username = username
         credential.password = password
-        credential.timestamp = Date.now
+        credential.dateCreated = Date.now
         credential.credentialGroup = credentialGroup!
         
         credentialGroup!.addToCredentials(credential)
