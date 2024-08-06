@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SortOptions: String, CaseIterable, Identifiable {
+enum SortingOptions: String, CaseIterable, Identifiable {
     case dateCreated = "Date Created"
     case dateEdited = "Date Edited"
     case title = "Title"
@@ -15,7 +15,7 @@ enum SortOptions: String, CaseIterable, Identifiable {
     var id: String { self.rawValue}
 }
 
-enum SortOrders: String, CaseIterable, Identifiable {
+enum SortingOrders: String, CaseIterable, Identifiable {
     case ascending = "Ascending"
     case descending = "Descending"
     
