@@ -43,21 +43,25 @@ class CredentialsListViewModel: ObservableObject {
     @UserDefaultEnum(key: "groupsSortOption", defaultValue: .dateCreated) var groupsSortOption: SortingOptions {
         didSet {
             self.objectWillChange.send()
+            sortGroups()
         }
     }
     @UserDefaultEnum(key: "groupsSortOrder", defaultValue: .ascending) var groupsSortOrder: SortingOrders {
         didSet {
             self.objectWillChange.send()
+            sortGroups()
         }
     }
     @UserDefaultEnum(key: "credentialsSortOption", defaultValue: .dateCreated) var credentialsSortOption: SortingOptions {
         didSet {
             self.objectWillChange.send()
+            sortCredentials()
         }
     }
     @UserDefaultEnum(key: "credentialsSortOrder", defaultValue: .ascending) var credentialsSortOrder: SortingOrders {
         didSet {
             self.objectWillChange.send()
+            sortCredentials()
         }
     }
     
@@ -75,7 +79,8 @@ class CredentialsListViewModel: ObservableObject {
             }
         }
         fetchCredentialGroups()
-        sort()
+        sortGroups()
+        sortCredentials()
     }
     
     //TODO rename to addCredential()
@@ -118,7 +123,8 @@ class CredentialsListViewModel: ObservableObject {
         
         // add credential to ViewModel
         credentialsList[credentialGroupIndex!].credentials.append(CredentialWrapper(credential: credential))
-        sort()
+        sortGroups()
+        sortCredentials()
     }
     
     func editCredential(credential: CredentialWrapper, username: String, password: String) {
@@ -132,7 +138,8 @@ class CredentialsListViewModel: ObservableObject {
         credential.credential.credentialGroup!.dateEdited = Date.now
         saveContext()
         
-        sort()
+        sortGroups()
+        sortCredentials()
     }
     
     func removeCredentialGroups(atOffsets: IndexSet) {
@@ -159,14 +166,40 @@ class CredentialsListViewModel: ObservableObject {
             saveContext()
             // remove from ViewModel
             credentialsList[credentialGroupIndex].credentials.remove(atOffsets: atOffsets)
+            sortGroups()
         }
     }
     
-    // TODO: add more criteria for sorting and make a public API for it
-    private func sort() {
-        credentialsList.sort(by: { $0.credentialGroup.timestamp! < $1.credentialGroup.timestamp!})
+    private func sortGroups() {
+        switch groupsSortOption {
+        case .dateCreated:
+            credentialsList.sort(by: { compare($0.credentialGroup.dateCreated!, $1.credentialGroup.dateCreated!, order: groupsSortOrder)})
+        case .dateEdited:
+            credentialsList.sort(by: { compare($0.credentialGroup.dateEdited!, $1.credentialGroup.dateEdited!, order: groupsSortOrder)})
+        case .title:
+            credentialsList.sort(by: { compare($0.credentialGroup.resource!, $1.credentialGroup.resource!, order: groupsSortOrder)})
+        }
+    }
+    
+    private func sortCredentials() {
         for index in 0..<credentialsList.count {
-            credentialsList[index].credentials.sort(by: { $0.credential.timestamp! < $1.credential.timestamp!})
+            switch groupsSortOption {
+            case .dateCreated:
+                credentialsList[index].credentials.sort(by: { compare($0.credential.dateCreated!, $1.credential.dateCreated!, order: groupsSortOrder)})
+            case .dateEdited:
+                credentialsList[index].credentials.sort(by: { compare($0.credential.dateEdited!, $1.credential.dateEdited!, order: groupsSortOrder)})
+            case .title:
+                credentialsList[index].credentials.sort(by: { compare($0.credential.username!, $1.credential.username!, order: groupsSortOrder)})
+            }
+        }
+    }
+    
+    private func compare<T: Comparable>(_ first: T, _ second: T, order: SortingOrders) -> Bool {
+        switch order {
+        case .ascending:
+            return first <= second
+        case .descending:
+            return first > second
         }
     }
     
