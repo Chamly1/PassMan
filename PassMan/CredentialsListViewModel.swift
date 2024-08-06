@@ -39,6 +39,28 @@ struct CredentialGroupWrapper: Identifiable {
 
 class CredentialsListViewModel: ObservableObject {
     @Published var credentialsList: [CredentialGroupWrapper] = []
+    
+    @UserDefaultEnum(key: "groupsSortOption", defaultValue: .dateCreated) var groupsSortOption: SortingOptions {
+        didSet {
+            self.objectWillChange.send()
+        }
+    }
+    @UserDefaultEnum(key: "groupsSortOrder", defaultValue: .ascending) var groupsSortOrder: SortingOrders {
+        didSet {
+            self.objectWillChange.send()
+        }
+    }
+    @UserDefaultEnum(key: "credentialsSortOption", defaultValue: .dateCreated) var credentialsSortOption: SortingOptions {
+        didSet {
+            self.objectWillChange.send()
+        }
+    }
+    @UserDefaultEnum(key: "credentialsSortOrder", defaultValue: .ascending) var credentialsSortOrder: SortingOrders {
+        didSet {
+            self.objectWillChange.send()
+        }
+    }
+    
     private let container: NSPersistentContainer
     private var context: NSManagedObjectContext {
         return container.viewContext

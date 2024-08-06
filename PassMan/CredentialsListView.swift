@@ -6,9 +6,6 @@ struct CredentialsListView: View {
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
     
-    @State private var selectedSortOption: SortOptions = .dateCreated
-    @State private var selectedSortOrder: SortOrders = .ascending
-    
     var body: some View {
         NavigationStack {
             List {
@@ -37,14 +34,14 @@ struct CredentialsListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {
                         Menu(content: {
-                            Picker("Sort By", selection: $selectedSortOption) {
-                                ForEach(SortOptions.allCases) { option in
+                            Picker("Sort By", selection: $credentialsListViewModel.groupsSortOption) {
+                                ForEach(SortingOptions.allCases) { option in
                                     Text(option.rawValue).tag(option)
                                 }
                             }
                             Divider()
-                            Picker("Order", selection: $selectedSortOrder) {
-                                ForEach(SortOrders.allCases) { order in
+                            Picker("Order", selection: $credentialsListViewModel.groupsSortOrder) {
+                                ForEach(SortingOrders.allCases) { order in
                                     Text(order.rawValue).tag(order)
                                 }
                             }
@@ -53,7 +50,7 @@ struct CredentialsListView: View {
                                 // No other working ways to fit two lines in one Menu's label
                                 Button(action: {}) {
                                     Text("Sort By")
-                                    Text(selectedSortOption.rawValue)
+                                    Text(credentialsListViewModel.groupsSortOption.rawValue)
                                 }
                             } icon: {
                                 Image(systemName: "arrow.up.arrow.down")
