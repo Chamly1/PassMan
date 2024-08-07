@@ -181,13 +181,13 @@ class CredentialsListViewModel: ObservableObject {
     
     private func sortCredentials() {
         for index in 0..<credentialsList.count {
-            switch groupsSortOption {
+            switch credentialsSortOption {
             case .dateCreated:
-                credentialsList[index].credentials.sort(by: { compare($0.credential.dateCreated!, $1.credential.dateCreated!, order: groupsSortOrder)})
+                credentialsList[index].credentials.sort(by: { compare($0.credential.dateCreated!, $1.credential.dateCreated!, order: credentialsSortOrder)})
             case .dateEdited:
-                credentialsList[index].credentials.sort(by: { compare($0.credential.dateEdited!, $1.credential.dateEdited!, order: groupsSortOrder)})
+                credentialsList[index].credentials.sort(by: { compare($0.credential.dateEdited!, $1.credential.dateEdited!, order: credentialsSortOrder)})
             case .title:
-                credentialsList[index].credentials.sort(by: { compare($0.credential.username!, $1.credential.username!, order: groupsSortOrder)})
+                credentialsList[index].credentials.sort(by: { compare($0.credential.username!, $1.credential.username!, order: credentialsSortOrder)})
             }
         }
     }
