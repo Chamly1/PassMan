@@ -82,6 +82,9 @@ struct DetailCredentialView: View {
                         Image(systemName: "plus")
                     })
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    ToolbarMenu(sortOption: $credentialsListViewModel.credentialsSortOption, sortOrder: $credentialsListViewModel.credentialsSortOrder)
+                }
             }
             .sheet(isPresented: $showCredentialEditorSheet) {
                 CredentialEditorView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
