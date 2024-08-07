@@ -32,39 +32,7 @@ struct CredentialsListView: View {
                     })
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu(content: {
-                        Menu(content: {
-                            Picker("Sort By", selection: $credentialsListViewModel.groupsSortOption) {
-                                ForEach(SortingOptions.allCases) { option in
-                                    Text(option.rawValue).tag(option)
-                                }
-                            }
-                            Divider()
-                            Picker("Order", selection: $credentialsListViewModel.groupsSortOrder) {
-                                ForEach(SortingOrders.allCases) { order in
-                                    Text(order.rawValue).tag(order)
-                                }
-                            }
-                        }, label: {
-                            Label {
-                                // No other working ways to fit two lines in one Menu's label
-                                Button(action: {}) {
-                                    Text("Sort By")
-                                    Text(credentialsListViewModel.groupsSortOption.rawValue)
-                                }
-                            } icon: {
-                                Image(systemName: "arrow.up.arrow.down")
-                            }
-                        })
-                        Button(action: {
-                            
-                        }, label: {
-                            Label("Settings", systemImage: "gear")
-                        })
-                    }, label: {
-                        Image(systemName: "ellipsis")
-                    })
-                    
+                    ToolbarMenu(sortOption: $credentialsListViewModel.groupsSortOption, sortOrder: $credentialsListViewModel.groupsSortOrder)
                 }
             }
             .sheet(isPresented: $showCredentialEditorSheet) {
