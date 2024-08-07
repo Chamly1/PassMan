@@ -4,9 +4,7 @@ import CoreData
 struct CredentialWrapper: Identifiable {
     fileprivate var credential: Credential
     
-    var id: UUID {
-        get { credential.id!}
-    }
+    let id: UUID
     var username: String {
         get { credential.username!}
     }
@@ -17,15 +15,14 @@ struct CredentialWrapper: Identifiable {
     
     init(credential: Credential) {
         self.credential = credential
+        self.id = credential.id!
     }
 }
 
 struct CredentialGroupWrapper: Identifiable {
     fileprivate let credentialGroup: CredentialGroup
     
-    var id: UUID {
-        get { credentialGroup.id!}
-    }
+    let id: UUID
     var resource: String {
         get { credentialGroup.resource!}
     }
@@ -33,6 +30,7 @@ struct CredentialGroupWrapper: Identifiable {
     
     init(credentialGroup: CredentialGroup) {
         self.credentialGroup = credentialGroup
+        self.id = credentialGroup.id!
         credentials = (credentialGroup.credentials?.allObjects as? [Credential] ?? []).map { CredentialWrapper(credential: $0)}
     }
 }
