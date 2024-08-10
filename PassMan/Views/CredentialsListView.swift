@@ -9,7 +9,7 @@ struct CredentialsListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(credentialsListViewModel.credentialsList) { credentialGroup in
+                ForEach(credentialsListViewModel.credentialGroups) { credentialGroup in
                     NavigationLink(destination: {
                         DetailCredentialView(credentialGroupID: credentialGroup.id)
                     }, label: {

@@ -36,7 +36,7 @@ struct CredentialGroupWrapper: Identifiable {
 }
 
 class CredentialsListViewModel: ObservableObject {
-    @Published var credentialsList: [CredentialGroupWrapper] = []
+    @Published var credentialGroups: [CredentialGroupWrapper] = []
     
     @UserDefaultEnum(key: "groupsSortOption", defaultValue: .dateCreated) var groupsSortOption: SortingOptions {
         didSet {
@@ -86,9 +86,9 @@ class CredentialsListViewModel: ObservableObject {
         var credentialGroup: CredentialGroup?
         var credentialGroupIndex: Int?
         // if such resource already exist - add to it
-        for index in credentialsList.indices {
-            if credentialsList[index].resource == resource {
-                credentialGroup = credentialsList[index].credentialGroup
+        for index in credentialGroups.indices {
+            if credentialGroups[index].resource == resource {
+                credentialGroup = credentialGroups[index].credentialGroup
                 credentialGroupIndex = index
                 break
             }
@@ -102,8 +102,8 @@ class CredentialsListViewModel: ObservableObject {
             credentialGroup!.dateCreated = Date.now
             
             // add group to ViewModel
-            credentialsList.append(CredentialGroupWrapper(credentialGroup: credentialGroup!))
-            credentialGroupIndex = credentialsList.endIndex - 1
+            credentialGroups.append(CredentialGroupWrapper(credentialGroup: credentialGroup!))
+            credentialGroupIndex = credentialGroups.endIndex - 1
         }
         
         // add credential to Core Data
@@ -120,7 +120,7 @@ class CredentialsListViewModel: ObservableObject {
         saveContext()
         
         // add credential to ViewModel
-        credentialsList[credentialGroupIndex!].credentials.append(CredentialWrapper(credential: credential))
+        credentialGroups[credentialGroupIndex!].credentials.append(CredentialWrapper(credential: credential))
         sortGroups()
         sortCredentials()
     }
@@ -143,27 +143,27 @@ class CredentialsListViewModel: ObservableObject {
     func removeCredentialGroups(atOffsets: IndexSet) {
         // remove from Core Data
         for index in atOffsets {
-            if index >= 0 && index < credentialsList.count {
-                context.delete(credentialsList[index].credentialGroup)
+            if index >= 0 && index < credentialGroups.count {
+                context.delete(credentialGroups[index].credentialGroup)
             }
         }
         saveContext()
         // remove from ViewModel
-        credentialsList.remove(atOffsets: atOffsets)
+        credentialGroups.remove(atOffsets: atOffsets)
     }
     
     func removeCredentials(credentialGroupIndex: Int, atOffsets: IndexSet) {
-        if credentialGroupIndex >= 0 && credentialGroupIndex < credentialsList.count {
+        if credentialGroupIndex >= 0 && credentialGroupIndex < credentialGroups.count {
             // remove from Core Data
             for index in atOffsets {
-                if index >= 0 && index < credentialsList[credentialGroupIndex].credentials.count {
-                    context.delete(credentialsList[credentialGroupIndex].credentials[index].credential)
-                    credentialsList[credentialGroupIndex].credentialGroup.dateEdited = Date.now
+                if index >= 0 && index < credentialGroups[credentialGroupIndex].credentials.count {
+                    context.delete(credentialGroups[credentialGroupIndex].credentials[index].credential)
+                    credentialGroups[credentialGroupIndex].credentialGroup.dateEdited = Date.now
                 }
             }
             saveContext()
             // remove from ViewModel
-            credentialsList[credentialGroupIndex].credentials.remove(atOffsets: atOffsets)
+            credentialGroups[credentialGroupIndex].credentials.remove(atOffsets: atOffsets)
             sortGroups()
         }
     }
@@ -171,23 +171,23 @@ class CredentialsListViewModel: ObservableObject {
     private func sortGroups() {
         switch groupsSortOption {
         case .dateCreated:
-            credentialsList.sort(by: { compare($0.credentialGroup.dateCreated!, $1.credentialGroup.dateCreated!, order: groupsSortOrder)})
+            credentialGroups.sort(by: { compare($0.credentialGroup.dateCreated!, $1.credentialGroup.dateCreated!, order: groupsSortOrder)})
         case .dateEdited:
-            credentialsList.sort(by: { compare($0.credentialGroup.dateEdited!, $1.credentialGroup.dateEdited!, order: groupsSortOrder)})
+            credentialGroups.sort(by: { compare($0.credentialGroup.dateEdited!, $1.credentialGroup.dateEdited!, order: groupsSortOrder)})
         case .title:
-            credentialsList.sort(by: { compare($0.credentialGroup.resource!, $1.credentialGroup.resource!, order: groupsSortOrder)})
+            credentialGroups.sort(by: { compare($0.credentialGroup.resource!, $1.credentialGroup.resource!, order: groupsSortOrder)})
         }
     }
     
     private func sortCredentials() {
-        for index in 0..<credentialsList.count {
+        for index in 0..<credentialGroups.count {
             switch credentialsSortOption {
             case .dateCreated:
-                credentialsList[index].credentials.sort(by: { compare($0.credential.dateCreated!, $1.credential.dateCreated!, order: credentialsSortOrder)})
+                credentialGroups[index].credentials.sort(by: { compare($0.credential.dateCreated!, $1.credential.dateCreated!, order: credentialsSortOrder)})
             case .dateEdited:
-                credentialsList[index].credentials.sort(by: { compare($0.credential.dateEdited!, $1.credential.dateEdited!, order: credentialsSortOrder)})
+                credentialGroups[index].credentials.sort(by: { compare($0.credential.dateEdited!, $1.credential.dateEdited!, order: credentialsSortOrder)})
             case .title:
-                credentialsList[index].credentials.sort(by: { compare($0.credential.username!, $1.credential.username!, order: credentialsSortOrder)})
+                credentialGroups[index].credentials.sort(by: { compare($0.credential.username!, $1.credential.username!, order: credentialsSortOrder)})
             }
         }
     }
@@ -205,7 +205,7 @@ class CredentialsListViewModel: ObservableObject {
         let fetchRequest: NSFetchRequest<CredentialGroup> = CredentialGroup.fetchRequest()
         do {
             let credentialGroups: [CredentialGroup] = try context.fetch(fetchRequest)
-            credentialsList = credentialGroups.map { CredentialGroupWrapper(credentialGroup: $0)}
+            credentialGroups = credentialGroups.map { CredentialGroupWrapper(credentialGroup: $0)}
         } catch {
             // TODO: add proper error handling, show some message to the user or so
             print("Failed to fetch credentialGroups: \(error)")

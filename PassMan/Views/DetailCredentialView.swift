@@ -20,13 +20,13 @@ struct DetailCredentialView: View {
     var credentialGroupID: UUID
     
     var body: some View {
-        guard let credentialGroupIndex: Int = credentialsListViewModel.credentialsList.firstIndex(where: { $0.id == credentialGroupID }) else {
+        guard let credentialGroupIndex: Int = credentialsListViewModel.credentialGroups.firstIndex(where: { $0.id == credentialGroupID }) else {
             return AnyView(Text("Credential group not found"))
         }
         
         return AnyView(
             List {
-                ForEach($credentialsListViewModel.credentialsList[credentialGroupIndex].credentials) { $credential in
+                ForEach($credentialsListViewModel.credentialGroups[credentialGroupIndex].credentials) { $credential in
                     Section {
                         VStack(alignment: .leading) {
                             Text(credential.username)
@@ -58,7 +58,7 @@ struct DetailCredentialView: View {
                             })
                             Divider()
                             Button(role: .destructive, action: {
-                                indexSetToDelete = IndexSet(integer: credentialsListViewModel.credentialsList[credentialGroupIndex].credentials.firstIndex(where: { $0.id == credential.id })!)
+                                indexSetToDelete = IndexSet(integer: credentialsListViewModel.credentialGroups[credentialGroupIndex].credentials.firstIndex(where: { $0.id == credential.id })!)
                                 showDeleteConfirmationDialog = true
                             }, label: {
                                 Label("Delete", systemImage: "trash")
@@ -72,7 +72,7 @@ struct DetailCredentialView: View {
                     showDeleteConfirmationDialog = true
                 }
             }
-            .navigationTitle(credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
+            .navigationTitle(credentialsListViewModel.credentialGroups[credentialGroupIndex].resource)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -87,16 +87,16 @@ struct DetailCredentialView: View {
                 }
             }
             .sheet(isPresented: $showCredentialEditorSheet) {
-                CredentialEditorView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource)
+                CredentialEditorView(resourceName: credentialsListViewModel.credentialGroups[credentialGroupIndex].resource)
             }
             .sheet(item: $credentialToEdit) { credential in
-                CredentialEditorView(resourceName: credentialsListViewModel.credentialsList[credentialGroupIndex].resource, credential: credential)
+                CredentialEditorView(resourceName: credentialsListViewModel.credentialGroups[credentialGroupIndex].resource, credential: credential)
             }
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Credential", role: .destructive) {
                     if let indexes = indexSetToDelete {
                         credentialsListViewModel.removeCredentials(credentialGroupIndex: credentialGroupIndex, atOffsets: indexes)
-                        if credentialsListViewModel.credentialsList[credentialGroupIndex].credentials.count == 0 {
+                        if credentialsListViewModel.credentialGroups[credentialGroupIndex].credentials.count == 0 {
                             credentialsListViewModel.removeCredentialGroups(atOffsets: IndexSet(integer: credentialGroupIndex))
                             dismiss()
                         }
