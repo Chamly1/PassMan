@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CredentialsListView: View {
+struct CredentialGroupListView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
     @State private var showCredentialEditorSheet: Bool = false
     @State private var showDeleteConfirmationDialog: Bool = false
@@ -54,5 +54,5 @@ struct CredentialsListView: View {
 }
 
 #Preview {
-    CredentialsListView().environmentObject(CredentialsListViewModel())
+    CredentialGroupListView().environmentObject(CredentialsListViewModel())
 }

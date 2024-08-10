@@ -6,7 +6,7 @@ struct PassManApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CredentialsListView()
+            CredentialGroupListView()
                 .environmentObject(credentialsListViewModel)
         }
     }
