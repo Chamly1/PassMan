@@ -50,6 +50,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA96D8722C67C19D00C97006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
+				CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */,
+				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
+				CAEC663E2C67C81700F17C1A /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CAB0C7B52C49A3B4006F0B3B = {
 			isa = PBXGroup;
 			children = (
@@ -69,15 +80,11 @@
 		CAB0C7C02C49A3B4006F0B3B /* PassMan */ = {
 			isa = PBXGroup;
 			children = (
-				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
-				CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */,
+				CAEC663D2C67C79500F17C1A /* ViewModels */,
+				CAEC663C2C67C46A00F17C1A /* Utils */,
+				CAEC663B2C67C38600F17C1A /* Models */,
+				CA96D8722C67C19D00C97006 /* Views */,
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
-				CAB0C7CF2C49B21D006F0B3B /* CredentialsListView.swift */,
-				CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */,
-				CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */,
-				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
-				CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */,
-				CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */,
 				CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */,
 				CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */,
 				CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */,
@@ -92,6 +99,39 @@
 				CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAEC663B2C67C38600F17C1A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CAEC663C2C67C46A00F17C1A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
+				CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CAEC663D2C67C79500F17C1A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CAEC663E2C67C81700F17C1A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
