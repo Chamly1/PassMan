@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailCredentialView: View {
+struct CredentialListView: View {
     @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
     @Environment(\.dismiss) var dismiss
     @State private var showCredentialEditorSheet: Bool = false
@@ -112,6 +112,6 @@ struct DetailCredentialView: View {
 }
 
 #Preview {
-    DetailCredentialView(credentialGroupID: UUID())
+    CredentialListView(credentialGroupID: UUID())
         .environmentObject(CredentialsListViewModel())
 }

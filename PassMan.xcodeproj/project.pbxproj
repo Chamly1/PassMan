@@ -17,7 +17,7 @@
 		CAB0C7D02C49B21D006F0B3B /* CredentialGroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7CF2C49B21D006F0B3B /* CredentialGroupListView.swift */; };
 		CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */; };
 		CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */; };
-		CAB86CFD2C51C9C300AECF44 /* DetailCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */; };
+		CAB86CFD2C51C9C300AECF44 /* CredentialListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */; };
 		CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +33,7 @@
 		CAB0C7CF2C49B21D006F0B3B /* CredentialGroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialGroupListView.swift; sourceTree = "<group>"; };
 		CAB0C7D12C49B308006F0B3B /* CredentialsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListViewModel.swift; sourceTree = "<group>"; };
 		CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUtility.swift; sourceTree = "<group>"; };
-		CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCredentialView.swift; sourceTree = "<group>"; };
+		CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialListView.swift; sourceTree = "<group>"; };
 		CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingEnums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				CAB0C7CF2C49B21D006F0B3B /* CredentialGroupListView.swift */,
-				CAB86CFC2C51C9C300AECF44 /* DetailCredentialView.swift */,
+				CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */,
 				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
 				CAEC663E2C67C81700F17C1A /* Shared */,
 			);
@@ -203,7 +203,7 @@
 			files = (
 				CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */,
 				CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */,
-				CAB86CFD2C51C9C300AECF44 /* DetailCredentialView.swift in Sources */,
+				CAB86CFD2C51C9C300AECF44 /* CredentialListView.swift in Sources */,
 				CA96D86D2C62987200C97006 /* UserDefaultEnum.swift in Sources */,
 				CAB0C7D22C49B308006F0B3B /* CredentialsListViewModel.swift in Sources */,
 				CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */,
