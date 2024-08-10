@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CredentialGroupListView: View {
-    @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
+    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
     @State private var showCredentialEditorSheet: Bool = false
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
@@ -9,7 +9,7 @@ struct CredentialGroupListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(credentialsListViewModel.credentialGroups) { credentialGroup in
+                ForEach(credentialsViewModel.credentialGroups) { credentialGroup in
                     NavigationLink(destination: {
                         CredentialListView(credentialGroupID: credentialGroup.id)
                     }, label: {
@@ -32,7 +32,7 @@ struct CredentialGroupListView: View {
                     })
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    ToolbarMenu(sortOption: $credentialsListViewModel.groupsSortOption, sortOrder: $credentialsListViewModel.groupsSortOrder)
+                    ToolbarMenu(sortOption: $credentialsViewModel.groupsSortOption, sortOrder: $credentialsViewModel.groupsSortOrder)
                 }
             }
             .sheet(isPresented: $showCredentialEditorSheet) {
@@ -41,7 +41,7 @@ struct CredentialGroupListView: View {
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Section", role: .destructive) {
                     if let indexes = indexSetToDelete {
-                        credentialsListViewModel.removeCredentialGroups(atOffsets: indexes)
+                        credentialsViewModel.removeCredentialGroups(atOffsets: indexes)
                     }
                     
                 }
@@ -54,5 +54,5 @@ struct CredentialGroupListView: View {
 }
 
 #Preview {
-    CredentialGroupListView().environmentObject(CredentialsListViewModel())
+    CredentialGroupListView().environmentObject(CredentialsViewModel())
 }

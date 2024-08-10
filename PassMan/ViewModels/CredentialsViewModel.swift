@@ -35,7 +35,7 @@ struct CredentialGroupWrapper: Identifiable {
     }
 }
 
-class CredentialsListViewModel: ObservableObject {
+class CredentialsViewModel: ObservableObject {
     @Published var credentialGroups: [CredentialGroupWrapper] = []
     
     @UserDefaultEnum(key: "groupsSortOption", defaultValue: .dateCreated) var groupsSortOption: SortingOptions {

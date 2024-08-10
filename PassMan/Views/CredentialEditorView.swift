@@ -14,7 +14,7 @@ enum Field: Hashable {
 }
 
 struct CredentialEditorView: View {
-    @EnvironmentObject var credentialsListViewModel: CredentialsListViewModel
+    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
     @Environment(\.dismiss) var dismiss
     @State private var inputResource: String = ""
     @State private var inputUsername: String = ""
@@ -153,9 +153,9 @@ struct CredentialEditorView: View {
     
     private func saveCredential() {
         if let credential = credentialToEdit {
-            credentialsListViewModel.editCredential(credential: credential, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+            credentialsViewModel.editCredential(credential: credential, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         } else {
-            credentialsListViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+            credentialsViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         }
     }
     
