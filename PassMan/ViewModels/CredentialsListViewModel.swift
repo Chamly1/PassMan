@@ -204,8 +204,8 @@ class CredentialsListViewModel: ObservableObject {
     private func fetchCredentialGroups() {
         let fetchRequest: NSFetchRequest<CredentialGroup> = CredentialGroup.fetchRequest()
         do {
-            let credentialGroups: [CredentialGroup] = try context.fetch(fetchRequest)
-            credentialGroups = credentialGroups.map { CredentialGroupWrapper(credentialGroup: $0)}
+            let rawCredentialGroups: [CredentialGroup] = try context.fetch(fetchRequest)
+            credentialGroups = rawCredentialGroups.map { CredentialGroupWrapper(credentialGroup: $0)}
         } catch {
             // TODO: add proper error handling, show some message to the user or so
             print("Failed to fetch credentialGroups: \(error)")
