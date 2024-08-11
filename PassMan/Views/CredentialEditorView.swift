@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-enum Field: Hashable {
-    case resource
-    case username
-    case password
-}
-
 struct CredentialEditorView: View {
     @EnvironmentObject var credentialsViewModel: CredentialsViewModel
     @Environment(\.dismiss) var dismiss
@@ -21,7 +15,7 @@ struct CredentialEditorView: View {
     @State private var inputPassword: String = ""
     @State private var isPasswordVisible: Bool = false
     @State private var isPasswordEmptyAlert: Bool = false
-    @FocusState private var focusedField: Field?
+    @FocusState private var focusedField: FocusedField?
     @State private var passworStrengthText: String = "Password strength: -"
     @State private var passworStrengthColoringNum = -1
     
