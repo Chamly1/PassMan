@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AuthenticationViewModel {
+class AuthenticationViewModel: ObservableObject {
     var hasAccount: Bool {
         get {
             return UserDefaults.standard.bool(forKey: hasAccountKey)

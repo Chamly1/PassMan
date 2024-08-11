@@ -1,5 +1,5 @@
 //
-//  AuthenticationView.swift
+//  FirstAuthenticationView.swift
 //  PassMan
 //
 //  Created by Vladislav Skotarenko on 11.08.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AuthenticationView: View {
+struct FirstAuthenticationView: View {
     @State var inputPassword: String = ""
     @State var inputConfirmingPassword: String = ""
     @FocusState private var focusedField: FocusedField?
@@ -42,5 +42,5 @@ struct AuthenticationView: View {
 }
 
 #Preview {
-    AuthenticationView()
+    FirstAuthenticationView()
 }
