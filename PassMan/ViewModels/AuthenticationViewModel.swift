@@ -8,14 +8,27 @@
 import Foundation
 
 class AuthenticationViewModel: ObservableObject {
-    var hasAccount: Bool {
+    @Published var isAuthenticated: Bool = false
+    
+    var hasMasterKey: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: hasAccountKey)
+            return UserDefaults.standard.bool(forKey: hasMasterKeyKey)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: hasAccountKey)
+            UserDefaults.standard.set(newValue, forKey: hasMasterKeyKey)
         }
     }
     
-    private let hasAccountKey: String = "hasAccount"
+    private let hasMasterKeyKey: String = "hasMasterKey"
+    
+    func initializeMasterKey(password: String) {
+        // TODO: add proper logic
+        isAuthenticated = true
+        hasMasterKey = true
+    }
+    
+    func retrieveMasterKey(password: String) {
+        // TODO: add proper logic
+        isAuthenticated = true
+    }
 }

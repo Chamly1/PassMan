@@ -24,6 +24,7 @@
 		CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66432C694EEA00F17C1A /* FocusedField.swift */; };
 		CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */; };
 		CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */; };
+		CAEC664B2C6A7C2900F17C1A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664A2C6A7C2900F17C1A /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		CAEC66432C694EEA00F17C1A /* FocusedField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedField.swift; sourceTree = "<group>"; };
 		CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAuthenticationView.swift; sourceTree = "<group>"; };
 		CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsequentAuthenticationView.swift; sourceTree = "<group>"; };
+		CAEC664A2C6A7C2900F17C1A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */,
 				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
 				CAEC663E2C67C81700F17C1A /* Shared */,
+				CAEC664A2C6A7C2900F17C1A /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			files = (
 				CAEC66422C69450B00F17C1A /* AuthenticationViewModel.swift in Sources */,
 				CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */,
+				CAEC664B2C6A7C2900F17C1A /* ContentView.swift in Sources */,
 				CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */,
 				CAB86CFD2C51C9C300AECF44 /* CredentialListView.swift in Sources */,
 				CA96D86D2C62987200C97006 /* UserDefaultEnum.swift in Sources */,

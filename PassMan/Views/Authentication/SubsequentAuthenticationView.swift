@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SubsequentAuthenticationView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var inputPassword: String = ""
     @FocusState private var focusedField: FocusedField?
     
@@ -20,7 +21,7 @@ struct SubsequentAuthenticationView: View {
                 .textFieldStyle(.roundedBorder)
                 .submitLabel(.done)
             Button("Unlock") {
-                
+                authenticationViewModel.retrieveMasterKey(password: inputPassword)
             }
             .padding()
             .buttonStyle(.borderedProminent)

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct AuthenticationView: View {
-    @StateObject private var authenticationViewModel = AuthenticationViewModel()
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
     var body: some View {
-        if authenticationViewModel.hasAccount {
+        if authenticationViewModel.hasMasterKey {
             SubsequentAuthenticationView()
         } else {
             FirstAuthenticationView()

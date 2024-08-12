@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct FirstAuthenticationView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var inputPassword: String = ""
     @State var inputConfirmingPassword: String = ""
+    @State var showAlert: Bool = false
     @FocusState private var focusedField: FocusedField?
     
+    // TODO: add password strength indicator
     var body: some View {
         VStack {
             Text("Create your master password")
@@ -33,11 +36,22 @@ struct FirstAuthenticationView: View {
                     focusedField = nil
                 }
             Button("Confirm") {
-                
+                if inputPassword == inputConfirmingPassword {
+                    authenticationViewModel.initializeMasterKey(password: inputPassword)
+                } else {
+                    showAlert = true
+                }
             }
             .padding()
             .buttonStyle(.borderedProminent)
-        }.padding()
+        }
+        .padding()
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Passwords Do Not Match"),
+                message: Text("The password and confirmation do not match. Please re-enter your passwords."),
+                dismissButton: .default(Text("OK")))
+        }
     }
 }
 
