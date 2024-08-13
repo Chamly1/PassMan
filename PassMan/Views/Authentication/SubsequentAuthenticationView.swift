@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import CryptoKit
 
 struct SubsequentAuthenticationView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var inputPassword: String = ""
+    @State var showAlert: Bool = false
+    @State var activeAlert: ActiveAlert = .general
     @FocusState private var focusedField: FocusedField?
+    
+    enum ActiveAlert {
+        case general
+        case incorrectPassword
+    }
     
     var body: some View {
         VStack {
@@ -21,11 +29,31 @@ struct SubsequentAuthenticationView: View {
                 .textFieldStyle(.roundedBorder)
                 .submitLabel(.done)
             Button("Unlock") {
-                authenticationViewModel.retrieveMasterKey(password: inputPassword)
+                do {
+                    try authenticationViewModel.retrieveMasterKey(password: inputPassword)
+                } catch CryptoKitError.authenticationFailure {
+                    activeAlert = .incorrectPassword
+                    showAlert = true
+                } catch {
+                    activeAlert = .general
+                    showAlert = true
+                }
             }
             .padding()
             .buttonStyle(.borderedProminent)
-        }.padding()
+        }
+        .padding()
+        .alert(isPresented: $showAlert) {
+            switch activeAlert {
+            case .general:
+                generalAlert()
+            case .incorrectPassword:
+                Alert(
+                    title: Text("Incorrect Password"),
+                    message: Text("The password you entered is incorrect. Please try again."),
+                    dismissButton: .default(Text("OK")))
+            }
+        }
     }
 }
 

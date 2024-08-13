@@ -25,6 +25,8 @@
 		CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */; };
 		CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */; };
 		CAEC664B2C6A7C2900F17C1A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664A2C6A7C2900F17C1A /* ContentView.swift */; };
+		CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664C2C6BB67900F17C1A /* PassManError.swift */; };
+		CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664E2C6BC72D00F17C1A /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAuthenticationView.swift; sourceTree = "<group>"; };
 		CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsequentAuthenticationView.swift; sourceTree = "<group>"; };
 		CAEC664A2C6A7C2900F17C1A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CAEC664C2C6BB67900F17C1A /* PassManError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManError.swift; sourceTree = "<group>"; };
+		CAEC664E2C6BC72D00F17C1A /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,8 @@
 			children = (
 				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
 				CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */,
+				CAEC664C2C6BB67900F17C1A /* PassManError.swift */,
+				CAEC664E2C6BC72D00F17C1A /* Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -238,7 +244,9 @@
 				CAB0C7D02C49B21D006F0B3B /* CredentialGroupListView.swift in Sources */,
 				CAEC66402C69427300F17C1A /* AuthenticationView.swift in Sources */,
 				CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */,
+				CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */,
 				CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */,
+				CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */,
 				CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */,
 				CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,

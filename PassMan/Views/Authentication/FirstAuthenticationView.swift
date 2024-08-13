@@ -12,7 +12,13 @@ struct FirstAuthenticationView: View {
     @State var inputPassword: String = ""
     @State var inputConfirmingPassword: String = ""
     @State var showAlert: Bool = false
+    @State var activeAlert: ActiveAlert = .general
     @FocusState private var focusedField: FocusedField?
+    
+    enum ActiveAlert {
+        case general
+        case passwordsDoNotMatch
+    }
     
     // TODO: add password strength indicator
     var body: some View {
@@ -37,8 +43,14 @@ struct FirstAuthenticationView: View {
                 }
             Button("Confirm") {
                 if inputPassword == inputConfirmingPassword {
-                    authenticationViewModel.initializeMasterKey(password: inputPassword)
+                    do {
+                        try authenticationViewModel.initializeMasterKey(password: inputPassword)
+                    } catch {
+                        activeAlert = .general
+                        showAlert = true
+                    }
                 } else {
+                    activeAlert = .passwordsDoNotMatch
                     showAlert = true
                 }
             }
@@ -47,10 +59,15 @@ struct FirstAuthenticationView: View {
         }
         .padding()
         .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Passwords Do Not Match"),
-                message: Text("The password and confirmation do not match. Please re-enter your passwords."),
-                dismissButton: .default(Text("OK")))
+            switch activeAlert {
+            case .general:
+                generalAlert()
+            case .passwordsDoNotMatch:
+                Alert(
+                    title: Text("Passwords Do Not Match"),
+                    message: Text("The password and confirmation do not match. Please re-enter your passwords."),
+                    dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
