@@ -23,10 +23,13 @@ struct FirstAuthenticationView: View {
     // TODO: add password strength indicator
     var body: some View {
         VStack {
-            Text("Create your master password")
-                .font(.title)
-                .multilineTextAlignment(.center)
-            Text("This password will protect all your credentials. Make sure it's something strong and you remembered it.").multilineTextAlignment(.center).foregroundColor(.secondary)
+            HStack {
+                Text("Create your master password")
+                    .font(.title2)
+                    .multilineTextAlignment(.center)
+                InfoButton(info: "This password will protect all your credentials. Make sure it's something strong and you remembered it.")
+            }
+            .padding()
             SecureField("Enter Password", text: $inputPassword)
                 .textFieldStyle(.roundedBorder)
                 .focused($focusedField, equals: .password)

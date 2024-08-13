@@ -27,6 +27,7 @@
 		CAEC664B2C6A7C2900F17C1A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664A2C6A7C2900F17C1A /* ContentView.swift */; };
 		CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664C2C6BB67900F17C1A /* PassManError.swift */; };
 		CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664E2C6BC72D00F17C1A /* Utils.swift */; };
+		CAEC66512C6C10D100F17C1A /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66502C6C10D100F17C1A /* InfoButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		CAEC664A2C6A7C2900F17C1A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CAEC664C2C6BB67900F17C1A /* PassManError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManError.swift; sourceTree = "<group>"; };
 		CAEC664E2C6BC72D00F17C1A /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CAEC66502C6C10D100F17C1A /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				CAEC663F2C69427300F17C1A /* AuthenticationView.swift */,
 				CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */,
 				CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */,
+				CAEC66502C6C10D100F17C1A /* InfoButton.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */,
 				CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */,
 				CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */,
+				CAEC66512C6C10D100F17C1A /* InfoButton.swift in Sources */,
 				CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,
 				CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */,

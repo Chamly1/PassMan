@@ -23,8 +23,9 @@ struct SubsequentAuthenticationView: View {
     var body: some View {
         VStack {
             Text("Enter your master password")
-                .font(.title)
+                .font(.title2)
                 .multilineTextAlignment(.center)
+                .padding()
             SecureField("Enter Password", text: $inputPassword)
                 .textFieldStyle(.roundedBorder)
                 .submitLabel(.done)
