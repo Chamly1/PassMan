@@ -10,6 +10,7 @@ import CryptoKit
 
 struct SubsequentAuthenticationView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
     @State var inputPassword: String = ""
     @State var showAlert: Bool = false
     @State var activeAlert: ActiveAlert = .general
@@ -31,7 +32,8 @@ struct SubsequentAuthenticationView: View {
                 .submitLabel(.done)
             Button("Unlock") {
                 do {
-                    try authenticationViewModel.retrieveMasterKey(password: inputPassword)
+                    let key = try authenticationViewModel.retrieveMasterKey(password: inputPassword)
+                    credentialsViewModel.setEncryptionKey(key: key)
                 } catch CryptoKitError.authenticationFailure {
                     activeAlert = .incorrectPassword
                     showAlert = true

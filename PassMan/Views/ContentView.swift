@@ -20,6 +20,7 @@ struct ContentView: View {
             } else {
                 AuthenticationView()
                     .environmentObject(authenticationViewModel)
+                    .environmentObject(credentialsViewModel)
             }
         }.animation(.default, value: authenticationViewModel.isAuthenticated)
     }

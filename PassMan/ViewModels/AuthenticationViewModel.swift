@@ -45,7 +45,7 @@ class AuthenticationViewModel: ObservableObject {
     private let keyLength: Int = 32
     private let verificationString = "verification"
     
-    func initializeMasterKey(password: String) throws {
+    func initializeMasterKey(password: String) throws -> SymmetricKey {
         // generate salt
         var saltArray = Array<UInt8>(repeating: 0, count: saltLength)
         let status = SecRandomCopyBytes(kSecRandomDefault, saltLength, &saltArray)
@@ -67,9 +67,10 @@ class AuthenticationViewModel: ObservableObject {
         
         isAuthenticated = true
         hasMasterKey = true
+        return derivedKey
     }
     
-    func retrieveMasterKey(password: String) throws {
+    func retrieveMasterKey(password: String) throws -> SymmetricKey {
         guard let saltData = salt else {
             throw PassManError.noSalt
         }
@@ -85,5 +86,6 @@ class AuthenticationViewModel: ObservableObject {
         _ = try ChaChaPoly.open(ChaChaPoly.SealedBox(combined: sealedBoxData), using: derivedKey)
         
         isAuthenticated = true
+        return derivedKey
     }
 }

@@ -1,5 +1,6 @@
 import Foundation
 import CoreData
+import CryptoKit
 
 struct CredentialWrapper: Identifiable {
     fileprivate var credential: Credential
@@ -67,6 +68,7 @@ class CredentialsViewModel: ObservableObject {
     private var context: NSManagedObjectContext {
         return container.viewContext
     }
+    private var key: SymmetricKey?
     
     init() {
         container = NSPersistentContainer(name: "CredentialsModel")
@@ -79,6 +81,10 @@ class CredentialsViewModel: ObservableObject {
         fetchCredentialGroups()
         sortGroups()
         sortCredentials()
+    }
+    
+    func setEncryptionKey(key: SymmetricKey) {
+        self.key = key
     }
     
     //TODO rename to addCredential()

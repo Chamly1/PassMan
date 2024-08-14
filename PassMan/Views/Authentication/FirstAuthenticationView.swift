@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CryptoKit
 
 struct FirstAuthenticationView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
     @State var inputPassword: String = ""
     @State var inputConfirmingPassword: String = ""
     @State var showAlert: Bool = false
@@ -47,7 +49,8 @@ struct FirstAuthenticationView: View {
             Button("Confirm") {
                 if inputPassword == inputConfirmingPassword {
                     do {
-                        try authenticationViewModel.initializeMasterKey(password: inputPassword)
+                        let key = try authenticationViewModel.initializeMasterKey(password: inputPassword)
+                        credentialsViewModel.setEncryptionKey(key: key)
                     } catch {
                         activeAlert = .general
                         showAlert = true
