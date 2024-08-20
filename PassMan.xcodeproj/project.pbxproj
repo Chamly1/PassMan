@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4777432C567C1900386821 /* CredentialEditorView.swift */; };
 		CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */; };
+		CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */; };
 		CA96D86D2C62987200C97006 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */; };
 		CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */; };
 		CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
 		CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CredentialsModel.xcdatamodel; sourceTree = "<group>"; };
+		CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
 		CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
 		CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenu.swift; sourceTree = "<group>"; };
 		CAB0C7BE2C49A3B4006F0B3B /* PassMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 				CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */,
 				CAEC664C2C6BB67900F17C1A /* PassManError.swift */,
 				CAEC664E2C6BC72D00F17C1A /* Utils.swift */,
+				CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */,
 				CAB0C7D02C49B21D006F0B3B /* CredentialGroupListView.swift in Sources */,
 				CAEC66402C69427300F17C1A /* AuthenticationView.swift in Sources */,
+				CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */,
 				CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */,
 				CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */,
 				CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */,
