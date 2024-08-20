@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="Credential" representedClassName="Credential" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateEdited" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="password" attributeType="String"/>
-        <attribute name="username" attributeType="String"/>
+        <attribute name="password" attributeType="Binary"/>
+        <attribute name="username" attributeType="Binary"/>
         <relationship name="credentialGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CredentialGroup" inverseName="credentials" inverseEntity="CredentialGroup"/>
     </entity>
     <entity name="CredentialGroup" representedClassName="CredentialGroup" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateEdited" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="resource" attributeType="String"/>
+        <attribute name="resource" attributeType="Binary"/>
         <relationship name="credentials" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Credential" inverseName="credentialGroup" inverseEntity="Credential"/>
     </entity>
 </model>

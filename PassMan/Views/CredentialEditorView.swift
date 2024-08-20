@@ -14,7 +14,8 @@ struct CredentialEditorView: View {
     @State private var inputUsername: String = ""
     @State private var inputPassword: String = ""
     @State private var isPasswordVisible: Bool = false
-    @State private var isPasswordEmptyAlert: Bool = false
+    @State private var showAlert: Bool = false
+    @State private var activeAlert: ActiveAlert = .general
     @FocusState private var focusedField: FocusedField?
     @State private var passworStrengthText: String = "Password strength: -"
     @State private var passworStrengthColoringNum = -1
@@ -22,6 +23,11 @@ struct CredentialEditorView: View {
     private var showResourceTextField: Bool
     private var credentialToEdit: CredentialWrapper?
     private var titleText: String = "Add Credential"
+    
+    enum ActiveAlert {
+        case general
+        case emptyPassword
+    }
     
     init() {
         showResourceTextField = true
@@ -59,10 +65,16 @@ struct CredentialEditorView: View {
                 Spacer()
                 Button("Save") {
                     if inputPassword.isEmpty {
-                        isPasswordEmptyAlert = true
+                        activeAlert = .emptyPassword
+                        showAlert = true
                     } else {
-                        saveCredential()
-                        dismiss()
+                        do {
+                            try saveCredential()
+                            dismiss()
+                        } catch {
+                            activeAlert = .general
+                            showAlert = true
+                        }
                     }
                 }
             }.padding([.top, .bottom], 7)
@@ -133,23 +145,29 @@ struct CredentialEditorView: View {
             Spacer()
         }
         .padding()
-        .alert("Password Required", isPresented: $isPasswordEmptyAlert, actions: {
-            Button("Dismiss", role: .cancel, action: {
-                dismiss()
-            })
-            Button("Enter Password", role: .none, action: {
-                focusedField = .password
-            })
-        }, message: {
-            Text("Please enter your password to continue. Ensure it is typed correctly and try again.")
-        })
+        .alert(isPresented: $showAlert) {
+            switch activeAlert {
+            case .general:
+                generalAlert()
+            case .emptyPassword:
+                Alert(
+                    title: Text("Password Required"),
+                    message: Text("Please enter your password to continue. Ensure it is typed correctly and try again."),
+                    primaryButton: .default(Text("Enter Password")) {
+                        focusedField = .password
+                    },
+                    secondaryButton: .cancel(Text("Dismiss")) {
+                        dismiss()
+                    })
+            }
+        }
     }
     
-    private func saveCredential() {
+    private func saveCredential() throws {
         if let credential = credentialToEdit {
-            credentialsViewModel.editCredential(credential: credential, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+            try credentialsViewModel.editCredential(credential: credential, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         } else {
-            credentialsViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+            try credentialsViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         }
     }
     

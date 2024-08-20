@@ -33,7 +33,7 @@ struct SubsequentAuthenticationView: View {
             Button("Unlock") {
                 do {
                     let key = try authenticationViewModel.retrieveMasterKey(password: inputPassword)
-                    credentialsViewModel.setEncryptionKey(key: key)
+                    try credentialsViewModel.setEncryptionKey(key: key)
                 } catch CryptoKitError.authenticationFailure {
                     activeAlert = .incorrectPassword
                     showAlert = true

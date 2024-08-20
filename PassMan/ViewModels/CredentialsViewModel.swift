@@ -2,37 +2,37 @@ import Foundation
 import CoreData
 import CryptoKit
 
-struct CredentialWrapper: Identifiable {
+class CredentialWrapper: Identifiable {
     fileprivate var credential: Credential
     
     let id: UUID
-    var username: String {
-        get { credential.username!}
-    }
-    var password: String {
-        get { credential.password!}
-    }
+    var username: String
+    var password: String
     var isPasswordVisible: Bool = false
     
-    init(credential: Credential) {
+    init(credential: Credential, encryptionService: EncryptionService) throws {
         self.credential = credential
         self.id = credential.id!
+        
+        username = try encryptionService.decrypt(credential.username!)
+        password = try encryptionService.decrypt(credential.password!)
     }
 }
 
-struct CredentialGroupWrapper: Identifiable {
+class CredentialGroupWrapper: Identifiable {
     fileprivate let credentialGroup: CredentialGroup
     
     let id: UUID
-    var resource: String {
-        get { credentialGroup.resource!}
-    }
+    var resource: String
     var credentials: [CredentialWrapper]
     
-    init(credentialGroup: CredentialGroup) {
+    init(credentialGroup: CredentialGroup, encryptionService: EncryptionService) throws {
         self.credentialGroup = credentialGroup
         self.id = credentialGroup.id!
-        credentials = (credentialGroup.credentials?.allObjects as? [Credential] ?? []).map { CredentialWrapper(credential: $0)}
+        
+        resource = try encryptionService.decrypt(credentialGroup.resource!)
+        
+        credentials = try (credentialGroup.credentials?.allObjects as? [Credential] ?? []).map { try CredentialWrapper(credential: $0, encryptionService: encryptionService)}
     }
 }
 
@@ -68,7 +68,7 @@ class CredentialsViewModel: ObservableObject {
     private var context: NSManagedObjectContext {
         return container.viewContext
     }
-    private var key: SymmetricKey?
+    private var encryptionService: EncryptionService?
     
     init() {
         container = NSPersistentContainer(name: "CredentialsModel")
@@ -78,17 +78,20 @@ class CredentialsViewModel: ObservableObject {
                 fatalError("Unresolved error \(error), \(error.localizedDescription)")
             }
         }
-        fetchCredentialGroups()
+    }
+    
+    func setEncryptionKey(key: SymmetricKey) throws {
+        encryptionService = EncryptionService(key: key)
+        
+        try fetchAndDecryptCredentialGroups()
         sortGroups()
         sortCredentials()
     }
     
-    func setEncryptionKey(key: SymmetricKey) {
-        self.key = key
-    }
-    
     //TODO rename to addCredential()
-    func addCredentialGroup(resource: String, username: String, password: String) {
+    func addCredentialGroup(resource: String, username: String, password: String) throws {
+        let encryptionService = try ensureEncryptionService()
+        
         var credentialGroup: CredentialGroup?
         var credentialGroupIndex: Int?
         // if such resource already exist - add to it
@@ -104,19 +107,19 @@ class CredentialsViewModel: ObservableObject {
             // add group to Core Data
             credentialGroup = CredentialGroup(context: context)
             credentialGroup!.id = UUID()
-            credentialGroup!.resource = resource
+            credentialGroup!.resource = try encryptionService.encrypt(resource)
             credentialGroup!.dateCreated = Date.now
             
             // add group to ViewModel
-            credentialGroups.append(CredentialGroupWrapper(credentialGroup: credentialGroup!))
+            credentialGroups.append(try CredentialGroupWrapper(credentialGroup: credentialGroup!, encryptionService: encryptionService))
             credentialGroupIndex = credentialGroups.endIndex - 1
         }
         
         // add credential to Core Data
         let credential: Credential = Credential(context: context)
         credential.id = UUID()
-        credential.username = username
-        credential.password = password
+        credential.username = try encryptionService.encrypt(username)
+        credential.password = try encryptionService.encrypt(password)
         credential.dateCreated = Date.now
         credential.dateEdited = Date.now
         credential.credentialGroup = credentialGroup!
@@ -126,24 +129,38 @@ class CredentialsViewModel: ObservableObject {
         saveContext()
         
         // add credential to ViewModel
-        credentialGroups[credentialGroupIndex!].credentials.append(CredentialWrapper(credential: credential))
+        credentialGroups[credentialGroupIndex!].credentials.append(try CredentialWrapper(credential: credential, encryptionService: encryptionService))
         sortGroups()
         sortCredentials()
     }
     
-    func editCredential(credential: CredentialWrapper, username: String, password: String) {
+    func editCredential(credential: CredentialWrapper, username: String, password: String) throws {
         // need to update the UI because no Publeshed properties will be changed change
         self.objectWillChange.send()
         
-        // edit in Core Data
-        credential.credential.username = username
-        credential.credential.password = password
-        credential.credential.dateEdited = Date.now
-        credential.credential.credentialGroup!.dateEdited = Date.now
-        saveContext()
+        let encryptionService = try ensureEncryptionService()
         
-        sortGroups()
-        sortCredentials()
+        var wasEdited = false
+        // edit in Core Data
+        if credential.username != username {
+            credential.credential.username = try encryptionService.encrypt(username)
+            credential.username = username
+            wasEdited = true
+        }
+        if credential.password != password {
+            credential.credential.password = try encryptionService.encrypt(password)
+            credential.password = password
+            wasEdited = true
+        }
+        
+        if wasEdited {
+            credential.credential.dateEdited = Date.now
+            credential.credential.credentialGroup!.dateEdited = Date.now
+            saveContext()
+            
+            sortGroups()
+            sortCredentials()
+        }
     }
     
     func removeCredentialGroups(atOffsets: IndexSet) {
@@ -181,7 +198,7 @@ class CredentialsViewModel: ObservableObject {
         case .dateEdited:
             credentialGroups.sort(by: { compare($0.credentialGroup.dateEdited!, $1.credentialGroup.dateEdited!, order: groupsSortOrder)})
         case .title:
-            credentialGroups.sort(by: { compare($0.credentialGroup.resource!, $1.credentialGroup.resource!, order: groupsSortOrder)})
+            credentialGroups.sort(by: { compare($0.resource, $1.resource, order: groupsSortOrder)})
         }
     }
     
@@ -193,7 +210,7 @@ class CredentialsViewModel: ObservableObject {
             case .dateEdited:
                 credentialGroups[index].credentials.sort(by: { compare($0.credential.dateEdited!, $1.credential.dateEdited!, order: credentialsSortOrder)})
             case .title:
-                credentialGroups[index].credentials.sort(by: { compare($0.credential.username!, $1.credential.username!, order: credentialsSortOrder)})
+                credentialGroups[index].credentials.sort(by: { compare($0.username, $1.username, order: credentialsSortOrder)})
             }
         }
     }
@@ -207,15 +224,12 @@ class CredentialsViewModel: ObservableObject {
         }
     }
     
-    private func fetchCredentialGroups() {
+    private func fetchAndDecryptCredentialGroups() throws {
+        let encryptionService = try ensureEncryptionService()
+        
         let fetchRequest: NSFetchRequest<CredentialGroup> = CredentialGroup.fetchRequest()
-        do {
-            let rawCredentialGroups: [CredentialGroup] = try context.fetch(fetchRequest)
-            credentialGroups = rawCredentialGroups.map { CredentialGroupWrapper(credentialGroup: $0)}
-        } catch {
-            // TODO: add proper error handling, show some message to the user or so
-            print("Failed to fetch credentialGroups: \(error)")
-        }
+        let rawCredentialGroups: [CredentialGroup] = try context.fetch(fetchRequest)
+        credentialGroups = try rawCredentialGroups.map { try CredentialGroupWrapper(credentialGroup: $0, encryptionService: encryptionService)}
     }
     
     private func saveContext() {
@@ -227,5 +241,13 @@ class CredentialsViewModel: ObservableObject {
                 print("Failed to save context: \(error)")
             }
         }
+    }
+    
+    private func ensureEncryptionService() throws -> EncryptionService {
+        guard let encryptionService = self.encryptionService else {
+            throw PassManError.noKey
+        }
+        
+        return encryptionService
     }
 }

@@ -50,7 +50,7 @@ struct FirstAuthenticationView: View {
                 if inputPassword == inputConfirmingPassword {
                     do {
                         let key = try authenticationViewModel.initializeMasterKey(password: inputPassword)
-                        credentialsViewModel.setEncryptionKey(key: key)
+                        try credentialsViewModel.setEncryptionKey(key: key)
                     } catch {
                         activeAlert = .general
                         showAlert = true

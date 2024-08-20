@@ -11,4 +11,6 @@ enum PassManError: Error {
     case saltGenerationError
     case noSalt
     case noSealedBoxVerificationString
+    case conversionDataToStringError
+    case noKey
 }
