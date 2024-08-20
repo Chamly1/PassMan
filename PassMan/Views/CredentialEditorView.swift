@@ -167,7 +167,7 @@ struct CredentialEditorView: View {
         if let credential = credentialToEdit {
             try credentialsViewModel.editCredential(credential: credential, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         } else {
-            try credentialsViewModel.addCredentialGroup(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+            try credentialsViewModel.addCredential(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         }
     }
     

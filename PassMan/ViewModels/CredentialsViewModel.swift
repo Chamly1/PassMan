@@ -88,8 +88,7 @@ class CredentialsViewModel: ObservableObject {
         sortCredentials()
     }
     
-    //TODO rename to addCredential()
-    func addCredentialGroup(resource: String, username: String, password: String) throws {
+    func addCredential(resource: String, username: String, password: String) throws {
         let encryptionService = try ensureEncryptionService()
         
         var credentialGroup: CredentialGroup?
