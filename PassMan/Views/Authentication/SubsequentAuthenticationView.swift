@@ -33,6 +33,7 @@ struct SubsequentAuthenticationView: View {
             Button("Unlock") {
                 do {
                     let key = try authenticationViewModel.retrieveMasterKey(password: inputPassword)
+                    // TODO: Fix issue where an error occurs, but the alert is not displayed because isAuthenticated is set, causing the view to transition before the alert is shown.
                     try credentialsViewModel.setEncryptionKey(key: key)
                 } catch CryptoKitError.authenticationFailure {
                     activeAlert = .incorrectPassword
@@ -55,6 +56,11 @@ struct SubsequentAuthenticationView: View {
                     title: Text("Incorrect Password"),
                     message: Text("The password you entered is incorrect. Please try again."),
                     dismissButton: .default(Text("OK")))
+            }
+        }
+        .onAppear() {
+            authenticationViewModel.retrieveMasterKeyWithBiometry() { key in
+                try? credentialsViewModel.setEncryptionKey(key: key)
             }
         }
     }

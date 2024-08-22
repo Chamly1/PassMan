@@ -50,7 +50,11 @@ struct FirstAuthenticationView: View {
                 if inputPassword == inputConfirmingPassword {
                     do {
                         let key = try authenticationViewModel.initializeMasterKey(password: inputPassword)
+                        // TODO: Fix issue where an error occurs, but the alert is not displayed because isAuthenticated is set, causing the view to transition before the alert is shown.
                         try credentialsViewModel.setEncryptionKey(key: key)
+                        
+                        // TODO: do only when biometry authentication confirmed
+                        try authenticationViewModel.saveMasterKeyWithBiometry(key)
                     } catch {
                         activeAlert = .general
                         showAlert = true
