@@ -38,6 +38,7 @@ class CredentialGroupWrapper: Identifiable {
 
 class CredentialsViewModel: ObservableObject {
     @Published var credentialGroups: [CredentialGroupWrapper] = []
+    @Published var isEncryptionKeySet: Bool = false
     
     @UserDefaultEnum(key: "groupsSortOption", defaultValue: .dateCreated) var groupsSortOption: SortingOptions {
         didSet {
@@ -86,6 +87,8 @@ class CredentialsViewModel: ObservableObject {
         try fetchAndDecryptCredentialGroups()
         sortGroups()
         sortCredentials()
+        
+        isEncryptionKeySet = true
     }
     
     func addCredential(resource: String, username: String, password: String) throws {

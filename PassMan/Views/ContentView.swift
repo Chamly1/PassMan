@@ -9,20 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var credentialsViewModel = CredentialsViewModel()
-    @StateObject private var authenticationViewModel = AuthenticationViewModel()
     
     var body: some View {        
         ZStack {
-            if authenticationViewModel.isAuthenticated {
+            if credentialsViewModel.isEncryptionKeySet {
                 CredentialGroupListView()
                     .transition(.move(edge: .trailing))
                     .environmentObject(credentialsViewModel)
             } else {
                 AuthenticationView()
-                    .environmentObject(authenticationViewModel)
                     .environmentObject(credentialsViewModel)
             }
-        }.animation(.default, value: authenticationViewModel.isAuthenticated)
+        }.animation(.default, value: credentialsViewModel.isEncryptionKeySet)
     }
 }
 

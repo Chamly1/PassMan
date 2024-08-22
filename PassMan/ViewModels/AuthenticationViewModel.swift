@@ -10,8 +10,6 @@ import CryptoKit
 import LocalAuthentication
 
 class AuthenticationViewModel: ObservableObject {
-    @Published var isAuthenticated: Bool = false
-    
     var hasMasterKey: Bool {
         get {
             return UserDefaults.standard.bool(forKey: hasMasterKeyKey)
@@ -61,13 +59,12 @@ class AuthenticationViewModel: ObservableObject {
         let derivedKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: inputKeyMaterial, salt: saltArray, outputByteCount: keyLength)
 
         // encrypt verification string
-        let verificationData = Data(verificationString.utf8)
-        let sealedBox = try ChaChaPoly.seal(verificationData, using: derivedKey)
+        let verificationStringData = Data(verificationString.utf8)
+        let sealedBox = try ChaChaPoly.seal(verificationStringData, using: derivedKey)
         
         salt = Data(saltArray)
         sealedBoxVerificationString = sealedBox.combined
         
-        isAuthenticated = true
         hasMasterKey = true
         return derivedKey
     }
@@ -80,20 +77,12 @@ class AuthenticationViewModel: ObservableObject {
         let inputKeyMaterial = SymmetricKey(data: Data(password.utf8))
         let derivedKey: SymmetricKey = HKDF<SHA256>.deriveKey(inputKeyMaterial: inputKeyMaterial, salt: saltData, outputByteCount: keyLength)
         
-        guard let sealedBoxData = sealedBoxVerificationString else {
-            throw PassManError.noSealedBoxVerificationString
-        }
-        
-        // if authentication fail throws an error
-        _ = try ChaChaPoly.open(ChaChaPoly.SealedBox(combined: sealedBoxData), using: derivedKey)
-        
-        isAuthenticated = true
         return derivedKey
     }
     
     /// Saves a symmetric key to the keychain with biometric authentication.
-    func saveMasterKeyWithBiometry(_ key: SymmetricKey) throws {
-        let keyData = key.withUnsafeBytes { Data(Array($0)) }
+    func saveMasterKeyWithBiometry(_ masterKey: SymmetricKey) throws {
+        let keyData = masterKey.withUnsafeBytes { Data(Array($0)) }
         guard let accessControl = SecAccessControlCreateWithFlags(
             nil,
             kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
@@ -143,10 +132,24 @@ class AuthenticationViewModel: ObservableObject {
                     if let data = dataTypeRef as? Data {
                         let key = SymmetricKey(data: data)
                         completion(key)
-                        self.isAuthenticated = true
                     }
                 }
             }
         }
+    }
+    
+    /// - Returns: a Bool value indicating whether the authentication was successful
+    func authenticate(_ masterKey: SymmetricKey) throws -> Bool {
+        guard let sealedBoxData = sealedBoxVerificationString else {
+            throw PassManError.noSealedBoxVerificationString
+        }
+        
+        do {
+            _ = try ChaChaPoly.open(ChaChaPoly.SealedBox(combined: sealedBoxData), using: masterKey)
+        } catch CryptoKitError.authenticationFailure {
+            return false
+        }
+        
+        return true
     }
 }
