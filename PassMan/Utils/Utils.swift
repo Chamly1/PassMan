@@ -11,6 +11,6 @@ import SwiftUI
 func generalAlert() -> Alert {
     Alert(
         title: Text("Something Went Wrong"),
-        message: Text("Try restarting the application and try again."),
+        message: Text("Restart the application and try again."),
         dismissButton: .default(Text("OK")))
 }
