@@ -13,4 +13,5 @@ enum PassManError: Error {
     case noSealedBoxVerificationString
     case conversionDataToStringError
     case noKey
+    case keySavingInKeychainError
 }

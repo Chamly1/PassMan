@@ -7,6 +7,7 @@
 
 import Foundation
 import CryptoKit
+import LocalAuthentication
 
 class AuthenticationViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
@@ -41,6 +42,7 @@ class AuthenticationViewModel: ObservableObject {
     private let hasMasterKeyKey: String = "hasMasterKey"
     private let saltKey: String = "salt"
     private let sealedBoxVerificationStringKey: String = "sealedBoxVerificationString"
+    private let symmetrycKeyKeychainkey: String = "symmetrycKeyKeychainkey"
     private let saltLength: Int = 16
     private let keyLength: Int = 32
     private let verificationString = "verification"
@@ -87,5 +89,64 @@ class AuthenticationViewModel: ObservableObject {
         
         isAuthenticated = true
         return derivedKey
+    }
+    
+    /// Saves a symmetric key to the keychain with biometric authentication.
+    func saveMasterKeyWithBiometry(_ key: SymmetricKey) throws {
+        let keyData = key.withUnsafeBytes { Data(Array($0)) }
+        guard let accessControl = SecAccessControlCreateWithFlags(
+            nil,
+            kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
+            .biometryCurrentSet,
+            nil
+        ) else {
+            throw PassManError.keySavingInKeychainError
+        }
+        
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: symmetrycKeyKeychainkey,
+            kSecValueData as String: keyData,
+            kSecAttrAccessControl as String: accessControl
+        ]
+        
+        SecItemDelete(query as CFDictionary) // Delete any existing item
+        guard SecItemAdd(query as CFDictionary, nil) == errSecSuccess else {
+            throw PassManError.keySavingInKeychainError
+        }
+    }
+    
+    /// Reads a symmetric key from the keychain with biometry athentication.
+    ///
+    /// - Parameter completion: A closure that is called with the retrieved `SymmetricKey` when the key
+    ///   is successfully retrieved from the keychain. The completion handler is only executed
+    ///   if the key is successfully retrieved and converted.
+    func retrieveMasterKeyWithBiometry(completion: @escaping (SymmetricKey) -> Void) {
+        let context = LAContext()
+        context.localizedReason = "Need for authentication purposes."
+        
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: symmetrycKeyKeychainkey,
+            kSecReturnData as String: kCFBooleanTrue!,
+            kSecMatchLimit as String: kSecMatchLimitOne,
+            kSecUseAuthenticationContext as String: context
+        ]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            var dataTypeRef: AnyObject? = nil
+            let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+            
+            // UI updates and completion handlers should be executed on the main thread to avoid any concurrency issues.
+            DispatchQueue.main.async {
+                if status == errSecSuccess {
+                    if let data = dataTypeRef as? Data {
+                        let key = SymmetricKey(data: data)
+                        completion(key)
+                        self.isAuthenticated = true
+                    }
+                }
+            }
+        }
     }
 }
