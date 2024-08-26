@@ -138,6 +138,17 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
+    func deleteMasterKeyWithBiometry() throws {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: symmetrycKeyKeychainkey
+        ]
+        
+        guard SecItemDelete(query as CFDictionary) == errSecSuccess else {
+            throw PassManError.keyDeletionFromKeychainError
+        }
+    }
+    
     /// - Returns: a Bool value indicating whether the authentication was successful
     func authenticate(_ masterKey: SymmetricKey) throws -> Bool {
         guard let sealedBoxData = sealedBoxVerificationString else {

@@ -14,4 +14,5 @@ enum PassManError: Error {
     case conversionDataToStringError
     case noKey
     case keySavingInKeychainError
+    case keyDeletionFromKeychainError
 }
