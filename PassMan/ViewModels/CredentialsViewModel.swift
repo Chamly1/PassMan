@@ -91,6 +91,14 @@ class CredentialsViewModel: ObservableObject {
         isEncryptionKeySet = true
     }
     
+    func getEncryptionKey() throws -> SymmetricKey {
+        if let encryptionService = encryptionService {
+            return encryptionService.getKey()
+        } else {
+            throw PassManError.noKey
+        }
+    }
+    
     func addCredential(resource: String, username: String, password: String) throws {
         let encryptionService = try ensureEncryptionService()
         

@@ -15,6 +15,10 @@ class EncryptionService {
         self.key = key
     }
     
+    func getKey() -> SymmetricKey {
+        return key
+    }
+    
     func encrypt(_ text: String) throws -> Data {
         return try ChaChaPoly.seal(Data(text.utf8), using: key).combined
     }
