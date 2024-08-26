@@ -36,11 +36,9 @@ struct ToolbarMenu: View {
                     Image(systemName: "arrow.up.arrow.down")
                 }
             })
-            Button(action: {
-                
-            }, label: {
+            NavigationLink(destination: SettingsView()) {
                 Label("Settings", systemImage: "gear")
-            })
+            }
         }, label: {
             Image(systemName: "ellipsis")
         })
