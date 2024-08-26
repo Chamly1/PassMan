@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var credentialsViewModel = CredentialsViewModel()
+    @EnvironmentObject private var credentialsViewModel: CredentialsViewModel
     
     var body: some View {        
         ZStack {
