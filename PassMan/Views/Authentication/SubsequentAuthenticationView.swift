@@ -11,6 +11,7 @@ import CryptoKit
 struct SubsequentAuthenticationView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @EnvironmentObject var credentialsViewModel: CredentialsViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     @State var inputPassword: String = ""
     @State var showAlert: Bool = false
     @State var activeAlert: ActiveAlert = .general
@@ -60,11 +61,13 @@ struct SubsequentAuthenticationView: View {
             }
         }
         .onAppear() {
-            authenticationViewModel.retrieveMasterKeyWithBiometry() { key in
-                guard let authenticated = try? authenticationViewModel.authenticate(key) else { return}
-                
-                if authenticated {
-                    try? credentialsViewModel.setEncryptionKey(key: key)
+            if settingsViewModel.isFaceIDEnabled {
+                authenticationViewModel.retrieveMasterKeyWithBiometry() { key in
+                    guard let authenticated = try? authenticationViewModel.authenticate(key) else { return}
+                    
+                    if authenticated {
+                        try? credentialsViewModel.setEncryptionKey(key: key)
+                    }
                 }
             }
         }

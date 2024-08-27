@@ -51,8 +51,7 @@ struct FirstAuthenticationView: View {
                     do {
                         let key = try authenticationViewModel.initializeMasterKey(password: inputPassword)
                         
-                        // TODO: do only when biometry authentication confirmed
-                        try authenticationViewModel.saveMasterKeyWithBiometry(key)
+                        // TODO: add biometry authentication checkbox
                         
                         try credentialsViewModel.setEncryptionKey(key: key)
                     } catch {
