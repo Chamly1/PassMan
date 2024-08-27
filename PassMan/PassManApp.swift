@@ -17,6 +17,7 @@ struct PassManApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(settingsViewModel.appTheme.colorScheme)
                 .environmentObject(credentialsViewModel)
                 .environmentObject(authenticationViewModel)
                 .environmentObject(settingsViewModel)

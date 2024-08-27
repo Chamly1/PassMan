@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0167572C7E8B70001812FB /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0167562C7E8B70001812FB /* AppTheme.swift */; };
 		CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4777432C567C1900386821 /* CredentialEditorView.swift */; };
 		CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */; };
 		CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA0167562C7E8B70001812FB /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
 		CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CredentialsModel.xcdatamodel; sourceTree = "<group>"; };
 		CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */,
 				CAEC66432C694EEA00F17C1A /* FocusedField.swift */,
+				CA0167562C7E8B70001812FB /* AppTheme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */,
 				CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */,
 				CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */,
+				CA0167572C7E8B70001812FB /* AppTheme.swift in Sources */,
 				CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */,
 				CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */,
 				CAEC66512C6C10D100F17C1A /* InfoButton.swift in Sources */,

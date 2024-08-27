@@ -32,6 +32,13 @@ struct SettingsView: View {
                         try? settingsViewModel.disableFaceID()
                     }
                 }
+                
+                Picker("Theme", selection: $settingsViewModel.appTheme) {
+                    ForEach(AppTheme.allCases) { theme in
+                        Text(theme.rawValue).tag(theme)
+                    }
+                }
+                .pickerStyle(.navigationLink)
             })
         }
         .navigationTitle("Settings")
