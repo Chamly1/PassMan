@@ -13,27 +13,27 @@ struct SettingsView: View {
     @State private var showAlert: Bool = false
     
     var body: some View {
-        VStack {
-            Toggle(isOn: $isFaceIDEnabled, label: {
-                Text("Enable Face ID authentication")
-            })
-            .onAppear() {
-                isFaceIDEnabled = settingsViewModel.isFaceIDEnabled
-            }
-            .onChange(of: isFaceIDEnabled) {
-                if isFaceIDEnabled {
-                    do {
-                        try settingsViewModel.enableFaceID()
-                    } catch {
-                        showAlert = true
-                    }
-                } else {
-                    try? settingsViewModel.disableFaceID()
+        Form {
+            Section(content: {
+                Toggle(isOn: $isFaceIDEnabled, label: {
+                    Text("Enable Face ID authentication")
+                })
+                .onAppear() {
+                    isFaceIDEnabled = settingsViewModel.isFaceIDEnabled
                 }
-            }
-            Spacer()
+                .onChange(of: isFaceIDEnabled) {
+                    if isFaceIDEnabled {
+                        do {
+                            try settingsViewModel.enableFaceID()
+                        } catch {
+                            showAlert = true
+                        }
+                    } else {
+                        try? settingsViewModel.disableFaceID()
+                    }
+                }
+            })
         }
-        .padding()
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
