@@ -46,9 +46,9 @@ struct SettingsView: View {
 }
 
 #Preview {
-    var credentialsViewModel = CredentialsViewModel()
-    var authenticationViewModel = AuthenticationViewModel()
-    var settingsViewModel = SettingsViewModel(credentialsViewModel: credentialsViewModel, authenticationViewModel: authenticationViewModel)
+    let credentialsViewModel = CredentialsViewModel()
+    let authenticationViewModel = AuthenticationViewModel()
+    let settingsViewModel = SettingsViewModel(credentialsViewModel: credentialsViewModel, authenticationViewModel: authenticationViewModel)
     
     return SettingsView().environmentObject(settingsViewModel)
 }
