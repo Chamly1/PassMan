@@ -19,6 +19,7 @@
 		CAB0C7D22C49B308006F0B3B /* CredentialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* CredentialsViewModel.swift */; };
 		CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */; };
 		CAB1ADC42C7D136A0070962C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1ADC32C7D136A0070962C /* SettingsView.swift */; };
+		CAB1ADC62C7D18060070962C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1ADC52C7D18060070962C /* SettingsViewModel.swift */; };
 		CAB86CFD2C51C9C300AECF44 /* CredentialListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */; };
 		CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */; };
 		CAEC66402C69427300F17C1A /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC663F2C69427300F17C1A /* AuthenticationView.swift */; };
@@ -46,6 +47,7 @@
 		CAB0C7D12C49B308006F0B3B /* CredentialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsViewModel.swift; sourceTree = "<group>"; };
 		CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUtility.swift; sourceTree = "<group>"; };
 		CAB1ADC32C7D136A0070962C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CAB1ADC52C7D18060070962C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialListView.swift; sourceTree = "<group>"; };
 		CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingEnums.swift; sourceTree = "<group>"; };
 		CAEC663F2C69427300F17C1A /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				CAB0C7D12C49B308006F0B3B /* CredentialsViewModel.swift */,
 				CAEC66412C69450B00F17C1A /* AuthenticationViewModel.swift */,
+				CAB1ADC52C7D18060070962C /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */,
 				CAEC66512C6C10D100F17C1A /* InfoButton.swift in Sources */,
 				CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */,
+				CAB1ADC62C7D18060070962C /* SettingsViewModel.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,
 				CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */,
 			);
