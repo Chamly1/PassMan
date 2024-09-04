@@ -11,8 +11,10 @@ import CryptoKit
 struct FirstAuthenticationView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @EnvironmentObject var credentialsViewModel: CredentialsViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     @State var inputPassword: String = ""
     @State var inputConfirmingPassword: String = ""
+    @State var isFaceIDEnabled: Bool = false
     @State var showAlert: Bool = false
     @State var activeAlert: ActiveAlert = .general
     @FocusState private var focusedField: FocusedField?
@@ -46,14 +48,17 @@ struct FirstAuthenticationView: View {
                 .onSubmit {
                     focusedField = nil
                 }
+            Toggle(isOn: $isFaceIDEnabled) {
+                Text("Enable Face ID authentication")
+            }.toggleStyle(CheckboxToggleStyle())
             Button("Confirm") {
                 if inputPassword == inputConfirmingPassword {
                     do {
                         let key = try authenticationViewModel.initializeMasterKey(password: inputPassword)
-                        
-                        // TODO: add biometry authentication checkbox
-                        
                         try credentialsViewModel.setEncryptionKey(key: key)
+                        if isFaceIDEnabled {
+                            try settingsViewModel.enableFaceID()
+                        }
                     } catch {
                         activeAlert = .general
                         showAlert = true
