@@ -22,14 +22,16 @@ struct SettingsView: View {
                     isFaceIDEnabled = settingsViewModel.isFaceIDEnabled
                 }
                 .onChange(of: isFaceIDEnabled) {
-                    if isFaceIDEnabled {
-                        do {
-                            try settingsViewModel.enableFaceID()
-                        } catch {
-                            showAlert = true
+                    if isFaceIDEnabled != settingsViewModel.isFaceIDEnabled {
+                        if isFaceIDEnabled {
+                            do {
+                                try settingsViewModel.enableFaceID()
+                            } catch {
+                                showAlert = true
+                            }
+                        } else {
+                            try? settingsViewModel.disableFaceID()
                         }
-                    } else {
-                        try? settingsViewModel.disableFaceID()
                     }
                 }
                 
