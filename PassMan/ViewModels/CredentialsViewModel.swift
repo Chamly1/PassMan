@@ -2,7 +2,7 @@ import Foundation
 import CoreData
 import CryptoKit
 
-class CredentialWrapper: Identifiable {
+struct CredentialWrapper: Identifiable {
     fileprivate var credential: Credential
     
     let id: UUID
@@ -19,7 +19,7 @@ class CredentialWrapper: Identifiable {
     }
 }
 
-class CredentialGroupWrapper: Identifiable {
+struct CredentialGroupWrapper: Identifiable {
     fileprivate let credentialGroup: CredentialGroup
     
     let id: UUID
@@ -144,32 +144,34 @@ class CredentialsViewModel: ObservableObject {
         sortCredentials()
     }
     
-    func editCredential(credential: CredentialWrapper, username: String, password: String) throws {
-        // need to update the UI because no Publeshed properties will be changed change
-        self.objectWillChange.send()
-        
-        let encryptionService = try ensureEncryptionService()
-        
-        var wasEdited = false
-        // edit in Core Data
-        if credential.username != username {
-            credential.credential.username = try encryptionService.encrypt(username)
-            credential.username = username
-            wasEdited = true
-        }
-        if credential.password != password {
-            credential.credential.password = try encryptionService.encrypt(password)
-            credential.password = password
-            wasEdited = true
-        }
-        
-        if wasEdited {
-            credential.credential.dateEdited = Date.now
-            credential.credential.credentialGroup!.dateEdited = Date.now
-            saveContext()
+    func editCredential(credentialGroupIndex: Int, credentialIndex: Int, username: String, password: String) throws {
+        if validateIndices(credentialGroupIndex: credentialGroupIndex, credentialIndex: credentialIndex) {
+            // need to update the UI because no Publeshed properties will be changed change
+            self.objectWillChange.send()
             
-            sortGroups()
-            sortCredentials()
+            let encryptionService = try ensureEncryptionService()
+            
+            var wasEdited = false
+            // edit in Core Data
+            if credentialGroups[credentialGroupIndex].credentials[credentialIndex].username != username {
+                credentialGroups[credentialGroupIndex].credentials[credentialIndex].credential.username = try encryptionService.encrypt(username)
+                credentialGroups[credentialGroupIndex].credentials[credentialIndex].username = username
+                wasEdited = true
+            }
+            if credentialGroups[credentialGroupIndex].credentials[credentialIndex].password != password {
+                credentialGroups[credentialGroupIndex].credentials[credentialIndex].credential.password = try encryptionService.encrypt(password)
+                credentialGroups[credentialGroupIndex].credentials[credentialIndex].password = password
+                wasEdited = true
+            }
+            
+            if wasEdited {
+                credentialGroups[credentialGroupIndex].credentials[credentialIndex].credential.dateEdited = Date.now
+                credentialGroups[credentialGroupIndex].credentials[credentialIndex].credential.credentialGroup!.dateEdited = Date.now
+                saveContext()
+                
+                sortGroups()
+                sortCredentials()
+            }
         }
     }
     
@@ -199,6 +201,22 @@ class CredentialsViewModel: ObservableObject {
             credentialGroups[credentialGroupIndex].credentials.remove(atOffsets: atOffsets)
             sortGroups()
         }
+    }
+    
+    func validateIndex(credentialGroupIndex: Int) -> Bool {
+        if credentialGroupIndex >= 0 && credentialGroupIndex < credentialGroups.count {
+            return true
+        }
+        return false
+    }
+    
+    func validateIndices(credentialGroupIndex: Int, credentialIndex: Int) -> Bool {
+        if validateIndex(credentialGroupIndex: credentialGroupIndex) {
+            if credentialIndex >= 0 && credentialIndex < credentialGroups[credentialGroupIndex].credentials.count {
+                return true
+            }
+        }
+        return false
     }
     
     private func sortGroups() {

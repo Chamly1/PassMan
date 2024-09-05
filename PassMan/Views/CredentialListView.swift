@@ -7,15 +7,22 @@
 
 import SwiftUI
 
+struct ActiveCredential: Identifiable {
+    var credentialIndex: Int
+    var id: Int {
+        return credentialIndex
+    }
+}
+
 struct CredentialListView: View {
     @EnvironmentObject var credentialsViewModel: CredentialsViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var showCredentialEditorSheet: Bool = false
+    @State private var showAddCredentialSheet: Bool = false
     
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
 
-    @State private var credentialToEdit: CredentialWrapper?
+    @State private var credentialToEditIndex: ActiveCredential?
     
     var credentialGroupID: UUID
     
@@ -26,7 +33,7 @@ struct CredentialListView: View {
         
         return AnyView(
             List {
-                ForEach($credentialsViewModel.credentialGroups[credentialGroupIndex].credentials) { $credential in
+                ForEach(Array($credentialsViewModel.credentialGroups[credentialGroupIndex].credentials.enumerated()), id: \.element.id) { credentialIndex, $credential in
                     Section {
                         VStack(alignment: .leading) {
                             Text(credential.username)
@@ -52,13 +59,13 @@ struct CredentialListView: View {
                                 Label("Copy password", systemImage: "doc.on.doc")
                             })
                             Button(action: {
-                                credentialToEdit = credential
+                                credentialToEditIndex = ActiveCredential(credentialIndex: credentialIndex)
                             }, label: {
                                 Label("Edit", systemImage: "pencil")
                             })
                             Divider()
                             Button(role: .destructive, action: {
-                                indexSetToDelete = IndexSet(integer: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials.firstIndex(where: { $0.id == credential.id })!)
+                                indexSetToDelete = IndexSet(integer: credentialIndex)
                                 showDeleteConfirmationDialog = true
                             }, label: {
                                 Label("Delete", systemImage: "trash")
@@ -77,7 +84,7 @@ struct CredentialListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        showCredentialEditorSheet = true
+                        showAddCredentialSheet = true
                     }, label: {
                         Image(systemName: "plus")
                     })
@@ -86,11 +93,15 @@ struct CredentialListView: View {
                     ToolbarMenu(sortOption: $credentialsViewModel.credentialsSortOption, sortOrder: $credentialsViewModel.credentialsSortOrder)
                 }
             }
-            .sheet(isPresented: $showCredentialEditorSheet) {
-                CredentialEditorView(resourceName: credentialsViewModel.credentialGroups[credentialGroupIndex].resource)
+            .sheet(isPresented: $showAddCredentialSheet) {
+                CredentialEditorView(resource: credentialsViewModel.credentialGroups[credentialGroupIndex].resource)
             }
-            .sheet(item: $credentialToEdit) { credential in
-                CredentialEditorView(resourceName: credentialsViewModel.credentialGroups[credentialGroupIndex].resource, credential: credential)
+            .sheet(item: $credentialToEditIndex) { item in
+                CredentialEditorView(credentialGroupIndex: credentialGroupIndex, 
+                                     credentialIndex: item.credentialIndex,
+                                     resource: credentialsViewModel.credentialGroups[credentialGroupIndex].resource,
+                                     username: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].username,
+                                     password: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].password)
             }
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Credential", role: .destructive) {

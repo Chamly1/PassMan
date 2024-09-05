@@ -21,7 +21,8 @@ struct CredentialEditorView: View {
     @State private var passworStrengthColoringNum = -1
     
     private var showResourceTextField: Bool
-    private var credentialToEdit: CredentialWrapper?
+    private var credentialGroupToEditIndex: Int?
+    private var credentialToEditIndex: Int?
     private var titleText: String = "Add Credential"
     
     enum ActiveAlert {
@@ -34,20 +35,22 @@ struct CredentialEditorView: View {
     }
 
     /// To add a new credential to the existing resource
-    init(resourceName: String) {
-        inputResource = resourceName
+    init(resource: String) {
+        inputResource = resource
         showResourceTextField = false
     }
     
     /// To edit a existing credential
-    init(resourceName: String, credential: CredentialWrapper) {
-        inputResource = resourceName
+    init(credentialGroupIndex: Int, credentialIndex: Int, resource: String, username: String, password: String) {
+        inputResource = resource
         showResourceTextField = false
         titleText = "Edit Credential"
         
-        credentialToEdit = credential
-        self._inputUsername = State(initialValue: credential.username)
-        self._inputPassword = State(initialValue: credential.password)
+        credentialGroupToEditIndex = credentialGroupIndex
+        credentialToEditIndex = credentialIndex
+        
+        self._inputUsername = State(initialValue: username)
+        self._inputPassword = State(initialValue: password)
         
         let passwordStrengthUIValues = getPasswordStrengthUIValues()
         self._passworStrengthText = State(initialValue: passwordStrengthUIValues.0)
@@ -164,8 +167,8 @@ struct CredentialEditorView: View {
     }
     
     private func saveCredential() throws {
-        if let credential = credentialToEdit {
-            try credentialsViewModel.editCredential(credential: credential, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
+        if let credentialGroupIndex = credentialGroupToEditIndex, let credentialIndex = credentialToEditIndex, credentialsViewModel.validateIndices(credentialGroupIndex: credentialGroupToEditIndex!, credentialIndex: credentialToEditIndex!) {
+            try credentialsViewModel.editCredential(credentialGroupIndex: credentialGroupIndex, credentialIndex: credentialIndex, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         } else {
             try credentialsViewModel.addCredential(resource: inputResource.isEmpty ? "-" : inputResource, username: inputUsername.isEmpty ? "-" : inputUsername, password: inputPassword)
         }
@@ -200,4 +203,5 @@ struct CredentialEditorView: View {
 
 #Preview {
     CredentialEditorView()
+        .environmentObject(CredentialsViewModel())
 }
