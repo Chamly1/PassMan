@@ -24,14 +24,11 @@ struct CredentialListView: View {
 
     @State private var credentialToEditIndex: ActiveCredential?
     
-    var credentialGroupID: UUID
+    var credentialGroupIndex: Int
     
     var body: some View {
-        guard let credentialGroupIndex: Int = credentialsViewModel.credentialGroups.firstIndex(where: { $0.id == credentialGroupID }) else {
-            return AnyView(Text("Credential group not found"))
-        }
         
-        return AnyView(
+        if credentialsViewModel.validateIndex(credentialGroupIndex: credentialGroupIndex) {
             List {
                 ForEach(Array($credentialsViewModel.credentialGroups[credentialGroupIndex].credentials.enumerated()), id: \.element.id) { credentialIndex, $credential in
                     Section {
@@ -97,7 +94,7 @@ struct CredentialListView: View {
                 CredentialEditorView(resource: credentialsViewModel.credentialGroups[credentialGroupIndex].resource)
             }
             .sheet(item: $credentialToEditIndex) { item in
-                CredentialEditorView(credentialGroupIndex: credentialGroupIndex, 
+                CredentialEditorView(credentialGroupIndex: credentialGroupIndex,
                                      credentialIndex: item.credentialIndex,
                                      resource: credentialsViewModel.credentialGroups[credentialGroupIndex].resource,
                                      username: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].username,
@@ -118,11 +115,13 @@ struct CredentialListView: View {
             }, message: {
                 Text("Deleting this credential will remove it from your device. You can't undo this action.")
             })
-        )
+        } else {
+            Text("Credential group not found")
+        }
     }
 }
 
 #Preview {
-    CredentialListView(credentialGroupID: UUID())
+    CredentialListView(credentialGroupIndex: 0)
         .environmentObject(CredentialsViewModel())
 }
