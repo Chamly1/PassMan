@@ -25,6 +25,8 @@
 		CAB86CFD2C51C9C300AECF44 /* CredentialListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */; };
 		CAC17D832C90E0960097999D /* CredentialInputFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D822C90E0960097999D /* CredentialInputFields.swift */; };
 		CAC17D852C90E6470097999D /* CredentialEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D842C90E6470097999D /* CredentialEditorViewModel.swift */; };
+		CAC17D882C9232E90097999D /* CredentialRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D872C9232E90097999D /* CredentialRow.swift */; };
+		CAC17D8A2C9245540097999D /* CredentialListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D892C9245540097999D /* CredentialListViewModel.swift */; };
 		CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */; };
 		CAEC66402C69427300F17C1A /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC663F2C69427300F17C1A /* AuthenticationView.swift */; };
 		CAEC66422C69450B00F17C1A /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66412C69450B00F17C1A /* AuthenticationViewModel.swift */; };
@@ -57,6 +59,8 @@
 		CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialListView.swift; sourceTree = "<group>"; };
 		CAC17D822C90E0960097999D /* CredentialInputFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialInputFields.swift; sourceTree = "<group>"; };
 		CAC17D842C90E6470097999D /* CredentialEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorViewModel.swift; sourceTree = "<group>"; };
+		CAC17D872C9232E90097999D /* CredentialRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialRow.swift; sourceTree = "<group>"; };
+		CAC17D892C9245540097999D /* CredentialListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialListViewModel.swift; sourceTree = "<group>"; };
 		CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingEnums.swift; sourceTree = "<group>"; };
 		CAEC663F2C69427300F17C1A /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		CAEC66412C69450B00F17C1A /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -83,10 +87,10 @@
 		CA96D8722C67C19D00C97006 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CAC17D862C9232C70097999D /* CredentialListView */,
 				CAC17D812C90E0370097999D /* CredentialEditorView */,
 				CAEC66452C695B8200F17C1A /* Authentication */,
 				CAB0C7CF2C49B21D006F0B3B /* CredentialGroupListView.swift */,
-				CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */,
 				CAEC663E2C67C81700F17C1A /* Shared */,
 				CAEC664A2C6A7C2900F17C1A /* ContentView.swift */,
 				CAB1ADC32C7D136A0070962C /* SettingsView.swift */,
@@ -142,6 +146,15 @@
 			path = CredentialEditorView;
 			sourceTree = "<group>";
 		};
+		CAC17D862C9232C70097999D /* CredentialListView */ = {
+			isa = PBXGroup;
+			children = (
+				CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */,
+				CAC17D872C9232E90097999D /* CredentialRow.swift */,
+			);
+			path = CredentialListView;
+			sourceTree = "<group>";
+		};
 		CAEC663B2C67C38600F17C1A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +185,7 @@
 				CAEC66412C69450B00F17C1A /* AuthenticationViewModel.swift */,
 				CAB1ADC52C7D18060070962C /* SettingsViewModel.swift */,
 				CAC17D842C90E6470097999D /* CredentialEditorViewModel.swift */,
+				CAC17D892C9245540097999D /* CredentialListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -281,12 +295,14 @@
 				CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */,
 				CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */,
 				CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */,
+				CAC17D882C9232E90097999D /* CredentialRow.swift in Sources */,
 				CA0167572C7E8B70001812FB /* AppTheme.swift in Sources */,
 				CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */,
 				CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */,
 				CAEC66512C6C10D100F17C1A /* InfoButton.swift in Sources */,
 				CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */,
 				CAB1ADC62C7D18060070962C /* SettingsViewModel.swift in Sources */,
+				CAC17D8A2C9245540097999D /* CredentialListViewModel.swift in Sources */,
 				CAC17D852C90E6470097999D /* CredentialEditorViewModel.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,
 				CA0167592C88CBE7001812FB /* CheckboxToggleStyle.swift in Sources */,

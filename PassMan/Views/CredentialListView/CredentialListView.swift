@@ -16,11 +16,9 @@ struct ActiveCredential: Identifiable {
 
 struct CredentialListView: View {
     @EnvironmentObject var credentialsViewModel: CredentialsViewModel
+    @StateObject var viewModel = CredentialListViewModel()
     @Environment(\.dismiss) var dismiss
     @State private var showAddCredentialSheet: Bool = false
-    
-    @State private var showDeleteConfirmationDialog: Bool = false
-    @State private var indexSetToDelete: IndexSet?
 
     @State private var credentialToEditIndex: ActiveCredential?
     
@@ -31,49 +29,14 @@ struct CredentialListView: View {
         if credentialsViewModel.validateIndex(credentialGroupIndex: credentialGroupIndex) {
             List {
                 ForEach(Array($credentialsViewModel.credentialGroups[credentialGroupIndex].credentials.enumerated()), id: \.element.id) { credentialIndex, $credential in
-                    Section {
-                        VStack(alignment: .leading) {
-                            Text(credential.username)
-                            Divider()
-                            // TODO: move isPasswordVisible to the State field and convert CredentialGroupWrapper and CredentialWrapper to classes
-                            Text(credential.isPasswordVisible ? credential.password : "************")
-                                .blur(radius: credential.isPasswordVisible ? 0 : 6)
-                                .onTapGesture {
-                                    withAnimation(.easeInOut(duration: 0.5)) {
-                                        credential.isPasswordVisible.toggle()
-                                    }
-                                }
-                        }
-                        .contextMenu {
-                            Button(action: {
-                                UIPasteboard.general.string = credential.username
-                            }, label: {
-                                Label("Copy login", systemImage: "doc.on.doc")
-                            })
-                            Button(action: {
-                                UIPasteboard.general.string = credential.password
-                            }, label: {
-                                Label("Copy password", systemImage: "doc.on.doc")
-                            })
-                            Button(action: {
-                                credentialToEditIndex = ActiveCredential(credentialIndex: credentialIndex)
-                            }, label: {
-                                Label("Edit", systemImage: "pencil")
-                            })
-                            Divider()
-                            Button(role: .destructive, action: {
-                                indexSetToDelete = IndexSet(integer: credentialIndex)
-                                showDeleteConfirmationDialog = true
-                            }, label: {
-                                Label("Delete", systemImage: "trash")
-                            })
-                        }
-                    }
-                    .listSectionSpacing(.compact)
+                    CredentialRow(credential: $credential, onEdit: {
+                        credentialToEditIndex = ActiveCredential(credentialIndex: credentialIndex)
+                    }, onDelete: {
+                        viewModel.prepareDeleteAndShowConfirmation(credentialsViewModel: credentialsViewModel, credentialGroupIndex: credentialGroupIndex, atOffsets: IndexSet(integer: credentialIndex))
+                    })
                 }
                 .onDelete { indexes in
-                    indexSetToDelete = indexes
-                    showDeleteConfirmationDialog = true
+                    viewModel.prepareDeleteAndShowConfirmation(credentialsViewModel: credentialsViewModel, credentialGroupIndex: credentialGroupIndex, atOffsets: indexes)
                 }
             }
             .navigationTitle(credentialsViewModel.credentialGroups[credentialGroupIndex].resource)
@@ -100,16 +63,9 @@ struct CredentialListView: View {
                                      username: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].username,
                                      password: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].password))
             }
-            .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
+            .confirmationDialog("Are you sure you want to delete this credential?", isPresented: $viewModel.isDeleteConfirmationShown, actions: {
                 Button("Delete Credential", role: .destructive) {
-                    if let indexes = indexSetToDelete {
-                        credentialsViewModel.removeCredentials(credentialGroupIndex: credentialGroupIndex, atOffsets: indexes)
-                        if credentialsViewModel.credentialGroups[credentialGroupIndex].credentials.count == 0 {
-                            credentialsViewModel.removeCredentialGroups(atOffsets: IndexSet(integer: credentialGroupIndex))
-                            dismiss()
-                        }
-                    }
-                    
+                    viewModel.performDelete(dismiss: { dismiss() })
                 }
                 Button("Cancel", role: .cancel, action: {})
             }, message: {
