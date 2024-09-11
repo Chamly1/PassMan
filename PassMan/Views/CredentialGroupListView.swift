@@ -36,7 +36,7 @@ struct CredentialGroupListView: View {
                 }
             }
             .sheet(isPresented: $showCredentialEditorSheet) {
-                CredentialEditorView()
+                CredentialEditorView(viewModel: CredentialEditorViewModel())
             }
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Section", role: .destructive) {

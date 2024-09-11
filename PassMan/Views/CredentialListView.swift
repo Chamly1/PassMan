@@ -91,14 +91,14 @@ struct CredentialListView: View {
                 }
             }
             .sheet(isPresented: $showAddCredentialSheet) {
-                CredentialEditorView(resource: credentialsViewModel.credentialGroups[credentialGroupIndex].resource)
+                CredentialEditorView(viewModel: CredentialEditorViewModel(resource: credentialsViewModel.credentialGroups[credentialGroupIndex].resource))
             }
             .sheet(item: $credentialToEditIndex) { item in
-                CredentialEditorView(credentialGroupIndex: credentialGroupIndex,
+                CredentialEditorView(viewModel: CredentialEditorViewModel(credentialGroupIndex: credentialGroupIndex,
                                      credentialIndex: item.credentialIndex,
                                      resource: credentialsViewModel.credentialGroups[credentialGroupIndex].resource,
                                      username: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].username,
-                                     password: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].password)
+                                     password: credentialsViewModel.credentialGroups[credentialGroupIndex].credentials[item.credentialIndex].password))
             }
             .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Credential", role: .destructive) {
