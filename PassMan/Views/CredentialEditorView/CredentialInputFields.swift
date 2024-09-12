@@ -64,7 +64,7 @@ struct CredentialInputFields: View {
 
 #Preview {
     @State var resource = "Example Site"
-    @State var username = "exampleUser"
+    @State var username = "example User"
     @State var password = "password123"
     @State var isPasswordVisible = false
 

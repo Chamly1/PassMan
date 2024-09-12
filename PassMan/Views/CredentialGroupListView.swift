@@ -53,5 +53,5 @@ struct CredentialGroupListView: View {
 }
 
 #Preview {
-    CredentialGroupListView().environmentObject(CredentialsViewModel())
+    CredentialGroupListView().environmentObject(CredentialsViewModel.preview)
 }

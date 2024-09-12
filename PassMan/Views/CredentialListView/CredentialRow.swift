@@ -53,10 +53,8 @@ struct CredentialRow: View {
     }
 }
 
-// TODO: Fix preview
-//#Preview {
-//    var credential = Credential()
-//    var encryptionService = EncryptionService(key: SymmetricKey(size: .bits256))
-//    @State var credentialWrapper = try! CredentialWrapper(credential: credential, encryptionService: encryptionService)
-//    return CredentialRow(credential: $credentialWrapper, onEdit: {}, onDelete: {})
-//}
+#Preview {
+    @StateObject var credentialsViewModel = CredentialsViewModel.preview
+    
+    return CredentialRow(credential: $credentialsViewModel.credentialGroups[0].credentials[0], onEdit: {}, onDelete: {})
+}

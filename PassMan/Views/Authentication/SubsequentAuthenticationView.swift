@@ -75,5 +75,12 @@ struct SubsequentAuthenticationView: View {
 }
 
 #Preview {
-    SubsequentAuthenticationView()
+    let credentialsViewModel = CredentialsViewModel()
+    let authenticationViewModel = AuthenticationViewModel()
+    let settingsViewModel = SettingsViewModel(credentialsViewModel: credentialsViewModel, authenticationViewModel: authenticationViewModel)
+    
+    return SubsequentAuthenticationView()
+        .environmentObject(credentialsViewModel)
+        .environmentObject(authenticationViewModel)
+        .environmentObject(settingsViewModel)
 }
