@@ -71,13 +71,30 @@ class CredentialsViewModel: ObservableObject {
     }
     private var encryptionService: EncryptionService?
     
-    init() {
+    // preview only!!!
+    static var preview: CredentialsViewModel {
+        let model = CredentialsViewModel(preview: true)
+        return model
+    }
+    
+    init(preview: Bool = false) {
         container = NSPersistentContainer(name: "CredentialsModel")
+        if preview {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
         container.loadPersistentStores { description, error in
             if let error = error {
                 // TODO: add proper error handling, show some message to the user or so
                 fatalError("Unresolved error \(error), \(error.localizedDescription)")
             }
+        }
+        if preview {
+            try! setEncryptionKey(key: SymmetricKey(size: .bits256))
+            
+            try! addCredential(resource: "test resource 0", username: "test username 0.0", password: "test password 0.0")
+            try! addCredential(resource: "test resource 0", username: "test username 0.1", password: "test password 0.1")
+            
+            try! addCredential(resource: "test resource 1", username: "test username 1.0", password: "test password 1.0")
         }
     }
     
