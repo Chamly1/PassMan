@@ -23,7 +23,3 @@ struct ContentView: View {
         }.animation(.default, value: credentialsViewModel.isEncryptionKeySet)
     }
 }
-
-#Preview {
-    ContentView()
-}
