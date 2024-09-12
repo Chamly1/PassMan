@@ -38,12 +38,11 @@ struct CredentialGroupListView: View {
             .sheet(isPresented: $showCredentialEditorSheet) {
                 CredentialEditorView(viewModel: CredentialEditorViewModel())
             }
-            .confirmationDialog("asd", isPresented: $showDeleteConfirmationDialog, actions: {
+            .confirmationDialog("Are you sure you want to delete this credential?", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Section", role: .destructive) {
                     if let indexes = indexSetToDelete {
                         credentialsViewModel.removeCredentialGroups(atOffsets: indexes)
                     }
-                    
                 }
                 Button("Cancel", role: .cancel, action: {})
             }, message: {
