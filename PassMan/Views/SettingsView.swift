@@ -54,6 +54,7 @@ struct SettingsView: View {
                     }
                 }
                 .pickerStyle(.navigationLink)
+                .disabled(!settingsViewModel.isPasswordBlured)
             }
         }
         .navigationTitle("Settings")
