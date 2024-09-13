@@ -1,10 +1,18 @@
 import SwiftUI
 
 struct CredentialGroupListView: View {
-    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
+    @EnvironmentObject private var credentialsViewModel: CredentialsViewModel
     @State private var showCredentialEditorSheet: Bool = false
     @State private var showDeleteConfirmationDialog: Bool = false
     @State private var indexSetToDelete: IndexSet?
+    @State private var activeCredentialGroup: ActiveCredentialGroup?
+    
+    struct ActiveCredentialGroup: Identifiable {
+        var credentialGroupIndex: Int
+        var id: Int {
+            return credentialGroupIndex
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -16,6 +24,12 @@ struct CredentialGroupListView: View {
                         Text(credentialGroup.resource)
                     })
                     .contextMenu {
+                        Button(action: {
+                            activeCredentialGroup = ActiveCredentialGroup(credentialGroupIndex: credentialGroupIndex)
+                        }, label: {
+                            Label("Rename", systemImage: "pencil")
+                        })
+                        Divider()
                         Button(role: .destructive, action: {
                             indexSetToDelete = IndexSet(integer: credentialGroupIndex)
                             showDeleteConfirmationDialog = true
@@ -45,6 +59,9 @@ struct CredentialGroupListView: View {
             }
             .sheet(isPresented: $showCredentialEditorSheet) {
                 CredentialEditorView(viewModel: CredentialEditorViewModel())
+            }
+            .sheet(item: $activeCredentialGroup) { item in
+                CredentialGroupRenameView(credentialGroupRenameIndex: item.credentialGroupIndex)
             }
             .confirmationDialog("Are you sure you want to delete this credential?", isPresented: $showDeleteConfirmationDialog, actions: {
                 Button("Delete Section", role: .destructive) {
