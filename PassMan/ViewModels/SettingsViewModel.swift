@@ -18,11 +18,17 @@ class SettingsViewModel: ObservableObject {
         }
     }
     @AppStorage("isPasswordBlured") var isPasswordBlured: Bool = true
+    @Published var passwordAutoBlur: PasswordAutoBlur {
+        didSet {
+            UserDefaults.standard.setValue(passwordAutoBlur.rawValue, forKey: passwordAutoBlurKey)
+        }
+    }
     
     private var credentialsViewModel: CredentialsViewModel
     private var authenticationViewModel: AuthenticationViewModel
     private var isFaceIDEnabledKey: String = "isFaceIDEnabled"
     private var appThemeKey: String = "appTheme"
+    private var passwordAutoBlurKey: String = "passwordAutoBlur"
     
     init(credentialsViewModel: CredentialsViewModel, authenticationViewModel: AuthenticationViewModel) {
         self.credentialsViewModel = credentialsViewModel
@@ -30,6 +36,9 @@ class SettingsViewModel: ObservableObject {
         
         let appThemeRawValue = UserDefaults.standard.string(forKey: appThemeKey) ?? AppTheme.system.rawValue
         appTheme = AppTheme(rawValue: appThemeRawValue) ?? .system
+        
+        let passwordAutoBlurRawValue = UserDefaults.standard.string(forKey: passwordAutoBlurKey) ?? PasswordAutoBlur.fiveSeconds.rawValue
+        passwordAutoBlur = PasswordAutoBlur(rawValue: passwordAutoBlurRawValue) ?? .fiveSeconds
     }
     
     func enableFaceID() throws {

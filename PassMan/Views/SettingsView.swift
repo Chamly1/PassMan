@@ -45,8 +45,15 @@ struct SettingsView: View {
             
             Section {
                 Toggle(isOn: $settingsViewModel.isPasswordBlured, label: {
-                    Text("Blure passwords")
+                    Text("Password Blur")
                 })
+                
+                Picker("Password Auto-Blur", selection: $settingsViewModel.passwordAutoBlur) {
+                    ForEach(PasswordAutoBlur.allCases) { interval in
+                        Text(interval.rawValue).tag(interval)
+                    }
+                }
+                .pickerStyle(.navigationLink)
             }
         }
         .navigationTitle("Settings")
