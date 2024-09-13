@@ -15,6 +15,14 @@ struct CredentialGroupListView: View {
                     }, label: {
                         Text(credentialGroup.resource)
                     })
+                    .contextMenu {
+                        Button(role: .destructive, action: {
+                            indexSetToDelete = IndexSet(integer: credentialGroupIndex)
+                            showDeleteConfirmationDialog = true
+                        }, label: {
+                            Label("Delete", systemImage: "trash")
+                        })
+                    }
                 }
                 .onDelete { indexes in
                     indexSetToDelete = indexes
