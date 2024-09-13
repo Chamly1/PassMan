@@ -161,6 +161,22 @@ class CredentialsViewModel: ObservableObject {
         sortCredentials()
     }
     
+    func renameCredentialGroup(credentialGroupIndex: Int, resource: String) throws {
+        if validateIndex(credentialGroupIndex: credentialGroupIndex) {
+            let encryptionService = try ensureEncryptionService()
+            
+            if credentialGroups[credentialGroupIndex].resource != resource {
+                credentialGroups[credentialGroupIndex].credentialGroup.resource = try encryptionService.encrypt(resource)
+                credentialGroups[credentialGroupIndex].resource = resource
+                credentialGroups[credentialGroupIndex].credentialGroup.dateEdited = Date.now
+                
+                saveContext()
+                sortGroups()
+            }
+        }
+        // TODO: throw an error when index is out of bound
+    }
+    
     func editCredential(credentialGroupIndex: Int, credentialIndex: Int, username: String, password: String) throws {
         if validateIndices(credentialGroupIndex: credentialGroupIndex, credentialIndex: credentialIndex) {
             // need to update the UI because no Publeshed properties will be changed change
@@ -190,6 +206,7 @@ class CredentialsViewModel: ObservableObject {
                 sortCredentials()
             }
         }
+        // TODO: throw an error when index is out of bound
     }
     
     func removeCredentialGroups(atOffsets: IndexSet) {
