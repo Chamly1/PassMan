@@ -14,6 +14,7 @@
 		CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */; };
 		CA96D86D2C62987200C97006 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */; };
 		CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */; };
+		CA9B5A952C94814600A82611 /* CredentialGroupRenameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9B5A942C94814600A82611 /* CredentialGroupRenameView.swift */; };
 		CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */; };
 		CAB0C7C62C49A3B9006F0B3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */; };
 		CAB0C7C92C49A3B9006F0B3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
 		CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
 		CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenu.swift; sourceTree = "<group>"; };
+		CA9B5A942C94814600A82611 /* CredentialGroupRenameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialGroupRenameView.swift; sourceTree = "<group>"; };
 		CAB0C7BE2C49A3B4006F0B3B /* PassMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManApp.swift; sourceTree = "<group>"; };
 		CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				CAEC663E2C67C81700F17C1A /* Shared */,
 				CAEC664A2C6A7C2900F17C1A /* ContentView.swift */,
 				CAB1ADC32C7D136A0070962C /* SettingsView.swift */,
+				CA9B5A942C94814600A82611 /* CredentialGroupRenameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			files = (
 				CAB1ADC42C7D136A0070962C /* SettingsView.swift in Sources */,
 				CAEC66422C69450B00F17C1A /* AuthenticationViewModel.swift in Sources */,
+				CA9B5A952C94814600A82611 /* CredentialGroupRenameView.swift in Sources */,
 				CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */,
 				CAEC664B2C6A7C2900F17C1A /* ContentView.swift in Sources */,
 				CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */,
