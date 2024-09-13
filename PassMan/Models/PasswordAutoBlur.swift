@@ -8,6 +8,7 @@
 import Foundation
 
 enum PasswordAutoBlur: String, CaseIterable, Identifiable {
+    case twoSeconds = "2 seconds"
     case fiveSeconds = "5 seconds"
     case tenSeconds = "10 seconds"
     case fifteenSeconds = "15 seconds"
@@ -21,6 +22,8 @@ enum PasswordAutoBlur: String, CaseIterable, Identifiable {
     
     var timeInterval: Double {
         switch self {
+        case .twoSeconds:
+            2
         case .fiveSeconds:
             5
         case .tenSeconds:
