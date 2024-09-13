@@ -14,7 +14,7 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Section(content: {
+            Section {
                 Toggle(isOn: $isFaceIDEnabled, label: {
                     Text("Enable Face ID authentication")
                 })
@@ -41,7 +41,13 @@ struct SettingsView: View {
                     }
                 }
                 .pickerStyle(.navigationLink)
-            })
+            }
+            
+            Section {
+                Toggle(isOn: $settingsViewModel.isPasswordBlured, label: {
+                    Text("Blure passwords")
+                })
+            }
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SettingsViewModel: ObservableObject {
     var isFaceIDEnabled: Bool {
@@ -16,6 +17,7 @@ class SettingsViewModel: ObservableObject {
             UserDefaults.standard.setValue(appTheme.rawValue, forKey: appThemeKey)
         }
     }
+    @AppStorage("isPasswordBlured") var isPasswordBlured: Bool = true
     
     private var credentialsViewModel: CredentialsViewModel
     private var authenticationViewModel: AuthenticationViewModel

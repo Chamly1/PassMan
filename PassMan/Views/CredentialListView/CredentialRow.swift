@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CredentialRow: View {
+    @EnvironmentObject private var settingsViewModel: SettingsViewModel
     @Binding var credential: CredentialWrapper
     let onEdit: () -> Void
     let onDelete: () -> Void
@@ -17,11 +18,11 @@ struct CredentialRow: View {
             VStack(alignment: .leading) {
                 Text(credential.username)
                 Divider()
-                Text(credential.isPasswordVisible ? credential.password : "************")
-                    .blur(radius: credential.isPasswordVisible ? 0 : 6)
+                Text(settingsViewModel.isPasswordBlured && credential.isPasswordBlured ? "************" : credential.password)
+                    .blur(radius: settingsViewModel.isPasswordBlured && credential.isPasswordBlured ? 6 : 0)
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.5)) {
-                            credential.isPasswordVisible.toggle()
+                            credential.isPasswordBlured.toggle()
                         }
                     }
             }
@@ -55,6 +56,9 @@ struct CredentialRow: View {
 
 #Preview {
     @StateObject var credentialsViewModel = CredentialsViewModel.preview
+    let authenticationViewModel = AuthenticationViewModel()
+    let settingsViewModel = SettingsViewModel(credentialsViewModel: credentialsViewModel, authenticationViewModel: authenticationViewModel)
     
     return CredentialRow(credential: $credentialsViewModel.credentialGroups[0].credentials[0], onEdit: {}, onDelete: {})
+        .environmentObject(settingsViewModel)
 }

@@ -8,7 +8,7 @@ struct CredentialWrapper: Identifiable {
     let id: UUID
     var username: String
     var password: String
-    var isPasswordVisible: Bool = false
+    var isPasswordBlured: Bool = true
     
     init(credential: Credential, encryptionService: EncryptionService) throws {
         self.credential = credential
