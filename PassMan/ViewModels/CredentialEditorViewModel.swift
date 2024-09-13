@@ -72,6 +72,7 @@ class CredentialEditorViewModel: ObservableObject {
         if inputPassword.isEmpty {
             passwordStrengthText = "Password strength: -"
             passwordStrengthColorLevel = -1
+            return
         }
         
         let passwordEntropy: Float? = try? PasswordUtility.calculatePasswordEntropy(inputPassword)
