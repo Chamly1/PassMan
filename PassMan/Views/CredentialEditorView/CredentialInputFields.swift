@@ -46,6 +46,7 @@ struct CredentialInputFields: View {
                     }
                 }
                 .textFieldStyle(.roundedBorder)
+                .autocorrectionDisabled(true)
                 .focused($focusedField, equals: .password)
                 .submitLabel(.done)
                 .onSubmit {
