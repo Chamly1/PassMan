@@ -10,6 +10,8 @@ import SwiftUI
 struct CredentialRow: View {
     @EnvironmentObject private var settingsViewModel: SettingsViewModel
     @Binding var credential: CredentialWrapper
+    @State private var blurTimer: Timer?
+    let passwordBluringAnimation: Animation = .easeInOut(duration: 0.5)
     let onEdit: () -> Void
     let onDelete: () -> Void
     
@@ -21,8 +23,12 @@ struct CredentialRow: View {
                 Text(settingsViewModel.isPasswordBlured && credential.isPasswordBlured ? "************" : credential.password)
                     .blur(radius: settingsViewModel.isPasswordBlured && credential.isPasswordBlured ? 6 : 0)
                     .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            credential.isPasswordBlured.toggle()
+                        if settingsViewModel.isPasswordBlured {
+                            if credential.isPasswordBlured {
+                                unblurPassword()
+                            } else {
+                                blurPassword()
+                            }
                         }
                     }
             }
@@ -51,6 +57,28 @@ struct CredentialRow: View {
             }
         }
         .listSectionSpacing(.compact)
+    }
+    
+    private func unblurPassword() {
+        blurTimer?.invalidate()
+        withAnimation(passwordBluringAnimation) {
+            credential.isPasswordBlured = false
+        }
+        
+        if settingsViewModel.passwordAutoBlur != .never {
+            blurTimer = Timer.scheduledTimer(withTimeInterval: settingsViewModel.passwordAutoBlur.timeInterval, repeats: false) { _ in
+                withAnimation(passwordBluringAnimation) {
+                    credential.isPasswordBlured = true
+                }
+            }
+        }
+    }
+    
+    private func blurPassword() {
+        blurTimer?.invalidate()
+        withAnimation(passwordBluringAnimation) {
+            credential.isPasswordBlured = true
+        }
     }
 }
 

@@ -19,7 +19,7 @@ enum PasswordAutoBlur: String, CaseIterable, Identifiable {
     
     var id: String { self.rawValue }
     
-    var timeInterval: Int {
+    var timeInterval: Double {
         switch self {
         case .fiveSeconds:
             5
