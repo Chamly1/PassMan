@@ -47,6 +47,9 @@
 		CA0167582C88CBE7001812FB /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		CA2E74382C9A210400704036 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CA2E743B2C9A448B00704036 /* gif-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif-1.gif"; sourceTree = "<group>"; };
+		CA2E743C2C9A44A100704036 /* gif-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif-2.gif"; sourceTree = "<group>"; };
+		CA2E743D2C9A44AF00704036 /* gif-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif-3.gif"; sourceTree = "<group>"; };
 		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
 		CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CredentialsModel.xcdatamodel; sourceTree = "<group>"; };
 		CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
@@ -91,6 +94,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA2E74392C9A443500704036 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				CA2E743A2C9A444400704036 /* gifs */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		CA2E743A2C9A444400704036 /* gifs */ = {
+			isa = PBXGroup;
+			children = (
+				CA2E743B2C9A448B00704036 /* gif-1.gif */,
+				CA2E743C2C9A44A100704036 /* gif-2.gif */,
+				CA2E743D2C9A44AF00704036 /* gif-3.gif */,
+			);
+			path = gifs;
+			sourceTree = "<group>";
+		};
 		CA96D8722C67C19D00C97006 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +130,7 @@
 		CAB0C7B52C49A3B4006F0B3B = {
 			isa = PBXGroup;
 			children = (
+				CA2E74392C9A443500704036 /* docs */,
 				CA2E74382C9A210400704036 /* README.md */,
 				CAB0C7C02C49A3B4006F0B3B /* PassMan */,
 				CAB0C7BF2C49A3B4006F0B3B /* Products */,
