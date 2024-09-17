@@ -18,6 +18,7 @@ struct ContentHeightPreference: PreferenceKey {
 /// A view that provides a button with an 'info.circle' SF symbol label. When tapped, it displays a popover with content that dynamically adjusts its height to fit, even on devices where popovers typically expand to full-screen sheets.
 struct InfoButton: View {
     var info: String
+    
     @State private var showPopover: Bool = false
     @State private var textHeight: CGFloat = 0
     

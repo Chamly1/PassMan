@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct CredentialRow: View {
-    @EnvironmentObject private var settingsViewModel: SettingsViewModel
     @Binding var credential: CredentialWrapper
-    @State private var blurTimer: Timer?
-    let passwordBluringAnimation: Animation = .easeInOut(duration: 0.5)
     let onEdit: () -> Void
     let onDelete: () -> Void
+    
+    @EnvironmentObject private var settingsViewModel: SettingsViewModel
+    @State private var blurTimer: Timer?
+    private let passwordBluringAnimation: Animation = .easeInOut(duration: 0.5)
     
     var body: some View {
         Section {

@@ -9,12 +9,12 @@ import SwiftUI
 import CryptoKit
 
 struct SubsequentAuthenticationView: View {
-    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
-    @EnvironmentObject var settingsViewModel: SettingsViewModel
-    @State var inputPassword: String = ""
-    @State var showAlert: Bool = false
-    @State var activeAlert: ActiveAlert = .general
+    @EnvironmentObject private var authenticationViewModel: AuthenticationViewModel
+    @EnvironmentObject private var credentialsViewModel: CredentialsViewModel
+    @EnvironmentObject private var settingsViewModel: SettingsViewModel
+    @State private var inputPassword: String = ""
+    @State private var showAlert: Bool = false
+    @State private var activeAlert: ActiveAlert = .general
     @FocusState private var focusedField: FocusedField?
     
     enum ActiveAlert {

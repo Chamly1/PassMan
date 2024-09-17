@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CredentialEditorView: View {
-    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
-    @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: CredentialEditorViewModel
+    
+    @EnvironmentObject private var credentialsViewModel: CredentialsViewModel
+    @Environment(\.dismiss) private var dismiss
     @State private var showAlert: Bool = false
     @State private var activeAlert: CredentialEditorViewModel.ActiveAlert = .general
     @FocusState private var focusedField: FocusedField?

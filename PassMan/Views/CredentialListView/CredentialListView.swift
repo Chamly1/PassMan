@@ -15,14 +15,13 @@ struct ActiveCredential: Identifiable {
 }
 
 struct CredentialListView: View {
-    @EnvironmentObject var credentialsViewModel: CredentialsViewModel
-    @StateObject var viewModel = CredentialListViewModel()
-    @Environment(\.dismiss) var dismiss
-    @State private var showAddCredentialSheet: Bool = false
-
-    @State private var credentialToEditIndex: ActiveCredential?
-    
     var credentialGroupIndex: Int
+    
+    @EnvironmentObject private var credentialsViewModel: CredentialsViewModel
+    @StateObject private var viewModel = CredentialListViewModel()
+    @Environment(\.dismiss) private var dismiss
+    @State private var showAddCredentialSheet: Bool = false
+    @State private var credentialToEditIndex: ActiveCredential?
     
     var body: some View {
         

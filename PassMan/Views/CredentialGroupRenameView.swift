@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct CredentialGroupRenameView: View {
+    var credentialGroupRenameIndex: Int
+    
     @EnvironmentObject private var credentialsViewModel: CredentialsViewModel
     @State private var inputResource: String = ""
     @Environment(\.dismiss) private var dismiss
     @State private var showAlert: Bool = false
-    var credentialGroupRenameIndex: Int
     
     var body: some View {
         if credentialsViewModel.validateIndex(credentialGroupIndex: credentialGroupRenameIndex) {
