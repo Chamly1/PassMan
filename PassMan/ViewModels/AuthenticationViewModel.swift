@@ -12,34 +12,31 @@ import LocalAuthentication
 class AuthenticationViewModel: ObservableObject {
     var hasMasterKey: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: hasMasterKeyKey)
+            return UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasMasterKey)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: hasMasterKeyKey)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.hasMasterKey)
         }
     }
     
     private var salt: Data? {
         get {
-            return UserDefaults.standard.data(forKey: saltKey)
+            return UserDefaults.standard.data(forKey: UserDefaultsKeys.salt)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: saltKey)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.salt)
         }
     }
     
     private var sealedBoxVerificationString: Data? {
         get {
-            return UserDefaults.standard.data(forKey: sealedBoxVerificationStringKey)
+            return UserDefaults.standard.data(forKey: UserDefaultsKeys.sealedBoxVerificationString)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: sealedBoxVerificationStringKey)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.sealedBoxVerificationString)
         }
     }
     
-    private let hasMasterKeyKey: String = "hasMasterKey"
-    private let saltKey: String = "salt"
-    private let sealedBoxVerificationStringKey: String = "sealedBoxVerificationString"
     private let symmetrycKeyKeychainkey: String = "symmetrycKeyKeychainkey"
     private let saltLength: Int = 16
     private let keyLength: Int = 32

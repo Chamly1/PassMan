@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA0167572C7E8B70001812FB /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0167562C7E8B70001812FB /* AppTheme.swift */; };
 		CA0167592C88CBE7001812FB /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0167582C88CBE7001812FB /* CheckboxToggleStyle.swift */; };
+		CA2E74372C9A14F900704036 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */; };
 		CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4777432C567C1900386821 /* CredentialEditorView.swift */; };
 		CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */; };
 		CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		CA0167562C7E8B70001812FB /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		CA0167582C88CBE7001812FB /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
+		CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
 		CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CredentialsModel.xcdatamodel; sourceTree = "<group>"; };
 		CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				CAEC66432C694EEA00F17C1A /* FocusedField.swift */,
 				CA0167562C7E8B70001812FB /* AppTheme.swift */,
 				CA9B5A962C94B91500A82611 /* PasswordAutoBlur.swift */,
+				CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */,
 				CAC17D832C90E0960097999D /* CredentialInputFields.swift in Sources */,
 				CAB0C7D02C49B21D006F0B3B /* CredentialGroupListView.swift in Sources */,
+				CA2E74372C9A14F900704036 /* UserDefaultsKeys.swift in Sources */,
 				CAEC66402C69427300F17C1A /* AuthenticationView.swift in Sources */,
 				CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */,
 				CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */,

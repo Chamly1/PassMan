@@ -40,25 +40,25 @@ class CredentialsViewModel: ObservableObject {
     @Published var credentialGroups: [CredentialGroupWrapper] = []
     @Published var isEncryptionKeySet: Bool = false
     
-    @UserDefaultEnum(key: "groupsSortOption", defaultValue: .dateCreated) var groupsSortOption: SortingOptions {
+    @UserDefaultEnum(key: UserDefaultsKeys.groupsSortOption, defaultValue: .dateCreated) var groupsSortOption: SortingOptions {
         didSet {
             self.objectWillChange.send()
             sortGroups()
         }
     }
-    @UserDefaultEnum(key: "groupsSortOrder", defaultValue: .ascending) var groupsSortOrder: SortingOrders {
+    @UserDefaultEnum(key: UserDefaultsKeys.groupsSortOrder, defaultValue: .ascending) var groupsSortOrder: SortingOrders {
         didSet {
             self.objectWillChange.send()
             sortGroups()
         }
     }
-    @UserDefaultEnum(key: "credentialsSortOption", defaultValue: .dateCreated) var credentialsSortOption: SortingOptions {
+    @UserDefaultEnum(key: UserDefaultsKeys.credentialsSortOption, defaultValue: .dateCreated) var credentialsSortOption: SortingOptions {
         didSet {
             self.objectWillChange.send()
             sortCredentials()
         }
     }
-    @UserDefaultEnum(key: "credentialsSortOrder", defaultValue: .ascending) var credentialsSortOrder: SortingOrders {
+    @UserDefaultEnum(key: UserDefaultsKeys.credentialsSortOrder, defaultValue: .ascending) var credentialsSortOrder: SortingOrders {
         didSet {
             self.objectWillChange.send()
             sortCredentials()
