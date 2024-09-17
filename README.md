@@ -2,6 +2,12 @@
 
 PassMan is a simple and secure password manager designed to store your credentials safely using encryption. Built using Swift and SwiftUI, it leverages strong encryption to ensure that sensitive information like resource names, usernames, and passwords are protected.
 
+<p align="center">
+  <img src="docs/gifs/gif-1.gif" alt="App Overview" width="30%" />
+  <img src="docs/gifs/gif-2.gif" alt="Manage Credentials" width="30%" />
+  <img src="docs/gifs/gif-3.gif" alt="Settings Overview" width="30%" />
+</p>
+
 ## Features
 
 - **Master Key Encryption**: All credentials are encrypted with a master key derived from the user's master password. The key is never stored unless Face ID authentication is enabled, in which case it's securely stored in the iOS Keychain.
