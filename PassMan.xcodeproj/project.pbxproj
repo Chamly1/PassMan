@@ -46,6 +46,7 @@
 		CA0167562C7E8B70001812FB /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		CA0167582C88CBE7001812FB /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		CA2E74382C9A210400704036 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
 		CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CredentialsModel.xcdatamodel; sourceTree = "<group>"; };
 		CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
@@ -108,6 +109,7 @@
 		CAB0C7B52C49A3B4006F0B3B = {
 			isa = PBXGroup;
 			children = (
+				CA2E74382C9A210400704036 /* README.md */,
 				CAB0C7C02C49A3B4006F0B3B /* PassMan */,
 				CAB0C7BF2C49A3B4006F0B3B /* Products */,
 			);
