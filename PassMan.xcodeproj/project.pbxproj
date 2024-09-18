@@ -7,18 +7,80 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0167572C7E8B70001812FB /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0167562C7E8B70001812FB /* AppTheme.swift */; };
+		CA0167592C88CBE7001812FB /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0167582C88CBE7001812FB /* CheckboxToggleStyle.swift */; };
+		CA2E74372C9A14F900704036 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */; };
+		CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4777432C567C1900386821 /* CredentialEditorView.swift */; };
+		CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */; };
+		CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */; };
+		CA96D86D2C62987200C97006 /* UserDefaultEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */; };
+		CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */; };
+		CA9B5A952C94814600A82611 /* CredentialGroupRenameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9B5A942C94814600A82611 /* CredentialGroupRenameView.swift */; };
+		CA9B5A972C94B91500A82611 /* PasswordAutoBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9B5A962C94B91500A82611 /* PasswordAutoBlur.swift */; };
 		CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */; };
-		CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */; };
 		CAB0C7C62C49A3B9006F0B3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */; };
 		CAB0C7C92C49A3B9006F0B3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */; };
+		CAB0C7D02C49B21D006F0B3B /* CredentialGroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7CF2C49B21D006F0B3B /* CredentialGroupListView.swift */; };
+		CAB0C7D22C49B308006F0B3B /* CredentialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D12C49B308006F0B3B /* CredentialsViewModel.swift */; };
+		CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */; };
+		CAB1ADC42C7D136A0070962C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1ADC32C7D136A0070962C /* SettingsView.swift */; };
+		CAB1ADC62C7D18060070962C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB1ADC52C7D18060070962C /* SettingsViewModel.swift */; };
+		CAB86CFD2C51C9C300AECF44 /* CredentialListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */; };
+		CAC17D832C90E0960097999D /* CredentialInputFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D822C90E0960097999D /* CredentialInputFields.swift */; };
+		CAC17D852C90E6470097999D /* CredentialEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D842C90E6470097999D /* CredentialEditorViewModel.swift */; };
+		CAC17D882C9232E90097999D /* CredentialRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D872C9232E90097999D /* CredentialRow.swift */; };
+		CAC17D8A2C9245540097999D /* CredentialListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC17D892C9245540097999D /* CredentialListViewModel.swift */; };
+		CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */; };
+		CAEC66402C69427300F17C1A /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC663F2C69427300F17C1A /* AuthenticationView.swift */; };
+		CAEC66422C69450B00F17C1A /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66412C69450B00F17C1A /* AuthenticationViewModel.swift */; };
+		CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66432C694EEA00F17C1A /* FocusedField.swift */; };
+		CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */; };
+		CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */; };
+		CAEC664B2C6A7C2900F17C1A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664A2C6A7C2900F17C1A /* ContentView.swift */; };
+		CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664C2C6BB67900F17C1A /* PassManError.swift */; };
+		CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC664E2C6BC72D00F17C1A /* Utils.swift */; };
+		CAEC66512C6C10D100F17C1A /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC66502C6C10D100F17C1A /* InfoButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA0167562C7E8B70001812FB /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		CA0167582C88CBE7001812FB /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
+		CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		CA2E74382C9A210400704036 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CA2E743B2C9A448B00704036 /* gif-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif-1.gif"; sourceTree = "<group>"; };
+		CA2E743C2C9A44A100704036 /* gif-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif-2.gif"; sourceTree = "<group>"; };
+		CA2E743D2C9A44AF00704036 /* gif-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif-3.gif"; sourceTree = "<group>"; };
+		CA4777432C567C1900386821 /* CredentialEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorView.swift; sourceTree = "<group>"; };
+		CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CredentialsModel.xcdatamodel; sourceTree = "<group>"; };
+		CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultEnum.swift; sourceTree = "<group>"; };
+		CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarMenu.swift; sourceTree = "<group>"; };
+		CA9B5A942C94814600A82611 /* CredentialGroupRenameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialGroupRenameView.swift; sourceTree = "<group>"; };
+		CA9B5A962C94B91500A82611 /* PasswordAutoBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordAutoBlur.swift; sourceTree = "<group>"; };
 		CAB0C7BE2C49A3B4006F0B3B /* PassMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManApp.swift; sourceTree = "<group>"; };
-		CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CAB0C7CF2C49B21D006F0B3B /* CredentialGroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialGroupListView.swift; sourceTree = "<group>"; };
+		CAB0C7D12C49B308006F0B3B /* CredentialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsViewModel.swift; sourceTree = "<group>"; };
+		CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUtility.swift; sourceTree = "<group>"; };
+		CAB1ADC32C7D136A0070962C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CAB1ADC52C7D18060070962C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialListView.swift; sourceTree = "<group>"; };
+		CAC17D822C90E0960097999D /* CredentialInputFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialInputFields.swift; sourceTree = "<group>"; };
+		CAC17D842C90E6470097999D /* CredentialEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEditorViewModel.swift; sourceTree = "<group>"; };
+		CAC17D872C9232E90097999D /* CredentialRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialRow.swift; sourceTree = "<group>"; };
+		CAC17D892C9245540097999D /* CredentialListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialListViewModel.swift; sourceTree = "<group>"; };
+		CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingEnums.swift; sourceTree = "<group>"; };
+		CAEC663F2C69427300F17C1A /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		CAEC66412C69450B00F17C1A /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		CAEC66432C694EEA00F17C1A /* FocusedField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedField.swift; sourceTree = "<group>"; };
+		CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAuthenticationView.swift; sourceTree = "<group>"; };
+		CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsequentAuthenticationView.swift; sourceTree = "<group>"; };
+		CAEC664A2C6A7C2900F17C1A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CAEC664C2C6BB67900F17C1A /* PassManError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassManError.swift; sourceTree = "<group>"; };
+		CAEC664E2C6BC72D00F17C1A /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CAEC66502C6C10D100F17C1A /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,9 +94,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA2E74392C9A443500704036 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				CA2E743A2C9A444400704036 /* gifs */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		CA2E743A2C9A444400704036 /* gifs */ = {
+			isa = PBXGroup;
+			children = (
+				CA2E743B2C9A448B00704036 /* gif-1.gif */,
+				CA2E743C2C9A44A100704036 /* gif-2.gif */,
+				CA2E743D2C9A44AF00704036 /* gif-3.gif */,
+			);
+			path = gifs;
+			sourceTree = "<group>";
+		};
+		CA96D8722C67C19D00C97006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CAC17D862C9232C70097999D /* CredentialListView */,
+				CAC17D812C90E0370097999D /* CredentialEditorView */,
+				CAEC66452C695B8200F17C1A /* Authentication */,
+				CAB0C7CF2C49B21D006F0B3B /* CredentialGroupListView.swift */,
+				CAEC663E2C67C81700F17C1A /* Shared */,
+				CAEC664A2C6A7C2900F17C1A /* ContentView.swift */,
+				CAB1ADC32C7D136A0070962C /* SettingsView.swift */,
+				CA9B5A942C94814600A82611 /* CredentialGroupRenameView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CAB0C7B52C49A3B4006F0B3B = {
 			isa = PBXGroup;
 			children = (
+				CA2E74392C9A443500704036 /* docs */,
+				CA2E74382C9A210400704036 /* README.md */,
 				CAB0C7C02C49A3B4006F0B3B /* PassMan */,
 				CAB0C7BF2C49A3B4006F0B3B /* Products */,
 			);
@@ -51,8 +148,12 @@
 		CAB0C7C02C49A3B4006F0B3B /* PassMan */ = {
 			isa = PBXGroup;
 			children = (
+				CAEC663D2C67C79500F17C1A /* ViewModels */,
+				CAEC663C2C67C46A00F17C1A /* Utils */,
+				CAEC663B2C67C38600F17C1A /* Models */,
+				CA96D8722C67C19D00C97006 /* Views */,
 				CAB0C7C12C49A3B4006F0B3B /* PassManApp.swift */,
-				CAB0C7C32C49A3B4006F0B3B /* ContentView.swift */,
+				CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */,
 				CAB0C7C52C49A3B9006F0B3B /* Assets.xcassets */,
 				CAB0C7C72C49A3B9006F0B3B /* Preview Content */,
 			);
@@ -65,6 +166,80 @@
 				CAB0C7C82C49A3B9006F0B3B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAC17D812C90E0370097999D /* CredentialEditorView */ = {
+			isa = PBXGroup;
+			children = (
+				CA4777432C567C1900386821 /* CredentialEditorView.swift */,
+				CAC17D822C90E0960097999D /* CredentialInputFields.swift */,
+			);
+			path = CredentialEditorView;
+			sourceTree = "<group>";
+		};
+		CAC17D862C9232C70097999D /* CredentialListView */ = {
+			isa = PBXGroup;
+			children = (
+				CAB86CFC2C51C9C300AECF44 /* CredentialListView.swift */,
+				CAC17D872C9232E90097999D /* CredentialRow.swift */,
+			);
+			path = CredentialListView;
+			sourceTree = "<group>";
+		};
+		CAEC663B2C67C38600F17C1A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CAC94E402C5D6A4A00C310ED /* SortingEnums.swift */,
+				CAEC66432C694EEA00F17C1A /* FocusedField.swift */,
+				CA0167562C7E8B70001812FB /* AppTheme.swift */,
+				CA9B5A962C94B91500A82611 /* PasswordAutoBlur.swift */,
+				CA2E74362C9A14F900704036 /* UserDefaultsKeys.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CAEC663C2C67C46A00F17C1A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CAB0C7D52C4EC845006F0B3B /* PasswordUtility.swift */,
+				CA96D86C2C62987200C97006 /* UserDefaultEnum.swift */,
+				CAEC664C2C6BB67900F17C1A /* PassManError.swift */,
+				CAEC664E2C6BC72D00F17C1A /* Utils.swift */,
+				CA48B0DA2C7519DB00AC4109 /* EncryptionService.swift */,
+				CA0167582C88CBE7001812FB /* CheckboxToggleStyle.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CAEC663D2C67C79500F17C1A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CAB0C7D12C49B308006F0B3B /* CredentialsViewModel.swift */,
+				CAEC66412C69450B00F17C1A /* AuthenticationViewModel.swift */,
+				CAB1ADC52C7D18060070962C /* SettingsViewModel.swift */,
+				CAC17D842C90E6470097999D /* CredentialEditorViewModel.swift */,
+				CAC17D892C9245540097999D /* CredentialListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CAEC663E2C67C81700F17C1A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CA96D86E2C63CC7800C97006 /* ToolbarMenu.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		CAEC66452C695B8200F17C1A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				CAEC663F2C69427300F17C1A /* AuthenticationView.swift */,
+				CAEC66462C695CEB00F17C1A /* FirstAuthenticationView.swift */,
+				CAEC66482C695D4700F17C1A /* SubsequentAuthenticationView.swift */,
+				CAEC66502C6C10D100F17C1A /* InfoButton.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +312,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAB0C7C42C49A3B4006F0B3B /* ContentView.swift in Sources */,
+				CAB1ADC42C7D136A0070962C /* SettingsView.swift in Sources */,
+				CAEC66422C69450B00F17C1A /* AuthenticationViewModel.swift in Sources */,
+				CA9B5A952C94814600A82611 /* CredentialGroupRenameView.swift in Sources */,
+				CAC94E412C5D6A4A00C310ED /* SortingEnums.swift in Sources */,
+				CAEC664B2C6A7C2900F17C1A /* ContentView.swift in Sources */,
+				CA4777442C567C1900386821 /* CredentialEditorView.swift in Sources */,
+				CAB86CFD2C51C9C300AECF44 /* CredentialListView.swift in Sources */,
+				CA96D86D2C62987200C97006 /* UserDefaultEnum.swift in Sources */,
+				CA9B5A972C94B91500A82611 /* PasswordAutoBlur.swift in Sources */,
+				CAB0C7D22C49B308006F0B3B /* CredentialsViewModel.swift in Sources */,
+				CA4777472C56DD8600386821 /* CredentialsModel.xcdatamodeld in Sources */,
+				CAC17D832C90E0960097999D /* CredentialInputFields.swift in Sources */,
+				CAB0C7D02C49B21D006F0B3B /* CredentialGroupListView.swift in Sources */,
+				CA2E74372C9A14F900704036 /* UserDefaultsKeys.swift in Sources */,
+				CAEC66402C69427300F17C1A /* AuthenticationView.swift in Sources */,
+				CA48B0DB2C7519DB00AC4109 /* EncryptionService.swift in Sources */,
+				CAEC66472C695CEB00F17C1A /* FirstAuthenticationView.swift in Sources */,
+				CAEC664F2C6BC72D00F17C1A /* Utils.swift in Sources */,
+				CAEC66442C694EEA00F17C1A /* FocusedField.swift in Sources */,
+				CAC17D882C9232E90097999D /* CredentialRow.swift in Sources */,
+				CA0167572C7E8B70001812FB /* AppTheme.swift in Sources */,
+				CAEC664D2C6BB67900F17C1A /* PassManError.swift in Sources */,
+				CA96D86F2C63CC7800C97006 /* ToolbarMenu.swift in Sources */,
+				CAEC66512C6C10D100F17C1A /* InfoButton.swift in Sources */,
+				CAEC66492C695D4700F17C1A /* SubsequentAuthenticationView.swift in Sources */,
+				CAB1ADC62C7D18060070962C /* SettingsViewModel.swift in Sources */,
+				CAC17D8A2C9245540097999D /* CredentialListViewModel.swift in Sources */,
+				CAC17D852C90E6470097999D /* CredentialEditorViewModel.swift in Sources */,
 				CAB0C7C22C49A3B4006F0B3B /* PassManApp.swift in Sources */,
+				CA0167592C88CBE7001812FB /* CheckboxToggleStyle.swift in Sources */,
+				CAB0C7D62C4EC846006F0B3B /* PasswordUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +479,7 @@
 				DEVELOPMENT_TEAM = 84ZZK9R8RZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to use Face ID for authentication purposes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +509,7 @@
 				DEVELOPMENT_TEAM = 84ZZK9R8RZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to use Face ID for authentication purposes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +550,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CA4777452C56DD8600386821 /* CredentialsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */,
+			);
+			currentVersion = CA4777462C56DD8600386821 /* CredentialsModel.xcdatamodel */;
+			name = CredentialsModel.xcdatamodeld;
+			path = /Users/vladislavskotarenko/Downloads/projects/PassMan/PassMan/CredentialsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CAB0C7B62C49A3B4006F0B3B /* Project object */;
 }
